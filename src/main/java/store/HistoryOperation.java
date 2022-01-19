@@ -9,14 +9,14 @@ public class HistoryOperation {
     private HistoryOperation() {
     }
 
-    public static HistoryOperation getInstance(){
-        if(instance == null){
+    public static HistoryOperation getInstance() {
+        if (instance == null) {
             instance = new HistoryOperation();
         }
         return instance;
     }
 
-   private ArrayList<String> listHistoryOperation = new ArrayList<>();
+    private ArrayList<String> listHistoryOperation = new ArrayList<>();
 
     public void add(String inputСalculations) {
         LocalDateTime localDateTime = LocalDateTime.now();

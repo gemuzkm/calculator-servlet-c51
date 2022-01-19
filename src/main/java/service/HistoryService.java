@@ -5,8 +5,6 @@ import store.HistoryOperation;
 import java.util.ArrayList;
 
 public class HistoryService {
-    private static HistoryService instance;
-
     private HistoryOperation historyOperation = HistoryOperation.getInstance();
 
     public String printHistory() {
