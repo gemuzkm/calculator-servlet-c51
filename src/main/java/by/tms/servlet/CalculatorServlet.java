@@ -15,11 +15,11 @@ public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String operatorFirst = req.getParameter("op1");
-        String operatorTwo = req.getParameter("op2");
+        String valueFirst = req.getParameter("op1+");
+        String valueSecond = req.getParameter("op2");
         String operation = req.getParameter("operat");
 
-        CalculatorService calculatorService = new CalculatorService(operatorFirst, operatorTwo, operation);
+        CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation);
 
         double operatorFirstDouble = 0.0;
         double operatorTwoDouble = 0.0;
@@ -27,16 +27,16 @@ public class CalculatorServlet extends HttpServlet {
 
         boolean isTrueInput = false;
 
-        if (isNumber(operatorFirst) && isNumber(operatorTwo)) {
-            operatorFirstDouble = Double.parseDouble(operatorFirst);
-            operatorTwoDouble = Double.parseDouble(operatorTwo);
+        if (isNumber(valueFirst) && isNumber(valueSecond)) {
+            operatorFirstDouble = Double.parseDouble(valueFirst);
+            operatorTwoDouble = Double.parseDouble(valueSecond);
             isTrueInput = true;
         }
 
         if (isTrueInput) {
             if (operation.equals("sum")) {
                 result = operatorFirstDouble + operatorTwoDouble;
-            } else if (operation.equals("diff")) {
+            } else if (operation.equals("dif")) {
                 result = operatorFirstDouble - operatorTwoDouble;
             } else if (operation.equals("div")) {
                 result = operatorFirstDouble / operatorTwoDouble;
@@ -44,7 +44,7 @@ public class CalculatorServlet extends HttpServlet {
                 result = operatorFirstDouble * operatorTwoDouble;
             }
 
-            resp.getWriter().println(operatorFirst + " " + operation  + " " + operatorTwo + " = " + result);
+            resp.getWriter().println(valueFirst + " " + operation  + " " + valueSecond + " = " + result);
         } else {
             resp.getWriter().println("Invalid operation");
         }
