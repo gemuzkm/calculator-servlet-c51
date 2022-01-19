@@ -15,52 +15,13 @@ public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String valueFirst = req.getParameter("op1+");
-        String valueSecond = req.getParameter("op2");
-        String operation = req.getParameter("operat");
+        String valueFirst = req.getParameter("value1");
+        String valueSecond = req.getParameter("value2");
+        String operation = req.getParameter("operation");
 
         CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation);
 
-        double operatorFirstDouble = 0.0;
-        double operatorTwoDouble = 0.0;
-        double result = 0.0;
-
-        boolean isTrueInput = false;
-
-        if (valueFirst == null) {
-            resp.getWriter().println("NULL");
-        }
-
-        if (isNumber(valueFirst) && isNumber(valueSecond)) {
-            operatorFirstDouble = Double.parseDouble(valueFirst);
-            operatorTwoDouble = Double.parseDouble(valueSecond);
-            isTrueInput = true;
-        }
-
-        if (isTrueInput) {
-            if (operation.equals("sum")) {
-                result = operatorFirstDouble + operatorTwoDouble;
-            } else if (operation.equals("dif")) {
-                result = operatorFirstDouble - operatorTwoDouble;
-            } else if (operation.equals("div")) {
-                result = operatorFirstDouble / operatorTwoDouble;
-            } else if (operation.equals("mult")) {
-                result = operatorFirstDouble * operatorTwoDouble;
-            }
-
-            resp.getWriter().println(valueFirst + " " + operation  + " " + valueSecond + " = " + result);
-        } else {
-            resp.getWriter().println("Invalid operation");
-        }
-    }
-
-    private boolean isNumber(String inputOperation) {
-        try {
-            Double.parseDouble(inputOperation);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
+        resp.getWriter().println(calculatorService.getResult());
     }
 }
 
