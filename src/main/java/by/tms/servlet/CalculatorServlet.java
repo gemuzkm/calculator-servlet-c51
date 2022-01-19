@@ -27,6 +27,10 @@ public class CalculatorServlet extends HttpServlet {
 
         boolean isTrueInput = false;
 
+        if (valueFirst == null) {
+            resp.getWriter().println("NULL");
+        }
+
         if (isNumber(valueFirst) && isNumber(valueSecond)) {
             operatorFirstDouble = Double.parseDouble(valueFirst);
             operatorTwoDouble = Double.parseDouble(valueSecond);

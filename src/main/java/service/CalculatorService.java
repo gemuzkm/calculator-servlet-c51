@@ -1,6 +1,7 @@
 package service;
 
-import validator.InputOperatorNumberValidation;
+import store.HistoryOperation;
+import validator.ValueValidation;
 
 public class CalculatorService {
     private String operatorOne = "";
@@ -11,7 +12,8 @@ public class CalculatorService {
     private double operatorTwoDouble = 0.0;
     private boolean isValidOperation = false;
 
-    private InputOperatorNumberValidation inputOperatorNumberValidation = new InputOperatorNumberValidation();
+    private ValueValidation valueValidation = new ValueValidation();
+    private HistoryOperation historyOperation = new HistoryOperation();
 
 
     public CalculatorService(String operatorOne, String operatorTwo, String operator) {
