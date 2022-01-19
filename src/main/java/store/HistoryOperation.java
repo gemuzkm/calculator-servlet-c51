@@ -4,9 +4,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class HistoryOperation {
+    private static HistoryOperation instance;
 
+    private HistoryOperation() {
+    }
 
-    public static ArrayList<String> listHistoryOperation = new ArrayList<>();
+    public static HistoryOperation getInstance(){
+        if(instance == null){
+            instance = new HistoryOperation();
+        }
+        return instance;
+    }
+
+   private ArrayList<String> listHistoryOperation = new ArrayList<>();
 
     public void add(String inputСalculations) {
         LocalDateTime localDateTime = LocalDateTime.now();

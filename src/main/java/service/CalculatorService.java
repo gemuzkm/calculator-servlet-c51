@@ -11,7 +11,7 @@ public class CalculatorService {
 
     private ValueValidation valueValidation = new ValueValidation();
     private OperationValidation operationValidation = new OperationValidation();
-    private HistoryOperation historyOperation = new HistoryOperation();
+    private HistoryOperation historyOperation = HistoryOperation.getInstance();
 
     public CalculatorService(String valueFirst, String valueSecond, String operation) {
         this.valueFirst = valueFirst;
