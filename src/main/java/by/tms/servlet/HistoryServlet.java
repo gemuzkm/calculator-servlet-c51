@@ -14,7 +14,6 @@ public class HistoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HistoryService historyService = new HistoryService();
-
         resp.getWriter().println(historyService.printHistory());
     }
 }
