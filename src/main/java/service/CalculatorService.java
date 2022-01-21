@@ -1,6 +1,6 @@
 package service;
 
-import store.HistoryOperation;
+import storage.HistoryOperation;
 import validator.OperationValidation;
 import validator.ValueValidation;
 
