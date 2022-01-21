@@ -9,8 +9,12 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/registration")
 public class RegistrationServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String userName = req.getParameter("username");
+        String userLogin = req.getParameter("login");
+        String userPassword = req.getParameter("password");
 
     }
 }

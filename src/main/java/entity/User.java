@@ -2,11 +2,13 @@ package entity;
 
 public class User {
     private String name;
-    private String pass;
+    private String login;
+    private String password;
 
-    public User(String name, String pass) {
+    public User(String name, String login, String password) {
         this.name = name;
-        this.pass = pass;
+        this.login = login;
+        this.password = password;
     }
 
     public String getName() {
@@ -17,11 +19,19 @@ public class User {
         this.name = name;
     }
 
-    public String getPass() {
-        return pass;
+    public String getLogin() {
+        return login;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
