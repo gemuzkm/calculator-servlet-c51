@@ -1,5 +1,8 @@
 package by.tms.servlet;
 
+import entity.User;
+import storage.UserStorageInMemory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +18,10 @@ public class RegistrationServlet extends HttpServlet {
         String userName = req.getParameter("username");
         String userLogin = req.getParameter("login");
         String userPassword = req.getParameter("password");
+
+        UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
+        userStorageInMemory.addUser(new User(userName, userLogin, userPassword));
+
 
     }
 }

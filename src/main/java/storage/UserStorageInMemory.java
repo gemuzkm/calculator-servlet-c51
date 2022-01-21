@@ -4,7 +4,7 @@ import entity.User;
 
 import java.util.ArrayList;
 
-public class UserStorage {
+public class UserStorageInMemory {
 
     private final ArrayList<User> listUser = new ArrayList<>();
 
