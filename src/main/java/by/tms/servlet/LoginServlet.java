@@ -1,5 +1,7 @@
 package by.tms.servlet;
 
+import validator.UserValidation;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +14,17 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserValidation userValidation = new UserValidation();
+
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        HttpSession session = req.getSession();
-        session.setAttribute("login", login);
+
+        if (userValidation.validUserPassword(login,password) == null) {
+            resp.getWriter().println("Incorrect parameters");
+        } else {
+            HttpSession session = req.getSession();
+            session.setAttribute("login", login);
+            resp.getWriter().println("Authorized successfully");
+        }
     }
 }

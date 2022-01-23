@@ -22,4 +22,11 @@ public class UserValidation {
         }
     }
 
+    public User validUserPassword(String userLogin, String userPassword) {
+        User user = userStorageInMemory.getByUserLogin(userLogin);
+        if (user.getPassword().equals(userPassword)) {
+            return user;
+        }
+        return null;
+    }
 }
