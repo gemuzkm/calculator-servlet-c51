@@ -19,25 +19,21 @@ public class RegistrationServlet extends HttpServlet {
         UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
         UserValidation userValidation = new UserValidation();
 
-        String userName = req.getParameter("username");
+        String userName = req.getParameter("name");
         String userLogin = req.getParameter("login");
         String userPassword = req.getParameter("password");
 
         User user = new User(userName, userLogin, userPassword);
 
-
         if (userStorageInMemory.getByUserLogin(user.getLogin()) == null) {
             userStorageInMemory.addUser(user);
+            if (userValidation.existsUser(user)) {
+                resp.getWriter().println("Registration was successful.");
+            } else {
+                resp.getWriter().println("Error. User not created.");
+            }
         } else {
             resp.getWriter().println("Error. The user already exists.");
         }
-
-        if (userStorageInMemory.getByUserLogin(userLogin).getLogin().equals(user.getLogin())) {
-            resp.getWriter().println("Registration was successful.");
-        } else {
-            resp.getWriter().println("Error. User not created.");
-        }
-
-
     }
 }

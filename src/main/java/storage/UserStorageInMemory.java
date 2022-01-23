@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class UserStorageInMemory {
 
-    private final ArrayList<User> listUser = new ArrayList<>();
+    private final static ArrayList<User> listUser = new ArrayList<>();
 
     public void addUser(User user) {
         listUser.add(user);
