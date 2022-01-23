@@ -18,4 +18,12 @@ public class ValueValidation {
             return false;
         }
     }
+
+    public boolean isStringEmpty(String inputString) {
+        if (inputString.length() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
