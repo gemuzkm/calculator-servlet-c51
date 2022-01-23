@@ -13,4 +13,13 @@ public class UserValidation {
             return false;
         }
     }
+
+    public boolean existsUser(String userLogin) {
+        if (userStorageInMemory.getByUserLogin(userLogin) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package filter;
 
+import validator.UserValidation;
 import validator.ValueValidation;
 
 import javax.servlet.FilterChain;
@@ -16,6 +17,7 @@ public class LoginFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         ValueValidation valueValidation = new ValueValidation();
+        UserValidation userValidation = new UserValidation();
 
         String login = req.getParameter("login");
         String password = req.getParameter("password");
@@ -24,6 +26,8 @@ public class LoginFilter extends HttpFilter {
             res.sendRedirect("/calculator");
         } else if (valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
             res.sendRedirect("/calculator");
+        } else if (!userValidation.existsUser(login)) {
+            res.sendRedirect("/calculation");
         } else {
             super.doFilter(req, res, chain);
         }
