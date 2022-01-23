@@ -15,6 +15,4 @@ public class TestFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         chain.doFilter(req,res);
     }
-
-
 }

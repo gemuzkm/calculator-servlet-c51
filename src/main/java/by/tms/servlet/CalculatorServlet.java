@@ -1,6 +1,7 @@
 package by.tms.servlet;
 
 import service.CalculatorService;
+import storage.UserStorageInMemory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,8 @@ public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
+
         String valueFirst = req.getParameter("value1");
         String valueSecond = req.getParameter("value2");
         String operation = req.getParameter("operation");

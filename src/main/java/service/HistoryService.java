@@ -13,11 +13,11 @@ public class HistoryService {
         if (listHistoryOperation.size() == 0) {
             return "Empty";
         }  else {
-            String history = "";
+            StringBuilder history = new StringBuilder();
             for (String line : listHistoryOperation) {
-                history += line + "\n";
+                history.append(String.format("%s\n", line));
             }
-            return history;
+            return history.toString();
         }
     }
 }

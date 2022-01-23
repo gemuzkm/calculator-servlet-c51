@@ -5,4 +5,5 @@ import javax.servlet.http.HttpServlet;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
+
 }
