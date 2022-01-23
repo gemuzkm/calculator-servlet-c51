@@ -14,7 +14,7 @@ public class UserStorageInMemory {
 
     public User getByUser(String userName) {
         for (User user : listUser) {
-            if (user.equals(userName)) {
+            if (user.getName().equals(userName)) {
                 return user;
             }
         }

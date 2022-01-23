@@ -19,8 +19,16 @@ public class RegistrationServlet extends HttpServlet {
         String userLogin = req.getParameter("login");
         String userPassword = req.getParameter("password");
 
+        User user = new User(userName, userLogin, userPassword);
         UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
-        userStorageInMemory.addUser(new User(userName, userLogin, userPassword));
+
+        userStorageInMemory.addUser(user);
+
+        if (userStorageInMemory.getByUser(userName).getLogin().equals(user.getName())) {
+            resp.getWriter().println("Registration was successful.");
+        } else {
+            resp.getWriter().println("Error. User not created.");
+        }
 
 
     }
