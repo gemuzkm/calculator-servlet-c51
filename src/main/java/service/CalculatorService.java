@@ -1,16 +1,12 @@
 package service;
 
 import storage.HistoryOperation;
-import validator.OperationValidation;
-import validator.ValueValidation;
 
 public class CalculatorService {
     private String valueFirst = "";
     private String valueSecond = "";
     private String operation = "";
 
-    private ValueValidation valueValidation = new ValueValidation();
-    private OperationValidation operationValidation = new OperationValidation();
     private HistoryOperation historyOperation = HistoryOperation.getInstance();
 
     public CalculatorService(String valueFirst, String valueSecond, String operation) {
@@ -22,17 +18,10 @@ public class CalculatorService {
     public String getResult() {
         String resultOperation = "";
 
-        if (valueValidation.isNull(valueFirst) || valueValidation.isNull(valueSecond) || valueValidation.isNull(operation)) {
-            return "Incorrect parameters";
-        } else if (!operationValidation.supportedOperation(operation)) {
-            return "Operation unsupported";
-        } else if (!valueValidation.isNumber(valueFirst) || !valueValidation.isNumber(valueSecond)) {
-            return "Transmitted parameters are not numbers";
-        } else {
-            double valueFirstDouble = Double.parseDouble(valueFirst);
-            double valueSecondDouble = Double.parseDouble(valueSecond);
-            resultOperation = valueFirst + " " + operation + " " + valueSecond + " = " + getResultOperation(valueFirstDouble, valueSecondDouble, operation);
-        }
+        double valueFirstDouble = Double.parseDouble(valueFirst);
+        double valueSecondDouble = Double.parseDouble(valueSecond);
+        resultOperation = valueFirst + " " + operation + " " + valueSecond + " = " + getResultOperation(valueFirstDouble, valueSecondDouble, operation);
+
         historyOperation.add(resultOperation);
         return resultOperation;
     }
