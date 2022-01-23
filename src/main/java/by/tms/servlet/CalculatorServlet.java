@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/calculator")
+@WebServlet(urlPatterns = "/calculator", name = "CalculatorServlet")
 public class CalculatorServlet extends HttpServlet {
 
     @Override
