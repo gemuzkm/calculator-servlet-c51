@@ -20,7 +20,7 @@ public class CalculatorServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
         if (session.getAttribute("login") == null) {
-            resp.getWriter().println("Welcome, Anonymous. You are not authorized..");
+            resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
         } else {
             String valueFirst = req.getParameter("value1");
             String valueSecond = req.getParameter("value2");
