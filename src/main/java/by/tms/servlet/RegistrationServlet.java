@@ -2,6 +2,7 @@ package by.tms.servlet;
 
 import entity.User;
 import storage.UserStorageInMemory;
+import validator.UserValidation;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,16 +16,23 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
+        UserValidation userValidation = new UserValidation();
+
         String userName = req.getParameter("username");
         String userLogin = req.getParameter("login");
         String userPassword = req.getParameter("password");
 
         User user = new User(userName, userLogin, userPassword);
-        UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
 
-        userStorageInMemory.addUser(user);
 
-        if (userStorageInMemory.getByUser(userName).getLogin().equals(user.getName())) {
+        if (userStorageInMemory.getByUserLogin(user.getLogin()) == null) {
+            userStorageInMemory.addUser(user);
+        } else {
+            resp.getWriter().println("Error. The user already exists.");
+        }
+
+        if (userStorageInMemory.getByUserLogin(userLogin).getLogin().equals(user.getLogin())) {
             resp.getWriter().println("Registration was successful.");
         } else {
             resp.getWriter().println("Error. User not created.");

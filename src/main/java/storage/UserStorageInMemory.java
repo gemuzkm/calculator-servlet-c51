@@ -12,9 +12,9 @@ public class UserStorageInMemory {
         listUser.add(user);
     }
 
-    public User getByUser(String userName) {
+    public User getByUserLogin(String userLogin) {
         for (User user : listUser) {
-            if (user.getName().equals(userName)) {
+            if (user.getName().equals(userLogin)) {
                 return user;
             }
         }
