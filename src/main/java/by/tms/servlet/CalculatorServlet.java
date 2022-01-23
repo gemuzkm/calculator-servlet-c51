@@ -18,16 +18,18 @@ public class CalculatorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
         HttpSession session = req.getSession();
-        System.out.println(session.getAttribute("login"));
 
+        if (session.getAttribute("login") == null) {
+            resp.getWriter().println("Welcome, Anonymous. You are not authorized..");
+        } else {
+            String valueFirst = req.getParameter("value1");
+            String valueSecond = req.getParameter("value2");
+            String operation = req.getParameter("operation");
 
-        String valueFirst = req.getParameter("value1");
-        String valueSecond = req.getParameter("value2");
-        String operation = req.getParameter("operation");
+            CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation);
 
-        CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation);
-
-        resp.getWriter().println(calculatorService.getResult());
+            resp.getWriter().println(calculatorService.getResult());
+        }
     }
 }
 
