@@ -22,6 +22,8 @@ public class LoginFilter extends HttpFilter {
 
         if (valueValidation.isNull(login) || valueValidation.isNull(password)) {
             res.sendRedirect("/calculator");
+        } else if (valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
+            res.sendRedirect("/calculator");
         } else {
             super.doFilter(req, res, chain);
         }
