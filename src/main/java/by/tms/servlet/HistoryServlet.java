@@ -22,7 +22,7 @@ public class HistoryServlet extends HttpServlet {
 
         if (userLogin == null) {
             resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
-        } else  if (userService.changedUserSessionID(userLogin, sessionID)) {
+        } else if (userService.changedUserSessionID(userLogin, sessionID)) {
             resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
         } else {
             HistoryService historyService = new HistoryService();
