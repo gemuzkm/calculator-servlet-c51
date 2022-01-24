@@ -1,6 +1,7 @@
 package by.tms.servlet;
 
 import service.CalculatorService;
+import service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +16,13 @@ public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserService userService = new UserService();
         HttpSession session = req.getSession();
+        String sessionID = session.getId();
 
         if (session.getAttribute("login") == null) {
+            resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
+        } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
             resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
         } else {
             String valueFirst = req.getParameter("value1");
