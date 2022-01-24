@@ -12,6 +12,13 @@ public class User {
         this.password = password;
     }
 
+    public User(String name, String login, String password, String sessionID) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.sessionID = sessionID;
+    }
+
     public String getName() {
         return name;
     }

@@ -26,8 +26,7 @@ public class RegistrationServlet extends HttpServlet {
         String userPassword = req.getParameter("password");
 
         session.setAttribute("login", userLogin);
-        User user = new User(userName, userLogin, userPassword);
-        user.setSessionID(session.getId());
+        User user = new User(userName, userLogin, userPassword, session.getId());
 
         if (userStorageInMemory.getByUserLogin(user.getLogin()) == null) {
             userStorageInMemory.addUser(user);
