@@ -17,16 +17,15 @@ public class HistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         UserService userService = new UserService();
-        String userLogin = session.getAttribute("login").toString();
         String sessionID = session.getId();
 
-        if (userLogin == null) {
+        if (session.getAttribute("login") == null) {
             resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
-        } else if (userService.changedUserSessionID(userLogin, sessionID)) {
+        } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
             resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
         } else {
             HistoryService historyService = new HistoryService();
-            resp.getWriter().println(historyService.printHistory(userLogin));
+            resp.getWriter().println(historyService.printHistory(session.getAttribute("login").toString()));
         }
     }
 }
