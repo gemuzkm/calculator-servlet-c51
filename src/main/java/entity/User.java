@@ -4,6 +4,7 @@ public class User {
     private String name;
     private String login;
     private String password;
+    private String sessionID;
 
     public User(String name, String login, String password) {
         this.name = name;
@@ -33,5 +34,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSessionID() {
+        return sessionID;
+    }
+
+    public void setSessionID(String sessionID) {
+        this.sessionID = sessionID;
     }
 }
