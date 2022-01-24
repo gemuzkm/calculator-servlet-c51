@@ -1,6 +1,7 @@
 package by.tms.servlet;
 
 import service.HistoryService;
+import service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +16,15 @@ public class HistoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        UserService userService = new UserService();
+        String userLogin = session.getAttribute("login").toString();
+        String sessionID = session.getId();
 
-        if (session.getAttribute("login") == null) {
+        if (userLogin == null) {
+            resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
+        } else  if (userService.changedUserSessionID(userLogin, sessionID)) {
             resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
         } else {
-            String userLogin = session.getAttribute("login").toString();
             HistoryService historyService = new HistoryService();
             resp.getWriter().println(historyService.printHistory(userLogin));
         }

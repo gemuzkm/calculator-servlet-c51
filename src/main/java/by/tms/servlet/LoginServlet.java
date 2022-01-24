@@ -33,7 +33,6 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("login", login);
             user.setSessionID(session.getId());
             userService.checkUserSessionID(login, session.getId());
-
             resp.getWriter().println("Authorized successfully");
         }
     }
