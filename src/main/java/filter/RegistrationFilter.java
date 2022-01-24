@@ -21,9 +21,11 @@ public class RegistrationFilter extends HttpFilter {
         String password = req.getParameter("password");
 
         if (valueValidation.isNull(name) || valueValidation.isNull(login) || valueValidation.isNull(password)) {
-            res.sendRedirect("/calculator");
+            //res.sendRedirect("/calculator");
+            res.getWriter().println("Incorrect parameters");
         } if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-            res.sendRedirect("/calculator");
+            //res.sendRedirect("/calculator");
+            res.getWriter().println("Incorrect parameters");
         } else {
             super.doFilter(req, res, chain);
         }
