@@ -29,4 +29,13 @@ public class UserValidation {
         }
         return null;
     }
+
+    public boolean changedUserSessionID(String userLogin, String sessionID) {
+        User user = userStorageInMemory.getByUserLogin(userLogin);
+        if (user.getSessionID().equals(sessionID)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
