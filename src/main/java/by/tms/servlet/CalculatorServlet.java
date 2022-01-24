@@ -1,7 +1,6 @@
 package by.tms.servlet;
 
 import service.CalculatorService;
-import storage.UserStorageInMemory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,6 @@ public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
         HttpSession session = req.getSession();
 
         if (session.getAttribute("login") == null) {
@@ -25,8 +23,9 @@ public class CalculatorServlet extends HttpServlet {
             String valueFirst = req.getParameter("value1");
             String valueSecond = req.getParameter("value2");
             String operation = req.getParameter("operation");
+            String userLogin = session.getAttribute("login").toString();
 
-            CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation);
+            CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation, userLogin);
 
             resp.getWriter().println(calculatorService.getResult());
         }

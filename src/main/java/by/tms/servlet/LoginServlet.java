@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             HttpSession session = req.getSession();
             session.setAttribute("login", login);
+            System.out.println(session.getId());
             resp.getWriter().println("Authorized successfully");
         }
     }

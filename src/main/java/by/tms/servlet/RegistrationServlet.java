@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/registration", name = "RegistrationServlet")
@@ -18,6 +19,7 @@ public class RegistrationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
         UserValidation userValidation = new UserValidation();
+        HttpSession session = req.getSession();
 
         String userName = req.getParameter("name");
         String userLogin = req.getParameter("login");
@@ -29,6 +31,7 @@ public class RegistrationServlet extends HttpServlet {
             userStorageInMemory.addUser(user);
             if (userValidation.existsUser(user)) {
                 resp.getWriter().println("Registration was successful.");
+                System.out.println(session.getId());
             } else {
                 resp.getWriter().println("Error. User not created.");
             }

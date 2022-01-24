@@ -23,11 +23,14 @@ public class LoginFilter extends HttpFilter {
         String password = req.getParameter("password");
 
         if (valueValidation.isNull(login) || valueValidation.isNull(password)) {
-            res.sendRedirect("/calculator");
+            //res.sendRedirect("/calculator");
+            res.getWriter().println("Incorrect parameters");
         } else if (valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-            res.sendRedirect("/calculator");
+            //res.sendRedirect("/calculator");
+            res.getWriter().println("Incorrect parameters");
         } else if (!userValidation.existsUser(login)) {
-            res.sendRedirect("/calculation");
+            //res.sendRedirect("/calculation");
+            res.getWriter().println("User not found.");
         } else {
             super.doFilter(req, res, chain);
         }

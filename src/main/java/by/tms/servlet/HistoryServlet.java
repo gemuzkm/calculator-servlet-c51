@@ -19,8 +19,9 @@ public class HistoryServlet extends HttpServlet {
         if (session.getAttribute("login") == null) {
             resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
         } else {
+            String userLogin = session.getAttribute("login").toString();
             HistoryService historyService = new HistoryService();
-            resp.getWriter().println(historyService.printHistory());
+            resp.getWriter().println(historyService.printHistory(userLogin));
         }
     }
 }

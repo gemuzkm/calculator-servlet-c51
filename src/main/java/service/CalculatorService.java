@@ -6,23 +6,27 @@ public class CalculatorService {
     private String valueFirst = "";
     private String valueSecond = "";
     private String operation = "";
+    private String userLogin = "";
 
     private HistoryOperation historyOperation = HistoryOperation.getInstance();
 
-    public CalculatorService(String valueFirst, String valueSecond, String operation) {
+    public CalculatorService(String valueFirst, String valueSecond, String operation, String userLogin) {
         this.valueFirst = valueFirst;
         this.valueSecond = valueSecond;
         this.operation = operation;
+        this.userLogin = userLogin;
     }
 
     public String getResult() {
+
         String resultOperation = "";
 
         double valueFirstDouble = Double.parseDouble(valueFirst);
         double valueSecondDouble = Double.parseDouble(valueSecond);
         resultOperation = valueFirst + " " + operation + " " + valueSecond + " = " + getResultOperation(valueFirstDouble, valueSecondDouble, operation);
 
-        historyOperation.add(resultOperation);
+//        historyOperation.add(resultOperation);
+        historyOperation.add(userLogin, resultOperation);
         return resultOperation;
     }
 
