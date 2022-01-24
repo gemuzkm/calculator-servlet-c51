@@ -19,12 +19,15 @@ public class RegistrationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
         UserValidation userValidation = new UserValidation();
+        HttpSession session = req.getSession();
 
         String userName = req.getParameter("name");
         String userLogin = req.getParameter("login");
         String userPassword = req.getParameter("password");
 
+        session.setAttribute("login", userLogin);
         User user = new User(userName, userLogin, userPassword);
+        user.setSessionID(session.getId());
 
         if (userStorageInMemory.getByUserLogin(user.getLogin()) == null) {
             userStorageInMemory.addUser(user);

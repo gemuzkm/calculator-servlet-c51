@@ -29,10 +29,16 @@ public class LoginServlet extends HttpServlet {
         } else {
             User user = userStorageInMemory.getByUserLogin(login);
             HttpSession session = req.getSession();
-
+//            session.setMaxInactiveInterval(30);
             session.setAttribute("login", login);
-            user.setSessionID(session.getId());
-            userService.checkUserSessionID(login, session.getId());
+
+            if (userService.changedUserSessionID(login, session.getId())) {
+                userService.deleteHistoryAfterIdChange(login, session.getId());
+                user.setSessionID(session.getId());
+            } else {
+                user.setSessionID(session.getId());
+            }
+
             resp.getWriter().println("Authorized successfully");
         }
     }

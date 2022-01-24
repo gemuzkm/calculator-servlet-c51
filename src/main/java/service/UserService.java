@@ -13,7 +13,7 @@ public class UserService {
         return userStorageInMemory.getByUserLogin(userLogin);
     }
 
-    public void checkUserSessionID(String userLogin, String sessionID) {
+    public void deleteHistoryAfterIdChange(String userLogin, String sessionID) {
         if(userValidation.changedUserSessionID(userLogin, sessionID)) {
             historyService.delHistory(userLogin);
         }
