@@ -1,11 +1,11 @@
 package service;
 
-import storage.HistoryStorage;
+import storage.HistoryStorageInMemory;
 
 import java.util.HashMap;
 
 public class HistoryService {
-    private HistoryStorage historyStorage = HistoryStorage.getInstance();
+    private HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
     private String userLogin = "";
 
     public String printHistory(String userLogin) {
@@ -20,7 +20,7 @@ public class HistoryService {
 //            }
 //            return history.toString();
 //        }
-        HashMap<String, String> mapHistoryOperation = historyStorage.getMapHistoryOperation();
+        HashMap<String, String> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
 
         if (mapHistoryOperation.containsKey(userLogin)) {
             return mapHistoryOperation.get(userLogin);
@@ -30,6 +30,6 @@ public class HistoryService {
     }
 
     public void delHistory(String userLogin) {
-        historyStorage.del(userLogin);
+        historyStorageInMemory.del(userLogin);
     }
 }

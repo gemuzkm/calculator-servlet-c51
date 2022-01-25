@@ -32,7 +32,7 @@ public class LoginFilter extends HttpFilter {
             //res.sendRedirect("/calculation");
             res.getWriter().println("User not found.");
         } else {
-            super.doFilter(req, res, chain);
+            chain.doFilter(req, res);
         }
     }
 }

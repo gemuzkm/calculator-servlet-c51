@@ -27,7 +27,7 @@ public class RegistrationFilter extends HttpFilter {
             //res.sendRedirect("/calculator");
             res.getWriter().println("Incorrect parameters");
         } else {
-            super.doFilter(req, res, chain);
+            chain.doFilter(req, res);
         }
     }
 }

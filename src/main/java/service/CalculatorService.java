@@ -1,6 +1,6 @@
 package service;
 
-import storage.HistoryStorage;
+import storage.HistoryStorageInMemory;
 
 public class CalculatorService {
     private String valueFirst = "";
@@ -8,7 +8,7 @@ public class CalculatorService {
     private String operation = "";
     private String userLogin = "";
 
-    private HistoryStorage historyStorage = HistoryStorage.getInstance();
+    private HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
     public CalculatorService(String valueFirst, String valueSecond, String operation, String userLogin) {
         this.valueFirst = valueFirst;
@@ -26,7 +26,7 @@ public class CalculatorService {
         resultOperation = valueFirst + " " + operation + " " + valueSecond + " = " + getResultOperation(valueFirstDouble, valueSecondDouble, operation);
 
 //        historyOperation.add(resultOperation);
-        historyStorage.add(userLogin, resultOperation);
+        historyStorageInMemory.add(userLogin, resultOperation);
         return resultOperation;
     }
 

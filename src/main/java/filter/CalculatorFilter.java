@@ -30,7 +30,7 @@ public class CalculatorFilter extends HttpFilter {
         } else if (!operationValidation.supportedOperation(operation)) {
             res.getWriter().println("Operation unsupported");
         } else {
-            super.doFilter(req, res, chain);
+            chain.doFilter(req, res);
         }
     }
 }
