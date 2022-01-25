@@ -5,7 +5,7 @@ import storage.UserStorageInMemory;
 import validator.UserValidation;
 
 public class UserService {
-    private UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
+    private UserStorageInMemory userStorageInMemory =  UserStorageInMemory.getInstance();
     private UserValidation userValidation = new UserValidation();
     private HistoryService historyService = new HistoryService();
 

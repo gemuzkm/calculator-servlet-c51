@@ -19,6 +19,8 @@ public class CalculatorFilter extends HttpFilter {
 //        if (req.getMethod().equals("POST")) {
 //
 //        }
+//        <p>${requestScope.message}</p> - SSR, page scope
+
 
         ValueValidation valueValidation = new ValueValidation();
         OperationValidation operationValidation = new OperationValidation();

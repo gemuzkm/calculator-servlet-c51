@@ -17,7 +17,8 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
+
+        UserStorageInMemory userStorageInMemory = UserStorageInMemory.getInstance();
         UserValidation userValidation = new UserValidation();
         HttpSession session = req.getSession();
 

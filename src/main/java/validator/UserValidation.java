@@ -4,7 +4,7 @@ import entity.User;
 import storage.UserStorageInMemory;
 
 public class UserValidation {
-    UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
+    UserStorageInMemory userStorageInMemory = UserStorageInMemory.getInstance();
 
     public boolean existsUser(User user) {
         if (userStorageInMemory.getByUserLogin(user.getLogin()) != null) {

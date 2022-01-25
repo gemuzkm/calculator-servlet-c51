@@ -14,20 +14,20 @@ import java.io.IOException;
 public class RegistrationFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        ValueValidation valueValidation = new ValueValidation();
+        if (req.getMethod().equals("POST")) {
+            ValueValidation valueValidation = new ValueValidation();
 
-        String name = req.getParameter("name");
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+            String name = req.getParameter("name");
+            String login = req.getParameter("login");
+            String password = req.getParameter("password");
 
-        if (valueValidation.isNull(name) || valueValidation.isNull(login) || valueValidation.isNull(password)) {
-            //res.sendRedirect("/calculator");
-            res.getWriter().println("Incorrect parameters");
-        } if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-            //res.sendRedirect("/calculator");
-            res.getWriter().println("Incorrect parameters");
-        } else {
-            chain.doFilter(req, res);
+            if (valueValidation.isNull(name) || valueValidation.isNull(login) || valueValidation.isNull(password)) {
+                res.getWriter().println("Incorrect parameters");
+            } if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
+                res.getWriter().println("Incorrect parameters");
+            } else {
+                chain.doFilter(req, res);
+            }
         }
     }
 }

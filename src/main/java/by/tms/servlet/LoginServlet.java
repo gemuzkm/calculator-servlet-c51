@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserValidation userValidation = new UserValidation();
-        UserStorageInMemory userStorageInMemory = new UserStorageInMemory();
+        UserStorageInMemory userStorageInMemory = UserStorageInMemory.getInstance();
         UserService userService = new UserService();
 
         String login = req.getParameter("login");
@@ -29,7 +29,6 @@ public class LoginServlet extends HttpServlet {
         } else {
             User user = userStorageInMemory.getByUserLogin(login);
             HttpSession session = req.getSession();
-//            session.setMaxInactiveInterval(30);
             session.setAttribute("login", login);
 
             if (userService.changedUserSessionID(login, session.getId())) {
