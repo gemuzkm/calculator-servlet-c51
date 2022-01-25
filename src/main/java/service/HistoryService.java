@@ -1,12 +1,11 @@
 package service;
 
-import storage.HistoryOperation;
+import storage.HistoryStorage;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class HistoryService {
-    private HistoryOperation historyOperation = HistoryOperation.getInstance();
+    private HistoryStorage historyStorage = HistoryStorage.getInstance();
     private String userLogin = "";
 
     public String printHistory(String userLogin) {
@@ -21,7 +20,7 @@ public class HistoryService {
 //            }
 //            return history.toString();
 //        }
-        HashMap<String, String> mapHistoryOperation = historyOperation.getMapHistoryOperation();
+        HashMap<String, String> mapHistoryOperation = historyStorage.getMapHistoryOperation();
 
         if (mapHistoryOperation.containsKey(userLogin)) {
             return mapHistoryOperation.get(userLogin);
@@ -31,6 +30,6 @@ public class HistoryService {
     }
 
     public void delHistory(String userLogin) {
-        historyOperation.del(userLogin);
+        historyStorage.del(userLogin);
     }
 }

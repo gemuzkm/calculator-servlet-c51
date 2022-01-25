@@ -3,15 +3,15 @@ package storage;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
-public class HistoryOperation {
-    private static HistoryOperation instance;
+public class HistoryStorage {
+    private static HistoryStorage instance;
 
-    private HistoryOperation() {
+    private HistoryStorage() {
     }
 
-    public static HistoryOperation getInstance() {
+    public static HistoryStorage getInstance() {
         if (instance == null) {
-            instance = new HistoryOperation();
+            instance = new HistoryStorage();
         }
         return instance;
     }

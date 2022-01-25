@@ -1,7 +1,6 @@
 package by.tms.servlet;
 
 import service.HistoryService;
-import storage.HistoryOperation;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
