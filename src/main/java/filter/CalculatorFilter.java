@@ -16,6 +16,10 @@ public class CalculatorFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+//        if (req.getMethod().equals("POST")) {
+//
+//        }
+
         ValueValidation valueValidation = new ValueValidation();
         OperationValidation operationValidation = new OperationValidation();
 

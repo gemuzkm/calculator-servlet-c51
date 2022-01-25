@@ -34,6 +34,7 @@ public class FirstServlet extends HttpServlet {
         String name = req.getParameter("name");
         String age = req.getParameter("age");
 
-        resp.getWriter().println("Hello" + name + " " + age);
+//        resp.getWriter().println("Hello" + name + " " + age);
+        req.getServletContext().getRequestDispatcher("/pages/test.jsp").forward(req,resp);
     }
 }
