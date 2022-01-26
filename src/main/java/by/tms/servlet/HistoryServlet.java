@@ -1,6 +1,6 @@
 package by.tms.servlet;
 
-import service.HistoryService;
+import service.CalculatorService;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -17,6 +17,7 @@ public class HistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         UserService userService = new UserService();
+        CalculatorService calculatorService = new CalculatorService();
         String sessionID = session.getId();
 
         if (session.getAttribute("login") == null) {
@@ -24,8 +25,7 @@ public class HistoryServlet extends HttpServlet {
         } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
             resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
         } else {
-            HistoryService historyService = new HistoryService();
-            resp.getWriter().println(historyService.printHistory(session.getAttribute("login").toString()));
+            resp.getWriter().println(calculatorService.printHistory(session.getAttribute("login").toString()));
         }
     }
 }

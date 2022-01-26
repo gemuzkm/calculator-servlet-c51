@@ -2,6 +2,8 @@ package service;
 
 import storage.HistoryStorageInMemory;
 
+import java.util.HashMap;
+
 public class CalculatorService {
     private String valueFirst = "";
     private String valueSecond = "";
@@ -9,6 +11,9 @@ public class CalculatorService {
     private String userLogin = "";
 
     private HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
+
+    public CalculatorService() {
+    }
 
     public CalculatorService(String valueFirst, String valueSecond, String operation, String userLogin) {
         this.valueFirst = valueFirst;
@@ -25,7 +30,6 @@ public class CalculatorService {
         double valueSecondDouble = Double.parseDouble(valueSecond);
         resultOperation = valueFirst + " " + operation + " " + valueSecond + " = " + getResultOperation(valueFirstDouble, valueSecondDouble, operation);
 
-//        historyOperation.add(resultOperation);
         historyStorageInMemory.add(userLogin, resultOperation);
         return resultOperation;
     }
@@ -51,5 +55,20 @@ public class CalculatorService {
             return resultOperation;
         }
     return resultOperation;
+    }
+
+    public String printHistory(String userLogin) {
+
+        HashMap<String, String> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
+
+        if (mapHistoryOperation.containsKey(userLogin)) {
+            return mapHistoryOperation.get(userLogin);
+        } else {
+            return "Empty";
+        }
+    }
+
+    public void delHistory(String userLogin) {
+        historyStorageInMemory.del(userLogin);
     }
 }

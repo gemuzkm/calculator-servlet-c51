@@ -1,6 +1,6 @@
 package by.tms.servlet;
 
-import service.HistoryService;
+import service.CalculatorService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,13 +15,13 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HistoryService historyService = new HistoryService();
+        CalculatorService calculatorService = new CalculatorService();
         HttpSession session = req.getSession();
 
         if (session.getAttribute("login") != null) {
             String userLogin = session.getAttribute("login").toString();
 
-            historyService.delHistory(userLogin);
+            calculatorService.delHistory(userLogin);
             session.removeAttribute("login");
             session.invalidate();
             resp.getWriter().println("Logout successfully");

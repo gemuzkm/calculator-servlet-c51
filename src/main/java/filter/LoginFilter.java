@@ -19,20 +19,20 @@ public class LoginFilter extends HttpFilter {
         ValueValidation valueValidation = new ValueValidation();
         UserValidation userValidation = new UserValidation();
 
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        if (req.getMethod().equalsIgnoreCase("POST")) {
+            String login = req.getParameter("login");
+            String password = req.getParameter("password");
 
-        if (valueValidation.isNull(login) || valueValidation.isNull(password)) {
-            //res.sendRedirect("/calculator");
-            res.getWriter().println("Incorrect parameters");
-        } else if (valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-            //res.sendRedirect("/calculator");
-            res.getWriter().println("Incorrect parameters");
-        } else if (!userValidation.existsUser(login)) {
-            //res.sendRedirect("/calculation");
-            res.getWriter().println("User not found.");
-        } else {
-            chain.doFilter(req, res);
+            if (valueValidation.isNull(login) || valueValidation.isNull(password)) {
+                res.getWriter().println("Incorrect parameters");
+            } else if (valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
+                res.getWriter().println("Incorrect parameters");
+            } else if (!userValidation.existsUser(login)) {
+                res.getWriter().println("User not found.");
+            } else {
+
+            }
         }
+        chain.doFilter(req, res);
     }
 }
