@@ -14,6 +14,7 @@ import java.io.IOException;
 public class RegistrationFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+
         if (req.getMethod().equals("POST")) {
             ValueValidation valueValidation = new ValueValidation();
 
@@ -25,9 +26,9 @@ public class RegistrationFilter extends HttpFilter {
                 res.getWriter().println("Incorrect parameters");
             } if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
                 res.getWriter().println("Incorrect parameters");
-            } else {
-                chain.doFilter(req, res);
             }
         }
+
+        chain.doFilter(req, res);
     }
 }

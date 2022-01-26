@@ -1,6 +1,7 @@
 package by.tms.servlet;
 
 import entity.User;
+import service.UserService;
 import storage.UserStorageInMemory;
 import validator.UserValidation;
 
@@ -18,7 +19,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserStorageInMemory userStorageInMemory = UserStorageInMemory.getInstance();
+        UserService userService = new UserService();
         UserValidation userValidation = new UserValidation();
         HttpSession session = req.getSession();
 
@@ -29,8 +30,8 @@ public class RegistrationServlet extends HttpServlet {
         session.setAttribute("login", userLogin);
         User user = new User(userName, userLogin, userPassword, session.getId());
 
-        if (userStorageInMemory.getByUserLogin(user.getLogin()) == null) {
-            userStorageInMemory.addUser(user);
+        if (userService.getByUserLogin(user.getLogin()) == null) {
+            userService.addUser(user);
             if (userValidation.existsUser(user)) {
                 resp.getWriter().println("Registration was successful.");
             } else {

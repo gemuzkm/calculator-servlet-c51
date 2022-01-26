@@ -22,4 +22,8 @@ public class UserService {
     public boolean changedUserSessionID(String userLogin, String sessionID) {
         return userValidation.changedUserSessionID(userLogin, sessionID);
     }
+
+    public void addUser(User user) {
+        userStorageInMemory.addUser(user);
+    }
 }
