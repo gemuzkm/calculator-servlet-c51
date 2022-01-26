@@ -16,15 +16,15 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserValidation userValidation = new UserValidation();
+        req.getServletContext().getRequestDispatcher("/pages/login.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
 
         String login = req.getParameter("login");
-        String password = req.getParameter("password");
 
-        if (userValidation.validUserPassword(login,password) == null) {
-            resp.getWriter().println("Incorrect parameters");
-        } else {
             User user = userService.getByUserLogin(login);
             HttpSession session = req.getSession();
             session.setAttribute("login", login);
@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
                 user.setSessionID(session.getId());
             }
 
-            resp.getWriter().println("Authorized successfully");
-        }
+            req.getServletContext().getRequestDispatcher("/pages/loginsucces.jsp").forward(req,resp);
     }
 }

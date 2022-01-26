@@ -11,6 +11,15 @@
     <title>Login Page</title>
 </head>
 <body>
-
+<form action="/login" method="post">
+    <input type="text" name="login" placeholder="Login">
+    ${requestScope.msgErrorLogin}
+    <br>
+    <input type="text" name="password" placeholder="Password">
+    ${requestScope.msgErrorPassword}
+    <br>
+    <button>Submit</button>
+    <p> ${requestScope.msgErrorUser} ${requestScope.msgErrorLoginPassword} </p>
+</form>
 </body>
 </html>
