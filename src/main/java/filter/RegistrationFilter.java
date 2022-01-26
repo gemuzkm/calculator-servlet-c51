@@ -23,10 +23,45 @@ public class RegistrationFilter extends HttpFilter {
             String password = req.getParameter("password");
 
             if (valueValidation.isNull(name) || valueValidation.isNull(login) || valueValidation.isNull(password)) {
-                res.getWriter().println("Incorrect parameters");
-            } if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-                res.getWriter().println("Incorrect parameters");
+                if (valueValidation.isNull(name)) {
+                    req.setAttribute("msgErrorName", "Name is empty");
+                }
+
+                if (valueValidation.isNull(login)) {
+                    req.setAttribute("msgErrorLogin", "Login is empty");
+                }
+
+                if (valueValidation.isNull(password)) {
+                    req.setAttribute("msgErrorPassword", "Password is empty");
+                }
+
+                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
             }
+
+            if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
+                if (valueValidation.isStringEmpty(name)) {
+                    req.setAttribute("msgErrorName", "Name is empty");
+                }
+
+                if (valueValidation.isStringEmpty(login)) {
+                    req.setAttribute("msgErrorLogin", "Login is empty");
+                }
+
+                if (valueValidation.isStringEmpty(password)) {
+                    req.setAttribute("msgErrorPassword", "Password is empty");
+                }
+
+                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
+            }
+
+//            if (valueValidation.isNull(name) || valueValidation.isNull(login) || valueValidation.isNull(password)) {
+//                req.setAttribute("message", "Incorrect parameters");
+//                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
+//            }
+//            if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
+//                req.setAttribute("message", "Incorrect parameters");
+//                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
+//            }
         }
 
         chain.doFilter(req, res);

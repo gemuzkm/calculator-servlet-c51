@@ -18,7 +18,12 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
         UserValidation userValidation = new UserValidation();
         HttpSession session = req.getSession();
@@ -33,6 +38,7 @@ public class RegistrationServlet extends HttpServlet {
         if (userService.getByUserLogin(user.getLogin()) == null) {
             userService.addUser(user);
             if (userValidation.existsUser(user)) {
+                req.getServletContext().getRequestDispatcher("/pages/regsucces.jsp").forward(req, resp);
                 resp.getWriter().println("Registration was successful.");
             } else {
                 resp.getWriter().println("Error. User not created.");

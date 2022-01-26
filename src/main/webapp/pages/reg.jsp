@@ -13,13 +13,15 @@
 <body>
 <form action="/registration" method="post">
     <input type="text" name="name" placeholder="Name">
+    ${requestScope.msgErrorName}
     <br>
-    <input type="text" name="username" placeholder="Username">
+    <input type="text" name="login" placeholder="Login">
+    ${requestScope.msgErrorLogin}
     <br>
     <input type="text" name="password" placeholder="Password">
+    ${requestScope.msgErrorPassword}
     <br>
     <button>Submit</button>
 </form>
-<p>${requestScope.message}</p>
 </body>
 </html>
