@@ -7,7 +7,7 @@ import validator.UserValidation;
 public class UserService {
     private UserStorageInMemory userStorageInMemory =  UserStorageInMemory.getInstance();
     private UserValidation userValidation = new UserValidation();
-    private HistoryService historyService = new HistoryService();
+    private CalculatorService calculatorService = new CalculatorService();
 
     public User getByUserLogin(String userLogin) {
         return userStorageInMemory.getByUserLogin(userLogin);
@@ -15,7 +15,7 @@ public class UserService {
 
     public void deleteHistoryAfterIdChange(String userLogin, String sessionID) {
         if(userValidation.changedUserSessionID(userLogin, sessionID)) {
-            historyService.delHistory(userLogin);
+            calculatorService.delHistory(userLogin);
         }
     }
 
