@@ -1,9 +1,11 @@
 package storage;
 
+import storage.Imp.HistoryStorage;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
-public class HistoryStorageInMemory {
+public class HistoryStorageInMemory implements HistoryStorage {
     private static HistoryStorageInMemory instance;
 
     private HistoryStorageInMemory() {
@@ -18,6 +20,7 @@ public class HistoryStorageInMemory {
 
     private HashMap<String, String> mapHistoryOperation = new HashMap<>();
 
+    @Override
     public void add(String userLogin, String inputСalculations) {
         LocalDateTime localDateTime = LocalDateTime.now();
         inputСalculations = "Operation: " + inputСalculations + ", Date: " + localDateTime;
@@ -32,10 +35,12 @@ public class HistoryStorageInMemory {
         }
     }
 
+    @Override
     public void del(String userLogin) {
         mapHistoryOperation.remove(userLogin);
     }
 
+    @Override
     public HashMap<String, String> getMapHistoryOperation() {
         return mapHistoryOperation;
     }
