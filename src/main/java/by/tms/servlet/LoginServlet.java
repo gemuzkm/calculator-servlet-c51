@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
         User user = userService.getByUserLogin(login);
         HttpSession session = req.getSession();
         session.setAttribute("login", login);
+        session.setAttribute("authorized", "0");
 
         if (userService.changedUserSessionID(login, session.getId())) {
             userService.deleteHistoryAfterIdChange(login, session.getId());

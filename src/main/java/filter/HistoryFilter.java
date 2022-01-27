@@ -21,11 +21,14 @@ public class HistoryFilter extends HttpFilter {
         UserService userService = new UserService();
 
         if (session.getAttribute("login") == null) {
-            req.setAttribute("msgErrorForAnonymous", "Welcome, Anonymous. You are not authorized");
-            req.getServletContext().getRequestDispatcher("/pages/history.jsp").forward(req, res);
+            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
+            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
         } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
-            res.getWriter().println("Welcome, Anonymous. You are not authorized.");
-            req.getServletContext().getRequestDispatcher("/pages/history.jsp").forward(req, res);
+            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
+            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+        } else if (session.getAttribute("authorized") == null) {
+            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
+            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
         }
         chain.doFilter(req, res);
     }
