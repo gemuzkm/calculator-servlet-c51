@@ -24,10 +24,10 @@ public class HistoryStorageInMemory {
 
         if (mapHistoryOperation.containsKey(userLogin)) {
             StringBuilder addNewOperation = new StringBuilder(mapHistoryOperation.get(userLogin));
-            addNewOperation.append(String.format("%s\n", inputСalculations));
+            addNewOperation.append(String.format("%s %s", inputСalculations, "<br>"));
             mapHistoryOperation.put(userLogin, addNewOperation.toString());
         } else {
-            StringBuilder addNewOperation = new StringBuilder(String.format("%s\n", inputСalculations));
+            StringBuilder addNewOperation = new StringBuilder(String.format("%s %s", inputСalculations, "<br>"));
             mapHistoryOperation.put(userLogin, addNewOperation.toString());
         }
     }
