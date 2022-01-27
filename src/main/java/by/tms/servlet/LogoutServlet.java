@@ -23,6 +23,7 @@ public class LogoutServlet extends HttpServlet {
 
             calculatorService.delHistory(userLogin);
             session.removeAttribute("login");
+            session.removeAttribute("authorized");
             session.invalidate();
 
             req.setAttribute("msgLogoutResult", "Logout successfully");

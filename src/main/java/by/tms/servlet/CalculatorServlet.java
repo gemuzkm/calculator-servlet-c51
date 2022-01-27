@@ -34,7 +34,6 @@ public class CalculatorServlet extends HttpServlet {
         req.setAttribute("result", "Result = " + resultOperation);
 
         req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
-
     }
 }
 
