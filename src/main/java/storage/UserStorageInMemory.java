@@ -1,10 +1,11 @@
 package storage;
 
 import entity.User;
+import storage.Imp.UserStorage;
 
 import java.util.ArrayList;
 
-public class UserStorageInMemory {
+public class UserStorageInMemory implements UserStorage {
 
     private static UserStorageInMemory instance;
 
@@ -20,10 +21,12 @@ public class UserStorageInMemory {
 
     private final static ArrayList<User> listUser = new ArrayList<>();
 
+    @Override
     public void addUser(User user) {
         listUser.add(user);
     }
 
+    @Override
     public User getByUserLogin(String userLogin) {
         for (User user : listUser) {
             if (user.getLogin().equals(userLogin)) {
