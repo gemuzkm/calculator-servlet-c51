@@ -11,6 +11,7 @@
     <title>Login Page</title>
 </head>
 <body>
+<a href="/">Home</a><br>
 <form action="/login" method="post">
     <input type="text" name="login" placeholder="Login">
     ${requestScope.msgErrorLogin}

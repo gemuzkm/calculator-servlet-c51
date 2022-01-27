@@ -12,5 +12,14 @@
 </head>
 <body>
 <a href="/">Home</a><br>
+<form action="/calculator" method="post">
+    <input type="text" name="value1" placeholder="Value1">
+    ${requestScope.msgErrorValueOne}<br>
+    <input type="text" name="operation" placeholder="Operation">
+    ${requestScope.msgErrorOperation}<br>
+    <input type="text" name="value2" placeholder="Value2">
+    ${requestScope.msgErrorValueTwo}<br>
+    <button>Calculate</button> ${requestScope.result}
+</form>
 </body>
 </html>

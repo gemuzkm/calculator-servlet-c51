@@ -16,24 +16,25 @@ public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService();
+        req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String sessionID = session.getId();
 
-        if (session.getAttribute("login") == null) {
-            resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
-        } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
-            resp.getWriter().println("Welcome, Anonymous. You are not authorized.");
-        } else {
-            String valueFirst = req.getParameter("value1");
-            String valueSecond = req.getParameter("value2");
-            String operation = req.getParameter("operation");
-            String userLogin = session.getAttribute("login").toString();
+        String valueFirst = req.getParameter("value1");
+        String valueSecond = req.getParameter("value2");
+        String operation = req.getParameter("operation");
+        String userLogin = session.getAttribute("login").toString();
 
-            CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation, userLogin);
+        CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation, userLogin);
 
-            resp.getWriter().println(calculatorService.getResult());
-        }
+        String resultOperation = calculatorService.getResult();
+        req.setAttribute("result", "Result = " + resultOperation);
+
+        req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
+
     }
 }
 

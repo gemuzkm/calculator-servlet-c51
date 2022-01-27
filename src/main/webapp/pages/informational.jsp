@@ -12,6 +12,6 @@
     <meta http-equiv="refresh" content="2; URL=/">
 </head>
 <body>
-<h1>${requestScope.resultOperation}</h1>
+<h1>${requestScope.informational}</h1>
 </body>
 </html>

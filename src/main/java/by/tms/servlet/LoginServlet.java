@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             user.setSessionID(session.getId());
         }
 
-        req.setAttribute("resultOperation", "Authorization was successful");
-        req.getServletContext().getRequestDispatcher("/pages/resultredir.jsp").forward(req, resp);
+        req.setAttribute("informational", "Authorization was successful");
+        req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, resp);
     }
 }

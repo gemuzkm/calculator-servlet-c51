@@ -37,8 +37,8 @@ public class RegistrationServlet extends HttpServlet {
         if (userService.getByUserLogin(user.getLogin()) == null) {
             userService.addUser(user);
             if (userValidator.existsUser(user)) {
-                req.setAttribute("resultOperation", "Registration was successful");
-                req.getServletContext().getRequestDispatcher("/pages/resultredir.jsp").forward(req, resp);
+                req.setAttribute("informational", "Registration was successful");
+                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, resp);
             } else {
                 req.setAttribute("msgErrorUser", "Error. User not created");
                 req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);

@@ -24,14 +24,13 @@ public class CalculatorService {
 
     public String getResult() {
 
-        String resultOperation = "";
-
         double valueFirstDouble = Double.parseDouble(valueFirst);
         double valueSecondDouble = Double.parseDouble(valueSecond);
-        resultOperation = valueFirst + " " + operation + " " + valueSecond + " = " + getResultOperation(valueFirstDouble, valueSecondDouble, operation);
+        String result = getResultOperation(valueFirstDouble, valueSecondDouble, operation);
+        String resultOperation = valueFirst + " " + operation + " " + valueSecond + " = " + result;
 
         historyStorageInMemory.add(userLogin, resultOperation);
-        return resultOperation;
+        return result;
     }
 
     private String getResultOperation(double valueFirst, double valueSecond, String operation) {
