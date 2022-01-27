@@ -20,13 +20,10 @@ public class HistoryFilter extends HttpFilter {
         String sessionID = session.getId();
         UserService userService = new UserService();
 
-        if (session.getAttribute("login") == null) {
+        if (session.getAttribute("login") == null || session.getAttribute("authorized") == null) {
             req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
             req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
         } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
-            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
-            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
-        } else if (session.getAttribute("authorized") == null) {
             req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
             req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
         }
