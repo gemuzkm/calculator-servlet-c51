@@ -22,8 +22,8 @@ public class LoginFilter extends HttpFilter {
             UserValidator userValidator = new UserValidator();
 
             if (req.getMethod().equalsIgnoreCase("POST")) {
-                String login = req.getParameter("login");
-                String password = req.getParameter("password");
+                String login = req.getParameter("login").trim();
+                String password = req.getParameter("password").trim();
 
                 if (valueValidator.isNull(login) || valueValidator.isNull(password)) {
                     if (valueValidator.isNull(login)) {
