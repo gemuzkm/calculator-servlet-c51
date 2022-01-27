@@ -2,7 +2,6 @@ package by.tms.servlet;
 
 import entity.User;
 import service.UserService;
-import validator.UserValidation;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,17 +24,18 @@ public class LoginServlet extends HttpServlet {
 
         String login = req.getParameter("login");
 
-            User user = userService.getByUserLogin(login);
-            HttpSession session = req.getSession();
-            session.setAttribute("login", login);
+        User user = userService.getByUserLogin(login);
+        HttpSession session = req.getSession();
+        session.setAttribute("login", login);
 
-            if (userService.changedUserSessionID(login, session.getId())) {
-                userService.deleteHistoryAfterIdChange(login, session.getId());
-                user.setSessionID(session.getId());
-            } else {
-                user.setSessionID(session.getId());
-            }
+        if (userService.changedUserSessionID(login, session.getId())) {
+            userService.deleteHistoryAfterIdChange(login, session.getId());
+            user.setSessionID(session.getId());
+        } else {
+            user.setSessionID(session.getId());
+        }
 
-            req.getServletContext().getRequestDispatcher("/pages/loginsucces.jsp").forward(req,resp);
+        req.setAttribute("resultOperation", "Authorization was successful");
+        req.getServletContext().getRequestDispatcher("/pages/resultredir.jsp").forward(req, resp);
     }
 }

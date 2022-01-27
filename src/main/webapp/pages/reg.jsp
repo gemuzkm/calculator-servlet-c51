@@ -22,6 +22,7 @@
     ${requestScope.msgErrorPassword}
     <br>
     <button>Submit</button>
+    <p>${requestScope.msgErrorUser}</p>
 </form>
 </body>
 </html>

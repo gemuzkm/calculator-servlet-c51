@@ -18,9 +18,9 @@ public class RegistrationFilter extends HttpFilter {
         if (req.getMethod().equals("POST")) {
             ValueValidation valueValidation = new ValueValidation();
 
-            String name = req.getParameter("name");
-            String login = req.getParameter("login");
-            String password = req.getParameter("password");
+            String name = req.getParameter("name").trim();
+            String login = req.getParameter("login").trim();
+            String password = req.getParameter("password").trim();
 
             if (valueValidation.isNull(name) || valueValidation.isNull(login) || valueValidation.isNull(password)) {
                 if (valueValidation.isNull(name)) {

@@ -38,13 +38,15 @@ public class RegistrationServlet extends HttpServlet {
         if (userService.getByUserLogin(user.getLogin()) == null) {
             userService.addUser(user);
             if (userValidation.existsUser(user)) {
-                req.getServletContext().getRequestDispatcher("/pages/regsucces.jsp").forward(req, resp);
-                resp.getWriter().println("Registration was successful.");
+                req.setAttribute("resultOperation", "Registration was successful");
+                req.getServletContext().getRequestDispatcher("/pages/resultredir.jsp").forward(req, resp);
             } else {
-                resp.getWriter().println("Error. User not created.");
+                req.setAttribute("msgErrorUser", "Error. User not created");
+                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);
             }
         } else {
-            resp.getWriter().println("Error. The user already exists.");
+            req.setAttribute("msgErrorUser", "Error. The user already exists");
+            req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);
         }
     }
 }

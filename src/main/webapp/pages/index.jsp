@@ -8,11 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Main Page</title>
 </head>
 <body>
 <a href="/registration">Registration</a><br>
 <a href="/login">Authorization</a><br>
+<a href="/history">History</a><br>
 <a href="/logout">Logout</a><br>
 </body>
 </html>

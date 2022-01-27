@@ -1,17 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
-  User: gemuz
+  User: Kerus
   Date: 27.01.2022
-  Time: 1:57
+  Time: 10:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Authorization was successful</title>
+    <title>${requestScope.resultOperation}</title>
     <meta http-equiv="refresh" content="2; URL=/">
 </head>
 <body>
-<h1>Authorization was successful!</h1>
+<h1>${requestScope.resultOperation}</h1>
 </body>
 </html>
