@@ -2,8 +2,7 @@ package by.tms.servlet;
 
 import entity.User;
 import service.UserService;
-import storage.UserStorageInMemory;
-import validator.UserValidation;
+import validator.UserValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +24,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
-        UserValidation userValidation = new UserValidation();
+        UserValidator userValidator = new UserValidator();
         HttpSession session = req.getSession();
 
         String userName = req.getParameter("name");
@@ -37,7 +36,7 @@ public class RegistrationServlet extends HttpServlet {
 
         if (userService.getByUserLogin(user.getLogin()) == null) {
             userService.addUser(user);
-            if (userValidation.existsUser(user)) {
+            if (userValidator.existsUser(user)) {
                 req.setAttribute("resultOperation", "Registration was successful");
                 req.getServletContext().getRequestDispatcher("/pages/resultredir.jsp").forward(req, resp);
             } else {

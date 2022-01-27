@@ -1,6 +1,6 @@
 package filter;
 
-import validator.ValueValidation;
+import validator.ValueValidator;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,38 +16,38 @@ public class RegistrationFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
         if (req.getMethod().equals("POST")) {
-            ValueValidation valueValidation = new ValueValidation();
+            ValueValidator valueValidator = new ValueValidator();
 
             String name = req.getParameter("name").trim();
             String login = req.getParameter("login").trim();
             String password = req.getParameter("password").trim();
 
-            if (valueValidation.isNull(name) || valueValidation.isNull(login) || valueValidation.isNull(password)) {
-                if (valueValidation.isNull(name)) {
+            if (valueValidator.isNull(name) || valueValidator.isNull(login) || valueValidator.isNull(password)) {
+                if (valueValidator.isNull(name)) {
                     req.setAttribute("msgErrorName", "Name is empty");
                 }
 
-                if (valueValidation.isNull(login)) {
+                if (valueValidator.isNull(login)) {
                     req.setAttribute("msgErrorLogin", "Login is empty");
                 }
 
-                if (valueValidation.isNull(password)) {
+                if (valueValidator.isNull(password)) {
                     req.setAttribute("msgErrorPassword", "Password is empty");
                 }
 
                 req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
             }
 
-            if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-                if (valueValidation.isStringEmpty(name)) {
+            if (valueValidator.isStringEmpty(name) || valueValidator.isStringEmpty(login) || valueValidator.isStringEmpty(password)) {
+                if (valueValidator.isStringEmpty(name)) {
                     req.setAttribute("msgErrorName", "Name is empty");
                 }
 
-                if (valueValidation.isStringEmpty(login)) {
+                if (valueValidator.isStringEmpty(login)) {
                     req.setAttribute("msgErrorLogin", "Login is empty");
                 }
 
-                if (valueValidation.isStringEmpty(password)) {
+                if (valueValidator.isStringEmpty(password)) {
                     req.setAttribute("msgErrorPassword", "Password is empty");
                 }
 

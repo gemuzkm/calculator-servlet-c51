@@ -1,6 +1,6 @@
 package validator;
 
-public class OperationValidation {
+public class OperationValidator {
     public boolean supportedOperation(String inputOperation) {
 
         if (inputOperation.equals("sum")) {

@@ -2,11 +2,11 @@ package service;
 
 import entity.User;
 import storage.UserStorageInMemory;
-import validator.UserValidation;
+import validator.UserValidator;
 
 public class UserService {
     private UserStorageInMemory userStorageInMemory =  UserStorageInMemory.getInstance();
-    private UserValidation userValidation = new UserValidation();
+    private UserValidator userValidator = new UserValidator();
     private CalculatorService calculatorService = new CalculatorService();
 
     public User getByUserLogin(String userLogin) {
@@ -14,13 +14,13 @@ public class UserService {
     }
 
     public void deleteHistoryAfterIdChange(String userLogin, String sessionID) {
-        if(userValidation.changedUserSessionID(userLogin, sessionID)) {
+        if(userValidator.changedUserSessionID(userLogin, sessionID)) {
             calculatorService.delHistory(userLogin);
         }
     }
 
     public boolean changedUserSessionID(String userLogin, String sessionID) {
-        return userValidation.changedUserSessionID(userLogin, sessionID);
+        return userValidator.changedUserSessionID(userLogin, sessionID);
     }
 
     public void addUser(User user) {

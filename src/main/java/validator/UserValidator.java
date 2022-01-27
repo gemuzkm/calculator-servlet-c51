@@ -3,7 +3,7 @@ package validator;
 import entity.User;
 import storage.UserStorageInMemory;
 
-public class UserValidation {
+public class UserValidator {
     UserStorageInMemory userStorageInMemory = UserStorageInMemory.getInstance();
 
     public boolean existsUser(User user) {

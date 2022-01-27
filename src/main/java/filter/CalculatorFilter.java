@@ -1,7 +1,7 @@
 package filter;
 
-import validator.OperationValidation;
-import validator.ValueValidation;
+import validator.OperationValidator;
+import validator.ValueValidator;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,23 +18,21 @@ public class CalculatorFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
-        //        <p>${requestScope.message}</p> - SSR, page scope
-
         if (req.getMethod().equals("POST")) {
-            ValueValidation valueValidation = new ValueValidation();
-            OperationValidation operationValidation = new OperationValidation();
+            ValueValidator valueValidator = new ValueValidator();
+            OperationValidator operationValidator = new OperationValidator();
 
             String valueFirst = req.getParameter("value1");
             String valueSecond = req.getParameter("value2");
             String operation = req.getParameter("operation");
 
-            if (valueValidation.isNull(valueFirst) || valueValidation.isNull(valueSecond) || valueValidation.isNull(operation)) {
+            if (valueValidator.isNull(valueFirst) || valueValidator.isNull(valueSecond) || valueValidator.isNull(operation)) {
                 HttpSession session = req.getSession();
                 session.setAttribute("msgError", "Incorrect parameters");
-            } else if (!valueValidation.isNumber(valueFirst) || !valueValidation.isNumber(valueSecond)) {
+            } else if (!valueValidator.isNumber(valueFirst) || !valueValidator.isNumber(valueSecond)) {
                 HttpSession session = req.getSession();
                 session.setAttribute("msgError", "Transmitted parameters are not numbers");
-            } else if (!operationValidation.supportedOperation(operation)) {
+            } else if (!operationValidator.supportedOperation(operation)) {
                 HttpSession session = req.getSession();
                 session.setAttribute("msgError", "Operation unsupported");
             } else {

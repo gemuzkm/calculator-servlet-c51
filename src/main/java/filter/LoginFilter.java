@@ -1,7 +1,7 @@
 package filter;
 
-import validator.UserValidation;
-import validator.ValueValidation;
+import validator.UserValidator;
+import validator.ValueValidator;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,44 +18,44 @@ public class LoginFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
         if (req.getMethod().equals("POST")) {
-            ValueValidation valueValidation = new ValueValidation();
-            UserValidation userValidation = new UserValidation();
+            ValueValidator valueValidator = new ValueValidator();
+            UserValidator userValidator = new UserValidator();
 
             if (req.getMethod().equalsIgnoreCase("POST")) {
                 String login = req.getParameter("login");
                 String password = req.getParameter("password");
 
-                if (valueValidation.isNull(login) || valueValidation.isNull(password)) {
-                    if (valueValidation.isNull(login)) {
+                if (valueValidator.isNull(login) || valueValidator.isNull(password)) {
+                    if (valueValidator.isNull(login)) {
                         req.setAttribute("msgErrorLogin", "Login is empty");
                     }
 
-                    if (valueValidation.isNull(password)) {
+                    if (valueValidator.isNull(password)) {
                         req.setAttribute("msgErrorPassword", "Password is empty");
                     }
 
                     req.getServletContext().getRequestDispatcher("/pages/login.jsp").forward(req, res);
                 }
 
-                if (valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-                    if (valueValidation.isStringEmpty(login)) {
+                if (valueValidator.isStringEmpty(login) || valueValidator.isStringEmpty(password)) {
+                    if (valueValidator.isStringEmpty(login)) {
                         req.setAttribute("msgErrorLogin", "Login is empty");
                     }
 
-                    if (valueValidation.isStringEmpty(password)) {
+                    if (valueValidator.isStringEmpty(password)) {
                         req.setAttribute("msgErrorPassword", "Password is empty");
                     }
 
                     req.getServletContext().getRequestDispatcher("/pages/login.jsp").forward(req, res);
                 }
 
-                if (!userValidation.existsUser(login)) {
+                if (!userValidator.existsUser(login)) {
                     req.setAttribute("msgErrorUser", "User not found");
 
                     req.getServletContext().getRequestDispatcher("/pages/login.jsp").forward(req, res);
                 }
 
-                if (userValidation.validUserPassword(login, password) == null) {
+                if (userValidator.validUserPassword(login, password) == null) {
                     req.setAttribute("msgErrorLoginPassword", "Login or password error");
 
                     req.getServletContext().getRequestDispatcher("/pages/login.jsp").forward(req, res);

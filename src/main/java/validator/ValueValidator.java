@@ -1,8 +1,6 @@
 package validator;
 
-import entity.User;
-
-public class ValueValidation {
+public class ValueValidator {
 
     public boolean isNumber(String inputValue) {
         try {
