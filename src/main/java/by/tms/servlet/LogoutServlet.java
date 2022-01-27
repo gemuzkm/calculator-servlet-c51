@@ -24,9 +24,12 @@ public class LogoutServlet extends HttpServlet {
             calculatorService.delHistory(userLogin);
             session.removeAttribute("login");
             session.invalidate();
-            resp.getWriter().println("Logout successfully");
+
+            req.setAttribute("msgLogoutResult", "Logout successfully");
+            req.getServletContext().getRequestDispatcher("/pages/logout.jsp").forward(req, resp);
         } else {
-            resp.getWriter().println("You were not authorized");
+            req.setAttribute("msgLogoutResult", "You were not authorized");
+            req.getServletContext().getRequestDispatcher("/pages/logout.jsp").forward(req, resp);
         }
     }
 }

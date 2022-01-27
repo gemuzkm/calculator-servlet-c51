@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>History Page</title>
 </head>
 <body>
-
+<a href="/">Home</a><br>
+${requestScope.msgErrorForAnonymous}
+${requestScope.msgHistoryUser}
 </body>
 </html>
