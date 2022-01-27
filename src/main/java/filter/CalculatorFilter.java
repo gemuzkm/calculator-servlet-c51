@@ -26,10 +26,10 @@ public class CalculatorFilter extends HttpFilter {
             if (session.getAttribute("login") == null) {
                 req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
                 req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
-            } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
+            } else if (session.getAttribute("authorized") == null) {
                 req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
                 req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
-            } else if (session.getAttribute("authorized") == null) {
+            } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
                 req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
                 req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
             }
