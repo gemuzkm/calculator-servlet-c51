@@ -6,11 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Registration Page</title>
 </head>
 <body>
+
 <form action="/registration" method="post">
     <input type="text" name="name" placeholder="Name">
     ${requestScope.msgErrorName}
