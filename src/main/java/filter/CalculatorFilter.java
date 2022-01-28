@@ -23,6 +23,11 @@ public class CalculatorFilter extends HttpFilter {
         String sessionID = session.getId();
 
         if (req.getMethod().equals("GET")) {
+            if (session.getAttribute("authorized") == null) {
+                req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
+                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+            }
+
             if (session.getAttribute("login") == null || session.getAttribute("authorized") == null) {
                 req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
                 req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);

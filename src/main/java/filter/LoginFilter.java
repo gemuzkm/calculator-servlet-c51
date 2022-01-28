@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(servletNames = "LoginServlet")
@@ -16,6 +17,16 @@ public class LoginFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+
+        if (req.getMethod().equals("GET")) {
+            if (req.getMethod().equals("GET")) {
+                HttpSession session = req.getSession();
+                if (session.getAttribute("authorized") != null) {
+                    req.setAttribute("informational", "No access");
+                    req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+                }
+            }
+        }
 
         if (req.getMethod().equals("POST")) {
             ValueValidator valueValidator = new ValueValidator();

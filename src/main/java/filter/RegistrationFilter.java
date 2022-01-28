@@ -8,12 +8,21 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(servletNames = "RegistrationServlet")
 public class RegistrationFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+
+        if (req.getMethod().equals("GET")) {
+            HttpSession session = req.getSession();
+            if (session.getAttribute("authorized") != null) {
+                req.setAttribute("informational", "No access");
+                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+            }
+        }
 
         if (req.getMethod().equals("POST")) {
             ValueValidator valueValidator = new ValueValidator();
@@ -53,15 +62,6 @@ public class RegistrationFilter extends HttpFilter {
 
                 req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
             }
-
-//            if (valueValidation.isNull(name) || valueValidation.isNull(login) || valueValidation.isNull(password)) {
-//                req.setAttribute("message", "Incorrect parameters");
-//                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
-//            }
-//            if (valueValidation.isStringEmpty(name) || valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-//                req.setAttribute("message", "Incorrect parameters");
-//                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
-//            }
         }
 
         chain.doFilter(req, res);
