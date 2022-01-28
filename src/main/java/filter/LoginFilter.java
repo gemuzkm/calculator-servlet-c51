@@ -72,13 +72,6 @@ public class LoginFilter extends HttpFilter {
                     req.getServletContext().getRequestDispatcher("/pages/login.jsp").forward(req, res);
                 }
             }
-//            if (valueValidation.isNull(login) || valueValidation.isNull(password)) {
-//                res.getWriter().println("Incorrect parameters");
-//            } else if (valueValidation.isStringEmpty(login) || valueValidation.isStringEmpty(password)) {
-//                res.getWriter().println("Incorrect parameters");
-//            } else if (!userValidation.existsUser(login)) {
-//                res.getWriter().println("User not found.");
-//            }
         }
         chain.doFilter(req, res);
     }
