@@ -19,12 +19,10 @@ public class LoginFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
         if (req.getMethod().equals("GET")) {
-            if (req.getMethod().equals("GET")) {
-                HttpSession session = req.getSession();
-                if (session.getAttribute("authorized") != null) {
-                    req.setAttribute("informational", "No access");
-                    req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
-                }
+            HttpSession session = req.getSession();
+            if (session.getAttribute("login") != null) {
+                req.setAttribute("informational", "No access");
+                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
             }
         }
 

@@ -13,7 +13,7 @@
     <title>Registration Page</title>
 </head>
 <body>
-
+<a href="/">Home</a><br>
 <form action="/registration" method="post">
     <input type="text" name="name" placeholder="Name">
     ${requestScope.msgErrorName}

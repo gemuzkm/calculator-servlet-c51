@@ -1,5 +1,8 @@
 package by.tms.servlet;
 
+import entity.Operation;
+import entity.ValueOne;
+import entity.ValueTwo;
 import service.CalculatorService;
 import service.UserService;
 
@@ -25,14 +28,19 @@ public class CalculatorServlet extends HttpServlet {
 
         String valueFirst = req.getParameter("value1");
         String valueSecond = req.getParameter("value2");
-        String operation = req.getParameter("operation");
-        String userLogin = session.getAttribute("login").toString();
+        String operationValue = req.getParameter("operation");
+        String userLogin = (String) session.getAttribute("login");
 
-        CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operation, userLogin);
+        ValueOne valueOne = new ValueOne(Double.parseDouble(valueFirst));
+        ValueTwo valueTwo = new ValueTwo(Double.parseDouble(valueSecond));
+        Operation operation = new Operation(operationValue);
 
-        String resultOperation = calculatorService.getResult();
+//        CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operationValue, userLogin);
+
+        CalculatorService calculatorService = new CalculatorService();
+        String resultOperation = calculatorService.getResult(valueOne, valueTwo, operation, userLogin);
+
         req.setAttribute("result", "Result = " + resultOperation);
-
         req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
     }
 }

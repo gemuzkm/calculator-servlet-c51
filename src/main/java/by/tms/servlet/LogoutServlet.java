@@ -18,19 +18,14 @@ public class LogoutServlet extends HttpServlet {
         CalculatorService calculatorService = new CalculatorService();
         HttpSession session = req.getSession();
 
-        if (session.getAttribute("login") != null && session.getAttribute("authorized") != null) {
+        if (session.getAttribute("login") != null) {
             String userLogin = session.getAttribute("login").toString();
-
             calculatorService.delHistory(userLogin);
-            session.removeAttribute("authorized");
-            session.removeAttribute("login");
-//            session.invalidate();
 
-            req.setAttribute("msgLogoutResult", "Logout successfully");
-            req.getServletContext().getRequestDispatcher("/pages/logout.jsp").forward(req, resp);
+            session.invalidate();
+            resp.sendRedirect("/");
         } else {
-            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
-            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, resp);
+            resp.sendRedirect("/");
         }
     }
 }

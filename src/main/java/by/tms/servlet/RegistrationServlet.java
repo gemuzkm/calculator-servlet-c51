@@ -31,14 +31,12 @@ public class RegistrationServlet extends HttpServlet {
         String userLogin = req.getParameter("login");
         String userPassword = req.getParameter("password");
 
-        session.setAttribute("login", userLogin);
         User user = new User(userName, userLogin, userPassword, session.getId());
 
         if (userService.getByUserLogin(user.getLogin()) == null) {
             userService.addUser(user);
             if (userValidator.existsUser(user)) {
-                req.setAttribute("informational", "Registration was successful");
-                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, resp);
+                resp.sendRedirect("/");
             } else {
                 req.setAttribute("msgErrorUser", "Error. User not created");
                 req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);

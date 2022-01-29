@@ -18,7 +18,7 @@ public class RegistrationFilter extends HttpFilter {
 
         if (req.getMethod().equals("GET")) {
             HttpSession session = req.getSession();
-            if (session.getAttribute("authorized") != null) {
+            if (session.getAttribute("login") != null) {
                 req.setAttribute("informational", "No access");
                 req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
             }

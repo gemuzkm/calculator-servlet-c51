@@ -13,17 +13,12 @@
     <title>Main Page</title>
 </head>
 <body>
-<c:if test="${sessionScope.login == null && sessionScope.authorized == null}">
+<c:if test="${sessionScope.login == null}">
     <a href="/registration">Registration</a><br>
     <a href="/login">Authorization</a><br>
 </c:if>
 
-<c:if test="${sessionScope.login != null && sessionScope.authorized == null}">
-    <a href="/registration">Registration</a><br>
-    <a href="/login">Authorization</a><br>
-</c:if>
-
-<c:if test="${sessionScope.authorized != null}">
+<c:if test="${sessionScope.login != null}">
     <a href="/calculator">Calculator</a><br>
     <a href="/history">History</a><br>
     <a href="/logout">Logout</a><br>

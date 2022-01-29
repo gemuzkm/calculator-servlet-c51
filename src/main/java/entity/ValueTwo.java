@@ -1,17 +1,17 @@
 package entity;
 
 public class ValueTwo {
-    private String value;
+    private double value;
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
+    public ValueTwo(double value) {
         this.value = value;
     }
 
-    public ValueTwo(String value) {
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
         this.value = value;
     }
 }
