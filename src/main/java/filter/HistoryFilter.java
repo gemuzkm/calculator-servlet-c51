@@ -24,11 +24,12 @@ public class HistoryFilter extends HttpFilter {
 //            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
 //            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
             res.sendRedirect("/");
-        } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
+        } else if (userService.changedUserSessionID((String) session.getAttribute("login"), sessionID)) {
 //            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
 //            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
             res.sendRedirect("/");
+        } else {
+            chain.doFilter(req, res);
         }
-        chain.doFilter(req, res);
     }
 }

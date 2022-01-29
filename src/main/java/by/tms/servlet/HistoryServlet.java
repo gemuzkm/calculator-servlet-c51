@@ -19,7 +19,7 @@ public class HistoryServlet extends HttpServlet {
         CalculatorService calculatorService = new CalculatorService();
 
         StringBuilder historyUser = new StringBuilder();
-        historyUser.append(calculatorService.printHistory(session.getAttribute("login").toString()));
+        historyUser.append(calculatorService.printHistory((String) session.getAttribute("login")));
 
         req.setAttribute("msgHistoryUser", historyUser.toString());
         req.getServletContext().getRequestDispatcher("/pages/history.jsp").forward(req, resp);
