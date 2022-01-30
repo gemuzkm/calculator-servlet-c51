@@ -1,4 +1,4 @@
-package by.tms.servlet;
+package by.tms.servlet.UserCRUD;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/userlist", name = "UserListServlet")
-public class UserListServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/deluser", name = "DelUserServlet")
+public class UserDelServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

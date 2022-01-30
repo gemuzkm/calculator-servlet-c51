@@ -4,6 +4,8 @@ import entity.User;
 import storage.UserStorageInMemory;
 import validator.UserValidator;
 
+import java.util.ArrayList;
+
 public class UserService {
     private UserStorageInMemory userStorageInMemory =  UserStorageInMemory.getInstance();
     private UserValidator userValidator = new UserValidator();
@@ -29,5 +31,9 @@ public class UserService {
 
     public void delUser(User user) {
 
+    }
+
+    public ArrayList<User> getListUser() {
+        return userStorageInMemory.getListUser();
     }
 }

@@ -1,4 +1,4 @@
-package filter;
+package filter.UserCRUD;
 
 import entity.User;
 
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "CreateUserServlet")
-public class CreateUserFilter extends HttpFilter {
+@WebFilter(servletNames = "UserEditServlet")
+public class UserEditFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {

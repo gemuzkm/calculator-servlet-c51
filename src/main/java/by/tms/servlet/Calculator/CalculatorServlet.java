@@ -1,4 +1,4 @@
-package by.tms.servlet;
+package by.tms.servlet.Calculator;
 
 import entity.Operation;
 import entity.ValueOne;

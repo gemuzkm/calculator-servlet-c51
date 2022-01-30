@@ -45,4 +45,8 @@ public class UserStorageInMemory implements UserStorage {
         }
         return null;
     }
+
+    public ArrayList<User> getListUser() {
+        return listUser;
+    }
 }

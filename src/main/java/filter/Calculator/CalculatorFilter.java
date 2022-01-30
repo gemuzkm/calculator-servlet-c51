@@ -1,4 +1,4 @@
-package filter;
+package filter.Calculator;
 
 import service.UserService;
 import validator.OperationValidator;
