@@ -16,11 +16,17 @@ public class UserListFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpSession session = req.getSession();
-        User user;
+        User user = new User();
 
         if (session.getAttribute("user") != null) {
             user = (User) session.getAttribute("user");
         } else {
+            req.setAttribute("mgsError", "No access");
+            req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, res);
+        }
+
+        if (user.getRole() != 0) {
+            req.setAttribute("mgsError", "No access");
             req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, res);
         }
 

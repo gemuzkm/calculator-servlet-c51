@@ -19,10 +19,12 @@ public class HomeServlet extends HttpServlet {
         User admin = new User("admin", "admin", "admin", "0", 0);
         User admin1 = new User("admin1", "admin1", "admin1", "0", 0);
         User admin2 = new User("admin2", "admin2", "admin2", "", 0);
+        User user = new User("user", "user", "user", "0", 1);
 
         userService.addUser(admin);
         userService.addUser(admin1);
         userService.addUser(admin2);
+        userService.addUser(user);
     }
 
     @Override

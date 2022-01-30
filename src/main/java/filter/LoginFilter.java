@@ -20,9 +20,9 @@ public class LoginFilter extends HttpFilter {
 
         if (req.getMethod().equals("GET")) {
             HttpSession session = req.getSession();
-            if (session.getAttribute("login") != null) {
-                req.setAttribute("informational", "No access");
-                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+            if (session.getAttribute("user") != null) {
+                req.setAttribute("mgsError", "No access");
+                req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, res);
             }
         }
 

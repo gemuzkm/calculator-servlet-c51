@@ -21,18 +21,21 @@
 <c:if test="${sessionScope.user.getRole() == null}">
     <a href="/registration">Registration</a><br>
     <a href="/login">Authorization</a><br>
+    <p>${requestScope.mgsError}</p>
 </c:if>
 
 <c:if test="${sessionScope.user.getRole() == 1}">
     <a href="/calculator">Calculator</a><br>
     <a href="/history">History</a><br>
     <a href="/logout">Logout</a><br>
+    <p>${requestScope.mgsError}</p>
 </c:if>
 
 <c:if test="${sessionScope.user.getRole() == 0}">
     <a href="/userlist">User management</a><br>
     <a href="/adduser">Add User</a><br>
     <a href="/logout">Logout</a><br>
+    <p>${requestScope.mgsError}</p>
 </c:if>
 
 </body>

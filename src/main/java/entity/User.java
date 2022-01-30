@@ -7,6 +7,9 @@ public class User {
     private String sessionID;
     private int role = 1;
 
+    public User() {
+    }
+
     public User(String name, String login, String password) {
         this.name = name;
         this.login = login;
