@@ -1,5 +1,6 @@
 package filter.Calculator;
 
+import entity.User;
 import service.UserService;
 
 import javax.servlet.FilterChain;
@@ -20,13 +21,9 @@ public class HistoryFilter extends HttpFilter {
         String sessionID = session.getId();
         UserService userService = new UserService();
 
-        if (session.getAttribute("login") == null) {
-//            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
-//            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+        if (session.getAttribute("user") == null) {
             res.sendRedirect("/");
-        } else if (userService.changedUserSessionID((String) session.getAttribute("login"), sessionID)) {
-//            req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
-//            req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+        } else if (userService.changedUserSessionID(((User) session.getAttribute("user")).getLogin(), sessionID)) {
             res.sendRedirect("/");
         } else {
             chain.doFilter(req, res);

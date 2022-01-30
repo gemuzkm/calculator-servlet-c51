@@ -1,6 +1,5 @@
 package by.tms.servlet;
 
-import by.tms.servlet.Constants;
 import entity.User;
 import service.UserService;
 import validator.UserValidator;
@@ -32,7 +31,8 @@ public class RegistrationServlet extends HttpServlet {
         String userLogin = req.getParameter("login");
         String userPassword = req.getParameter("password");
 
-        User user = new User(userName, userLogin, userPassword, session.getId());
+//        User user = new User(userName, userLogin, userPassword, session.getId());
+        User user = new User(userName, userLogin, userPassword);
 
         if (userService.getByUserLogin(user.getLogin()) == null) {
             userService.addUser(user);

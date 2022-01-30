@@ -1,5 +1,6 @@
 package by.tms.servlet;
 
+import entity.User;
 import service.CalculatorService;
 
 import javax.servlet.ServletException;
@@ -18,9 +19,9 @@ public class LogoutServlet extends HttpServlet {
         CalculatorService calculatorService = new CalculatorService();
         HttpSession session = req.getSession();
 
-        if (session.getAttribute("login") != null) {
-            String userLogin = session.getAttribute("login").toString();
-            calculatorService.delHistory(userLogin);
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            calculatorService.delHistory(user.getLogin());
 
             session.invalidate();
             resp.sendRedirect(Constants.HOME_LINK);

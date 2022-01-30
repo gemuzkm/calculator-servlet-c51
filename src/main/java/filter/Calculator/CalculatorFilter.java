@@ -1,5 +1,7 @@
 package filter.Calculator;
 
+import entity.User;
+import filter.Constants;
 import service.UserService;
 import validator.OperationValidator;
 import validator.ValueValidator;
@@ -23,12 +25,12 @@ public class CalculatorFilter extends HttpFilter {
         String sessionID = session.getId();
 
         if (req.getMethod().equals("GET")) {
-             if (session.getAttribute("login") == null) {
-                req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
-                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
-            } else if (userService.changedUserSessionID(session.getAttribute("login").toString(), sessionID)) {
-                req.setAttribute("informational", "Welcome, Anonymous. You are not authorized");
-                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+             if (session.getAttribute("user") == null) {
+                req.setAttribute("informational", Constants.MSG_ERROR_NO_AUTHORIZED);
+                req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
+            } else if (userService.changedUserSessionID(((User) session.getAttribute("user")).getLogin(), sessionID)) {
+                req.setAttribute("informational", Constants.MSG_ERROR_NO_AUTHORIZED);
+                req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
             }
         }
 
@@ -42,34 +44,34 @@ public class CalculatorFilter extends HttpFilter {
 
             if (valueValidator.isNull(valueFirst) || valueValidator.isNull(valueSecond) || valueValidator.isNull(operation)) {
                 if (valueValidator.isNull(valueFirst)) {
-                    req.setAttribute("msgErrorValueOne", "Value1 is empty");
+                    req.setAttribute("msgErrorValueOne", Constants.MSG_ERROR_VALUE_ONE_EMPTY);
                 }
 
                 if (valueValidator.isNull(valueSecond)) {
-                    req.setAttribute("msgErrorValueTwo", "Value2 is empty");
+                    req.setAttribute("msgErrorValueTwo", Constants.MSG_ERROR_VALUE_TWO_EMPTY);
                 }
 
                 if (valueValidator.isNull(operation)) {
-                    req.setAttribute("msgErrorOperation", "Operation is empty");
+                    req.setAttribute("msgErrorOperation", Constants.MSG_ERROR_OPERATION_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.CALCULATIOR_LINK_JSP).forward(req, res);
             }
 
             if (!valueValidator.isNumber(valueFirst) || !valueValidator.isNumber(valueSecond) || !operationValidator.supportedOperation(operation)) {
                 if (!valueValidator.isNumber(valueFirst)) {
-                    req.setAttribute("msgErrorValueOne", "Value1 not a number");
+                    req.setAttribute("msgErrorValueOne", Constants.MSG_ERROR_VALUE_ONE_NOT_NUMBER);
                 }
 
                 if (!valueValidator.isNumber(valueSecond)) {
-                    req.setAttribute("msgErrorValueTwo", "Value2 not a number");
+                    req.setAttribute("msgErrorValueTwo", Constants.MSG_ERROR_VALUE_TWO_NOT_NUMBER);
                 }
 
                 if (!operationValidator.supportedOperation(operation)) {
-                    req.setAttribute("msgErrorOperation", "Operation unsupported");
+                    req.setAttribute("msgErrorOperation", Constants.MSG_ERROR_OPERATION_UNSUPPORTED);
                 }
 
-                req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.CALCULATIOR_LINK_JSP).forward(req, res);
             }
         }
 
