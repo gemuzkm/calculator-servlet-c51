@@ -13,7 +13,7 @@
 </head>
 <body>
 <a href="/">Home</a><br>
-<p><a href='<c:url value="/registration" />'>Create new User</a></p>
+<p><a href='<c:url value="/createuser" />'>Create new User</a></p>
 
 <table>
     <tr><th>Name</th><th>Login</th><th>Password</th><th>Role</th><th>SessionID</th><th></th></tr>

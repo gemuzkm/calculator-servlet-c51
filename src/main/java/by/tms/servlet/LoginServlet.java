@@ -21,16 +21,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
+        HttpSession session = req.getSession();
 
         String login = req.getParameter("login");
-
         User user = userService.getByUserLogin(login);
-        HttpSession session = req.getSession();
-        session.setAttribute("login", login);
+
+ //       session.setAttribute("login", login);
         session.setAttribute("user", user);
 
-        if (userService.changedUserSessionID(login, session.getId())) {
-            userService.deleteHistoryAfterIdChange(login, session.getId());
+        if (userService.changedUserSessionID(user.getLogin(), session.getId())) {
+            userService.deleteHistoryAfterIdChange(user.getLogin(), session.getId());
             user.setSessionID(session.getId());
         } else {
             user.setSessionID(session.getId());

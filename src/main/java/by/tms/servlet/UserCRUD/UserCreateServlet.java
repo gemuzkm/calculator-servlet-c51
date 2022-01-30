@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/registration", name = "RegistrationServlet")
-public class RegistrationServlet extends HttpServlet {
+@WebServlet(urlPatterns = Constants.USER_CREATE_LINK, name = "UserCreateServlet")
+public class UserCreateServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req, resp);
 
     }
 
@@ -40,11 +40,11 @@ public class RegistrationServlet extends HttpServlet {
                 resp.sendRedirect(Constants.HOME_LINK);
             } else {
                 req.setAttribute("msgErrorUser", Constants.MSC_ERROR_USER_NOT_CREATED);
-                req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req, resp);
+                req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req, resp);
             }
         } else {
             req.setAttribute("msgErrorUser", Constants.MSG_ERROR_USER_EXISTS);
-            req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req, resp);
+            req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req, resp);
         }
     }
 }

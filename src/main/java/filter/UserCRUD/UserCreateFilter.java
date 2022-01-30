@@ -1,5 +1,7 @@
-package filter;
+package filter.UserCRUD;
 
+import entity.User;
+import filter.Constants;
 import validator.ValueValidator;
 
 import javax.servlet.FilterChain;
@@ -11,17 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "RegistrationServlet")
-public class RegistrationFilter extends HttpFilter {
-
+@WebFilter(servletNames = "UserCreateServlet")
+public class UserCreateFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
         if (req.getMethod().equals("GET")) {
             HttpSession session = req.getSession();
-            if (session.getAttribute("login") != null) {
-                req.setAttribute("informational", Constants.MSG_ERROR_NO_ACCESS);
-                req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
+
+            if (session.getAttribute("user") != null) {
+                User user = (User) session.getAttribute("user");
+                if (user.getRole() != 0) {
+                    req.setAttribute("informational", Constants.MSG_ERROR_NO_ACCESS);
+                    req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
+                }
             }
         }
 
@@ -45,7 +50,7 @@ public class RegistrationFilter extends HttpFilter {
                     req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req,res);
+                req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req,res);
             }
 
             if (valueValidator.isStringEmpty(name) || valueValidator.isStringEmpty(login) || valueValidator.isStringEmpty(password)) {
@@ -61,7 +66,7 @@ public class RegistrationFilter extends HttpFilter {
                     req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req,res);
+                req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req,res);
             }
         }
 
