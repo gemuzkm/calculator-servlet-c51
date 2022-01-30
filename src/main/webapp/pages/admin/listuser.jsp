@@ -12,7 +12,8 @@
     <title>User list Page</title>
 </head>
 <body>
-<p><a href='<c:url value="/createuser" />'>Create new User</a></p>
+<a href="/">Home</a><br>
+<p><a href='<c:url value="/registration" />'>Create new User</a></p>
 
 <table>
     <tr><th>Name</th><th>Login</th><th>Password</th><th>Role</th><th>SessionID</th><th></th></tr>

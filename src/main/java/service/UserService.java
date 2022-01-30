@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public void delUser(User user) {
-
+        userStorageInMemory.delUser(user);
     }
 
     public ArrayList<User> getListUser() {

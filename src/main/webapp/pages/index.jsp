@@ -33,7 +33,7 @@
 
 <c:if test="${sessionScope.user.getRole() == 0}">
     <a href="/userlist">User management</a><br>
-    <a href="/adduser">Add User</a><br>
+    <a href="/registration">Add User</a><br>
     <a href="/logout">Logout</a><br>
     <p>${requestScope.mgsError}</p>
 </c:if>

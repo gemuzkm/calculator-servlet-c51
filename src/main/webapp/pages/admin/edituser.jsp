@@ -12,6 +12,7 @@
     <title>Edit User Page</title>
 </head>
 <body>
+<a href="/">Home</a><br>
 <h3>Edit user</h3>
 <form action="/useredit" method="post">
     <label>Name</label><br>
