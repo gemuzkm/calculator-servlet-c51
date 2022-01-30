@@ -5,6 +5,7 @@ public class User {
     private String login;
     private String password;
     private String sessionID;
+    private int role = 1;
 
     public User(String name, String login, String password) {
         this.name = name;
@@ -17,6 +18,21 @@ public class User {
         this.login = login;
         this.password = password;
         this.sessionID = sessionID;
+    }
+
+    public User(String name, String login, String password, int role) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(String name, String login, String password, String sessionID, int role) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.sessionID = sessionID;
+        this.role = role;
     }
 
     public String getName() {
@@ -49,5 +65,13 @@ public class User {
 
     public void setSessionID(String sessionID) {
         this.sessionID = sessionID;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 }
