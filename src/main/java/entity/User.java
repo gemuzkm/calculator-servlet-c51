@@ -5,7 +5,7 @@ public class User {
     private String login;
     private String password;
     private String sessionID;
-    private int role = 1;
+    private int role = 1; //default Role = USER
 
     public User() {
     }

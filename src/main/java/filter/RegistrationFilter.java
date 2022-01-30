@@ -19,8 +19,8 @@ public class RegistrationFilter extends HttpFilter {
         if (req.getMethod().equals("GET")) {
             HttpSession session = req.getSession();
             if (session.getAttribute("login") != null) {
-                req.setAttribute("informational", "No access");
-                req.getServletContext().getRequestDispatcher("/pages/informational.jsp").forward(req, res);
+                req.setAttribute("informational", Constants.MSG_ERROR_NO_ACCESS);
+                req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
             }
         }
 
@@ -33,34 +33,34 @@ public class RegistrationFilter extends HttpFilter {
 
             if (valueValidator.isNull(name) || valueValidator.isNull(login) || valueValidator.isNull(password)) {
                 if (valueValidator.isNull(name)) {
-                    req.setAttribute("msgErrorName", "Name is empty");
+                    req.setAttribute("msgErrorName", Constants.MSG_ERROR_NAME_EMPTY);
                 }
 
                 if (valueValidator.isNull(login)) {
-                    req.setAttribute("msgErrorLogin", "Login is empty");
+                    req.setAttribute("msgErrorLogin", Constants.MSG_ERROR_LOGIN_EMPTY);
                 }
 
                 if (valueValidator.isNull(password)) {
-                    req.setAttribute("msgErrorPassword", "Password is empty");
+                    req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
+                req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req,res);
             }
 
             if (valueValidator.isStringEmpty(name) || valueValidator.isStringEmpty(login) || valueValidator.isStringEmpty(password)) {
                 if (valueValidator.isStringEmpty(name)) {
-                    req.setAttribute("msgErrorName", "Name is empty");
+                    req.setAttribute("msgErrorName", Constants.MSG_ERROR_NAME_EMPTY);
                 }
 
                 if (valueValidator.isStringEmpty(login)) {
-                    req.setAttribute("msgErrorLogin", "Login is empty");
+                    req.setAttribute("msgErrorLogin", Constants.MSG_ERROR_LOGIN_EMPTY);
                 }
 
                 if (valueValidator.isStringEmpty(password)) {
-                    req.setAttribute("msgErrorPassword", "Password is empty");
+                    req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req,res);
+                req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req,res);
             }
         }
 
