@@ -2,6 +2,7 @@ package by.tms.servlet.Calculator;
 
 import by.tms.servlet.Constants;
 import entity.Operation;
+import entity.User;
 import entity.ValueOne;
 import entity.ValueTwo;
 import service.CalculatorService;
@@ -25,18 +26,18 @@ public class CalculatorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        CalculatorService calculatorService = new CalculatorService();
 
         String valueFirst = req.getParameter("value1");
         String valueSecond = req.getParameter("value2");
         String operationValue = req.getParameter("operation");
-        String userLogin = (String) session.getAttribute("login");
+        User user = (User) session.getAttribute("user");
 
         ValueOne valueOne = new ValueOne(Double.parseDouble(valueFirst));
         ValueTwo valueTwo = new ValueTwo(Double.parseDouble(valueSecond));
         Operation operation = new Operation(operationValue);
 
-        CalculatorService calculatorService = new CalculatorService();
-        String resultOperation = calculatorService.getResult(valueOne, valueTwo, operation, userLogin);
+        String resultOperation = calculatorService.getResult(valueOne, valueTwo, operation, user);
 
         req.setAttribute("result", "Result = " + resultOperation);
         req.getServletContext().getRequestDispatcher(Constants.CALCULATOR_LINK_JSP).forward(req, resp);

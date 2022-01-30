@@ -1,6 +1,7 @@
 package service;
 
 import entity.Operation;
+import entity.User;
 import entity.ValueOne;
 import entity.ValueTwo;
 import storage.HistoryStorageInMemory;
@@ -11,12 +12,12 @@ public class CalculatorService {
 
     private HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
-    public String getResult(ValueOne valueFirst, ValueTwo valueSecond, Operation operation, String userLogin) {
+    public String getResult(ValueOne valueFirst, ValueTwo valueSecond, Operation operation, User user) {
 
         String result = getResultOperation(valueFirst, valueSecond, operation);
         String resultOperation = valueFirst.getValue() + " " + operation.getValue() + " " + valueSecond.getValue() + " = " + result;
 
-        historyStorageInMemory.add(userLogin, resultOperation);
+        historyStorageInMemory.add(user.getLogin(), resultOperation);
         return result;
     }
 
