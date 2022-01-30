@@ -1,6 +1,7 @@
 package filter.UserCRUD;
 
 import entity.User;
+import filter.Constants;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,13 +23,13 @@ public class UserDelFilter extends HttpFilter {
         if (session.getAttribute("user") != null) {
             user = (User) session.getAttribute("user");
         } else {
-            req.setAttribute("mgsError", "No access");
-            req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, res);
+            req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
+            req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
         }
 
         if (user.getRole() != 0) {
-            req.setAttribute("mgsError", "No access");
-            req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, res);
+            req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
+            req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
         }
 
         chain.doFilter(req, res);
