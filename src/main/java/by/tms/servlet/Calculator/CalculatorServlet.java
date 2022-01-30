@@ -19,7 +19,7 @@ public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.CALCULATOR_LINK_JSP).forward(req, resp);
     }
 
     @Override
@@ -35,13 +35,11 @@ public class CalculatorServlet extends HttpServlet {
         ValueTwo valueTwo = new ValueTwo(Double.parseDouble(valueSecond));
         Operation operation = new Operation(operationValue);
 
-//        CalculatorService calculatorService = new CalculatorService(valueFirst, valueSecond, operationValue, userLogin);
-
         CalculatorService calculatorService = new CalculatorService();
         String resultOperation = calculatorService.getResult(valueOne, valueTwo, operation, userLogin);
 
         req.setAttribute("result", "Result = " + resultOperation);
-        req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.CALCULATOR_LINK_JSP).forward(req, resp);
     }
 }
 

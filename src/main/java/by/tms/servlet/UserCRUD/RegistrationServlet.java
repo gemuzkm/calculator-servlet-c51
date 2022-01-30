@@ -1,4 +1,4 @@
-package by.tms.servlet;
+package by.tms.servlet.UserCRUD;
 
 import entity.User;
 import service.UserService;
