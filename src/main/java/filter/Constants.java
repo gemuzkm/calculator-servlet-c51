@@ -7,6 +7,7 @@ public class Constants {
     public static final String REGISTRATION_LINK_JSP = "/pages/reg.jsp";
     public static final String INFORMATION_LINK_JSP = "/pages/informational.jsp";
     public static final String CREATE_USER_LINK_JSP = "/pages/admin/createuser.jsp";
+    public static final String USER_LIST_LINK = "/userlist";
     public static final String MSG_ERROR_NO_ACCESS = "No access";
     public static final String MSG_ERROR_NO_AUTHORIZED = "Welcome, Anonymous. You are not authorized";
     public static final String MSG_ERROR_NAME_EMPTY = "Name is empty";
@@ -20,4 +21,5 @@ public class Constants {
     public static final String MSG_ERROR_OPERATION_EMPTY = "Operation is empty";
     public static final String MSG_ERROR_VALUE_TWO_EMPTY = "Value2 is empty";
     public static final String MSG_ERROR_VALUE_ONE_EMPTY = "Value1 is empty";
+    public static final String MSG_ERROR_NO_DEL_YOURSELF = "You can't delete yourself";
 }

@@ -32,6 +32,11 @@ public class UserDelFilter extends HttpFilter {
             req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
         }
 
+        if (user.getLogin().equals(req.getParameter("login")))  {
+            req.setAttribute("msgError", Constants.MSG_ERROR_NO_DEL_YOURSELF);
+            res.sendRedirect(Constants.USER_LIST_LINK);
+        }
+
         chain.doFilter(req, res);
     }
 }
