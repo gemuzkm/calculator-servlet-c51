@@ -22,6 +22,6 @@ public class HistoryServlet extends HttpServlet {
         historyUser.append(calculatorService.printHistory((String) session.getAttribute("login")));
 
         req.setAttribute("msgHistoryUser", historyUser.toString());
-        req.getServletContext().getRequestDispatcher("/pages/history.jsp").forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.HISTORY_LINK_JSP).forward(req, resp);
     }
 }
