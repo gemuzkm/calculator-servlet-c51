@@ -26,4 +26,8 @@ public class UserService {
     public void addUser(User user) {
         userStorageInMemory.addUser(user);
     }
+
+    public void delUser(User user) {
+
+    }
 }

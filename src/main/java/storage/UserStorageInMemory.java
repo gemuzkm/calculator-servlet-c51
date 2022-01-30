@@ -27,6 +27,16 @@ public class UserStorageInMemory implements UserStorage {
     }
 
     @Override
+    public void delUser(User user) {
+        listUser.remove(user);
+    }
+
+    @Override
+    public void delUser(String userLogin) {
+        listUser.remove(userLogin);
+    }
+
+    @Override
     public User getByUserLogin(String userLogin) {
         for (User user : listUser) {
             if (user.getLogin().equals(userLogin)) {

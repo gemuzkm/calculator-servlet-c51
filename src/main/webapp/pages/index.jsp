@@ -10,17 +10,28 @@
 
 <html>
 <head>
-    <title>Main Page</title>
+    <c:if test="${sessionScope.user.getRole() != 0}">
+        <title>Main Page</title>
+    </c:if>
+    <c:if test="${sessionScope.user.getRole() == 0}">
+        <title>Admin Page</title>
+    </c:if>
 </head>
 <body>
-<c:if test="${sessionScope.login == null}">
+<c:if test="${sessionScope.user.getRole() == null}">
     <a href="/registration">Registration</a><br>
     <a href="/login">Authorization</a><br>
 </c:if>
 
-<c:if test="${sessionScope.login != null}">
+<c:if test="${sessionScope.user.getRole() == 1}">
     <a href="/calculator">Calculator</a><br>
     <a href="/history">History</a><br>
+    <a href="/logout">Logout</a><br>
+</c:if>
+
+<c:if test="${sessionScope.user.getRole() == 0}">
+    <a href="/userlist">User management</a><br>
+    <a href="/adduser">Add User</a><br>
     <a href="/logout">Logout</a><br>
 </c:if>
 
