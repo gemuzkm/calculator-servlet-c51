@@ -23,7 +23,13 @@ public class UserStorageInMemory implements UserStorage {
 
     @Override
     public void addUser(User user) {
-        listUser.add(user);
+        if (getByUserLogin(user.getLogin()) == null) {
+            listUser.add(user);
+        } else {
+            User oldUser = getByUserLogin(user.getLogin());
+            delUser(oldUser);
+            addUser(user);
+        }
     }
 
     @Override
@@ -33,7 +39,7 @@ public class UserStorageInMemory implements UserStorage {
 
     @Override
     public void delUser(String userLogin) {
-        listUser.remove(userLogin);
+        listUser.remove(getByUserLogin(userLogin));
     }
 
     @Override

@@ -16,15 +16,28 @@ public class UserEditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
         UserService userService = new UserService();
-        User user = userService.getByUserLogin((String) session.getAttribute("login"));
-        session.setAttribute("userForEditing", user);
+        HttpSession session = req.getSession();
+
+        User userForEditing = userService.getByUserLogin(req.getParameter("login"));
+        session.setAttribute("userForEditing", userForEditing);
+
         req.getServletContext().getRequestDispatcher("/pages/admin/edituser.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserService userService = new UserService();
 
+        String nameForEditingUser = (String) req.getParameter("name");
+        String loginForEditingUser = (String) req.getParameter("login");
+        String passwordForEditingUser = (String) req.getParameter("password");
+        int roleForEditingUser = Integer.parseInt((String) req.getParameter("role"));
+        String sessionIdForEditingUser = (String) req.getParameter("sessionID");
+
+        User userForEditing = new User(nameForEditingUser, loginForEditingUser, passwordForEditingUser, sessionIdForEditingUser, roleForEditingUser);
+        userService.addUser(userForEditing);
+
+        resp.sendRedirect("/userlist");
     }
 }

@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
         User user = userService.getByUserLogin(login);
         HttpSession session = req.getSession();
-        session.setAttribute("login", login);
+//        session.setAttribute("login", login);
         session.setAttribute("user", user);
 
         if (userService.changedUserSessionID(login, session.getId())) {

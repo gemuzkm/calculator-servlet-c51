@@ -16,16 +16,16 @@
 
 <table>
     <tr><th>Name</th><th>Login</th><th>Password</th><th>Role</th><th>SessionID</th><th></th></tr>
-    <c:forEach var="user" items="${listUser}">
-        <tr><td>${user.getName()}</td>
-            <td>${user.getLogin()}</td>
-            <td>${user.getPassword()}</td>
-            <td>${user.getRole()}</td>
-            <td>${user.getSessionID()}</td>
+    <c:forEach var="item" items="${listUser}">
+        <tr><td>${item.getName()}</td>
+            <td>${item.getLogin()}</td>
+            <td>${item.getPassword()}</td>
+            <td>${item.getRole()}</td>
+            <td>${item.getSessionID()}</td>
             <td>
-                <a href='<c:url value="/useredit?login=${user.getLogin()}" />'>Edit</a> |
+                <a href='<c:url value="/useredit?login=${item.getLogin()}" />'>Edit</a> |
                 <form method="post" action='<c:url value="/userdel" />' style="display:inline;">
-                    <input type="hidden" name="login" value="${user.getLogin()}">
+                    <input type="hidden" name="login" value="${item.getLogin()}">
                     <input type="submit" value="Delete">
                 </form>
             </td></tr>

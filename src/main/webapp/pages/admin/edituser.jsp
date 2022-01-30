@@ -13,18 +13,18 @@
 </head>
 <body>
 <h3>Edit user</h3>
-<form method="post">
+<form action="/useredit" method="post">
     <label>Name</label><br>
-    <input name="name" value="${userForEditing.getName()}" /><br><br>
+    <input name="name" value="${sessionScope.userForEditing.getName()}" /><br><br>
     <label>Login</label><br>
-    <input name="login" value="${userForEditing.getLogin()}" /><br><br>
+    <input name="login" value="${sessionScope.userForEditing.getLogin()}" /><br><br>
     <label>Password</label><br>
-    <input name="password" value="${userForEditing.getPassword()}" /><br><br>
+    <input name="password" value="${sessionScope.userForEditing.getPassword()}" /><br><br>
     <label>Role</label><br>
-    <input name="role" value="${userForEditing.getRole()}" /><br><br>
+    <input name="role" value="${sessionScope.userForEditing.getRole()}" /><br><br>
     <label>SessionID</label><br>
-    <input name="sessionID" value="${userForEditing.getSessionID()}" /><br><br>
-    <input type="submit" value="Send" />
+    <input name="sessionID" value="${sessionScope.userForEditing.getSessionID()}" /><br><br>
+    <input type="submit" value="Save" />
 </form>
 </body>
 </html>
