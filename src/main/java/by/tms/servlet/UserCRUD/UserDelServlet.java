@@ -1,5 +1,6 @@
 package by.tms.servlet.UserCRUD;
 
+import by.tms.servlet.Constants;
 import entity.User;
 import service.UserService;
 
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/userdel", name = "DelUserServlet")
+@WebServlet(urlPatterns = Constants.USER_DEL_LINK, name = "UserDelServlet")
 public class UserDelServlet extends HttpServlet {
 
     @Override
@@ -20,6 +21,6 @@ public class UserDelServlet extends HttpServlet {
 
         userService.delUser(userDel);
 
-        resp.sendRedirect("/userlist");
+        resp.sendRedirect(Constants.USER_LIST_LINK);
     }
 }

@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/login", name = "LoginServlet")
+@WebServlet(urlPatterns = Constants.LOGIN_LINK, name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher("/pages/login.jsp").forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.LOGIN_LINK_JSP).forward(req, resp);
     }
 
     @Override
@@ -36,6 +36,6 @@ public class LoginServlet extends HttpServlet {
             user.setSessionID(session.getId());
         }
 
-        resp.sendRedirect("/");
+        resp.sendRedirect(Constants.HOME_LINK);
     }
 }

@@ -1,5 +1,6 @@
 package by.tms.servlet.UserCRUD;
 
+import by.tms.servlet.Constants;
 import entity.User;
 import service.UserService;
 
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/useredit", name = "UserEditServlet")
+@WebServlet(urlPatterns = Constants.USER_EDIT_LINK, name = "UserEditServlet")
 public class UserEditServlet extends HttpServlet {
 
     @Override
@@ -22,7 +23,7 @@ public class UserEditServlet extends HttpServlet {
         User userForEditing = userService.getByUserLogin(req.getParameter("login"));
         session.setAttribute("userForEditing", userForEditing);
 
-        req.getServletContext().getRequestDispatcher("/pages/admin/edituser.jsp").forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.EDIT_USER_LINK_JSP).forward(req, resp);
     }
 
     @Override
@@ -38,6 +39,6 @@ public class UserEditServlet extends HttpServlet {
         User userForEditing = new User(nameForEditingUser, loginForEditingUser, passwordForEditingUser, sessionIdForEditingUser, roleForEditingUser);
         userService.addUser(userForEditing);
 
-        resp.sendRedirect("/userlist");
+        resp.sendRedirect(Constants.USER_LIST_LINK);
     }
 }

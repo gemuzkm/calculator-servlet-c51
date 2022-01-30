@@ -1,10 +1,10 @@
 package by.tms.servlet.Calculator;
 
+import by.tms.servlet.Constants;
 import entity.Operation;
 import entity.ValueOne;
 import entity.ValueTwo;
 import service.CalculatorService;
-import service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

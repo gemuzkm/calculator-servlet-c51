@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/")
+@WebServlet(urlPatterns = Constants.HOME_LINK)
 public class HomeServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
@@ -29,6 +29,6 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, resp);
     }
 }
