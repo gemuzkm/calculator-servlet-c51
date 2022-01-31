@@ -21,6 +21,7 @@
 <c:if test="${sessionScope.user.getRole() == null}">
     <a href="/registration">Registration</a><br>
     <a href="/login">Authorization</a><br>
+    <a href="/recovery">Recovery Password</a><br>
     <p>${requestScope.mgsError}</p>
 </c:if>
 

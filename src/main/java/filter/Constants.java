@@ -7,6 +7,8 @@ public class Constants {
     public static final String REGISTRATION_LINK_JSP = "/pages/reg.jsp";
     public static final String INFORMATION_LINK_JSP = "/pages/informational.jsp";
     public static final String CREATE_USER_LINK_JSP = "/pages/admin/createuser.jsp";
+    public static final String RECOVERY_USER_LINK_JSP = "/pages/recovery.jsp";
+    public static final String NEW_PASSWORD_LINK_JSP = "/pages/newpassword.jsp";
     public static final String USER_LIST_LINK = "/userlist";
     public static final String USER_EDIT_LINK = "/useredit";
     public static final String MSG_ERROR_NO_ACCESS = "No access";
@@ -24,4 +26,6 @@ public class Constants {
     public static final String MSG_ERROR_VALUE_TWO_EMPTY = "Value2 is empty";
     public static final String MSG_ERROR_VALUE_ONE_EMPTY = "Value1 is empty";
     public static final String MSG_ERROR_NO_DEL_YOURSELF = "Error. You can't delete yourself";
+    public static final String MSG_ERROR_SECRET_WORD_WRONG = "The secret word is wrong";
+    public static final String MSG_ERROR_SERCRET_WOWRD_EMPTY = "Secret word is empty";
 }
