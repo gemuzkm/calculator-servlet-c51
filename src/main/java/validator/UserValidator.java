@@ -38,4 +38,12 @@ public class UserValidator {
             return true;
         }
     }
+
+    public boolean validUserRole(String userRole) {
+        if (userRole.equals("0") || userRole.equals("1")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

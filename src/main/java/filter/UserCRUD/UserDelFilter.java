@@ -34,8 +34,8 @@ public class UserDelFilter extends HttpFilter {
 
         if (user.getLogin().equals(req.getParameter("login")))  {
            session.setAttribute("msgError", Constants.MSG_ERROR_NO_DEL_YOURSELF);
-            res.sendRedirect(Constants.USER_LIST_LINK);
-            return;
+           res.sendRedirect(Constants.USER_LIST_LINK);
+           return;
         }
 
         chain.doFilter(req, res);
