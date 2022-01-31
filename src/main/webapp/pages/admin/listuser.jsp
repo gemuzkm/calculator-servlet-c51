@@ -32,5 +32,6 @@
             </td></tr>
     </c:forEach>
 </table>
+<p>${sessionScope.msgError}</p>
 </body>
 </html>

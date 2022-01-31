@@ -27,6 +27,5 @@
     <input name="sessionID" value="${sessionScope.userForEditing.getSessionID()}" /><br><br>
     <input type="submit" value="Save" />
 </form>
-<p>${sessionScope.msgError}</p>
 </body>
 </html>

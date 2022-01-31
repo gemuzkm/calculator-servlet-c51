@@ -19,7 +19,10 @@ public class UserDelServlet extends HttpServlet {
         UserService userService = new UserService();
         User userDel = userService.getByUserLogin(req.getParameter("login"));
 
-        userService.delUser(userDel);
+
+        if (userDel.getLogin().equals(req.getParameter("login"))) {
+            userService.delUser(userDel);
+        }
 
         resp.sendRedirect(Constants.USER_LIST_LINK);
     }
