@@ -7,8 +7,6 @@ public class Constants {
     public static final String REGISTRATION_LINK_JSP = "/pages/reg.jsp";
     public static final String INFORMATION_LINK_JSP = "/pages/informational.jsp";
     public static final String CREATE_USER_LINK_JSP = "/pages/admin/createuser.jsp";
-    public static final String EDIT_USER_LINK_JSP = "/pages/admin/editeuser.jsp";
-    public static final String USER_LIST_LINK_JSP = "/pages/admin/listuser.jsp";
     public static final String USER_LIST_LINK = "/userlist";
     public static final String USER_EDIT_LINK = "/useredit";
     public static final String MSG_ERROR_NO_ACCESS = "No access";
