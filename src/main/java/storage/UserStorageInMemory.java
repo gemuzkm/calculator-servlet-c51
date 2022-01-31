@@ -34,12 +34,18 @@ public class UserStorageInMemory implements UserStorage {
 
     @Override
     public void delUser(User user) {
+        HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
+
         listUser.remove(user);
+        historyStorageInMemory.del(user.getLogin());
     }
 
     @Override
     public void delUser(String userLogin) {
+        HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
+
         listUser.remove(getByUserLogin(userLogin));
+        historyStorageInMemory.del(userLogin);
     }
 
     @Override
