@@ -1,4 +1,4 @@
-package by.tms.servlet.recovery.password;
+package by.tms.servlet.user.recovery;
 
 import by.tms.servlet.Constants;
 import service.UserService;

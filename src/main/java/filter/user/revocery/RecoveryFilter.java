@@ -1,4 +1,4 @@
-package filter.recovery.password;
+package filter.user.revocery;
 
 import filter.Constants;
 import validator.ValueValidator;
