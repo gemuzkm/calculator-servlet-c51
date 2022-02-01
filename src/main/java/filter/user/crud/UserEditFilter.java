@@ -1,4 +1,4 @@
-package filter.userCRUD;
+package filter.user.crud;
 
 import entity.User;
 import filter.Constants;

@@ -1,4 +1,4 @@
-package filter.userCRUD;
+package filter.user.crud;
 
 import entity.User;
 import filter.Constants;
@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "UserListServlet")
-public class UserListFilter extends HttpFilter {
+@WebFilter (servletNames = "UserDelServlet")
+public class UserDelFilter extends HttpFilter {
+
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpSession session = req.getSession();
@@ -29,6 +30,12 @@ public class UserListFilter extends HttpFilter {
         if (user.getRole() != 0) {
             req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
             req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
+        }
+
+        if (user.getLogin().equals(req.getParameter("login")))  {
+           session.setAttribute("msgError", Constants.MSG_ERROR_NO_DEL_YOURSELF);
+           res.sendRedirect(Constants.USER_LIST_LINK);
+           return;
         }
 
         chain.doFilter(req, res);
