@@ -2,7 +2,7 @@ package service;
 
 import entity.User;
 import storage.UserStorageInMemory;
-import validator.UserValidator;
+import web.validator.UserValidator;
 
 import java.util.ArrayList;
 
