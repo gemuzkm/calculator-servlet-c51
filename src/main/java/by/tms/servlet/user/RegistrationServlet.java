@@ -1,4 +1,4 @@
-package by.tms.servlet.user.crud;
+package by.tms.servlet.user;
 
 import by.tms.servlet.Constants;
 import entity.User;
@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = Constants.USER_CREATE_LINK, name = "UserCreateServlet")
-public class UserCreateServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/registration", name = "RegistrationServlet")
+public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req, resp);
-
+        req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req, resp);
     }
 
     @Override
@@ -32,7 +31,8 @@ public class UserCreateServlet extends HttpServlet {
         String userLogin = req.getParameter("login");
         String userPassword = req.getParameter("password");
 
-        User user = new User(userName, userLogin, userPassword, session.getId());
+//        User user = new User(userName, userLogin, userPassword, session.getId());
+        User user = new User(userName, userLogin, userPassword);
 
         if (userService.getByUserLogin(user.getLogin()) == null) {
             userService.addUser(user);
@@ -40,11 +40,11 @@ public class UserCreateServlet extends HttpServlet {
                 resp.sendRedirect(Constants.HOME_LINK);
             } else {
                 req.setAttribute("msgErrorUser", Constants.MSC_ERROR_USER_NOT_CREATED);
-                req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req, resp);
+                req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req, resp);
             }
         } else {
             req.setAttribute("msgErrorUser", Constants.MSG_ERROR_USER_EXISTS);
-            req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req, resp);
+            req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req, resp);
         }
     }
 }
