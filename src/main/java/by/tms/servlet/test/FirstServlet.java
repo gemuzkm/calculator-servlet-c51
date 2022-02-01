@@ -1,4 +1,4 @@
-package by.tms.servlet.Test;
+package by.tms.servlet.test;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @WebServlet(urlPatterns = "/test", loadOnStartup = 0, name = "FirstServlet") //инициализация во время запуска, размер инта, чем меньше, тем выше приоритет
 public class FirstServlet extends HttpServlet {

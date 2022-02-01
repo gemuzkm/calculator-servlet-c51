@@ -1,4 +1,4 @@
-package filter.Test;
+package filter.test;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

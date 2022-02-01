@@ -1,7 +1,6 @@
-package by.tms.servlet.RecoveryPassword;
+package by.tms.servlet.recoveryPassword;
 
 import by.tms.servlet.Constants;
-import entity.User;
 import service.UserService;
 import validator.UserValidator;
 

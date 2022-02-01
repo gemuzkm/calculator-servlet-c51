@@ -1,4 +1,4 @@
-package by.tms.servlet.UserCRUD;
+package by.tms.servlet.userCRUD;
 
 import by.tms.servlet.Constants;
 import entity.User;

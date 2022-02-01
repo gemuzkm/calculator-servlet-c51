@@ -1,4 +1,4 @@
-package by.tms.servlet.Calculator;
+package by.tms.servlet.calculator;
 
 import by.tms.servlet.Constants;
 import entity.Operation;

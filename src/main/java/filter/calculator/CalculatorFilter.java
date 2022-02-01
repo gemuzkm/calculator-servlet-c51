@@ -1,4 +1,4 @@
-package filter.Calculator;
+package filter.calculator;
 
 import entity.User;
 import filter.Constants;
