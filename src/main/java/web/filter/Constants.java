@@ -1,6 +1,11 @@
 package web.filter;
 
-public class Constants {
+public final class Constants {
+
+    private Constants() {
+    }
+
+    //links to JSP pages
     public static final String HOME_LINK_JSP = "/pages/index.jsp";
     public static final String CALCULATIOR_LINK_JSP = "/pages/user/calc.jsp";
     public static final String LOGIN_LINK_JSP = "/pages/user/login.jsp";
@@ -10,9 +15,11 @@ public class Constants {
     public static final String RECOVERY_USER_LINK_JSP = "/pages/recovery/recovery.jsp";
     public static final String NEW_PASSWORD_LINK_JSP = "/pages/recovery/newpassword.jsp";
 
+    //servlet links
     public static final String USER_LIST_LINK = "/userlist";
     public static final String USER_EDIT_LINK = "/useredit";
 
+    //Messages
     public static final String MSG_ERROR_NO_ACCESS = "No access";
     public static final String MSG_ERROR_NO_AUTHORIZED = "Welcome, Anonymous. You are not authorized";
     public static final String MSG_ERROR_NAME_EMPTY = "Name is empty";

@@ -2,6 +2,10 @@ package web.servlet;
 
 public final class Constants {
 
+    private Constants() {
+    }
+
+    //links to JSP pages
     public static final String CALCULATOR_LINK_JSP = "/pages/user/calc.jsp";
     public static final String HISTORY_LINK_JSP = "/pages/user/history.jsp";
     public static final String REGISTRATION_LINK_JSP = "/pages/user/reg.jsp";
@@ -13,6 +17,7 @@ public final class Constants {
     public static final String HOME_LINK_JSP = "/pages/index.jsp";
     public static final String LOGIN_LINK_JSP = "/pages/user/login.jsp";
 
+    //servlet links
     public static final String HOME_LINK = "/";
     public static final String LOGIN_LINK = "/login";
     public static final String LOGOUT_LINK = "/logout";
@@ -22,6 +27,7 @@ public final class Constants {
     public static final String USER_CREATE_LINK = "/createuser";
     public static final String PASSWORD_RECOVERY_LINK = "/recovery";
 
+    //Messages
     public static final String MSC_ERROR_USER_NOT_CREATED = "Error. User not created";
     public static final String MSG_ERROR_USER_EXISTS = "Error. The user already exists";
     public static final String MSG_ERROR_USER_NOT_FOUND = "User not found";
