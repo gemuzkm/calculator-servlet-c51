@@ -17,18 +17,7 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        CalculatorService calculatorService = new CalculatorService();
-//        HttpSession session = req.getSession();
-//
-//        if (session.getAttribute("user") != null) {
-//            User user = (User) session.getAttribute("user");
-//            calculatorService.delHistory(user.getLogin());
-//
-//            session.invalidate();
-//            resp.sendRedirect(Constants.HOME_LINK);
-//        } else {
-//            resp.sendRedirect(Constants.HOME_LINK);
-//        }
+
     }
 
     @Override
