@@ -22,13 +22,13 @@
 <body>
 <a href="/">Home</a><br>
 <form action="/registration" method="post">
-    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="name" placeholder="Name" minlength="2" required>
     ${requestScope.msgErrorName}
     <br>
-    <input type="text" name="login" placeholder="Login">
+    <input type="text" name="login" placeholder="Login" minlength="2" readonly>
     ${requestScope.msgErrorLogin}
     <br>
-    <input type="text" name="password" placeholder="Password">
+    <input type="password" name="password" placeholder="Password" minlength="2" required>
     ${requestScope.msgErrorPassword}
     <br>
     <button>Submit</button>

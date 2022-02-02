@@ -9,7 +9,7 @@ public interface UserStorage {
     void addUser(User user);
     User getByUserLogin(String userLogin);
     void delUser(User user);
-    public void delUser(String userLogin);
+    void delUser(String userLogin);
     ArrayList<User> getListUser();
 
 }

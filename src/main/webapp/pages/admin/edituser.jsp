@@ -16,13 +16,13 @@
 <h3>Edit user</h3>
 <form action="/useredit" method="post">
     <label>Name</label><br>
-    <input name="name" value="${sessionScope.userForEditing.getName()}" /> ${sessionScope.msgErrorName}<br><br>
+    <input type="text" name="name" value="${sessionScope.userForEditing.getName()}" minlength="2" required> ${sessionScope.msgErrorName}<br><br>
     <label>Login</label><br>
-    <input name="login" value="${sessionScope.userForEditing.getLogin()}" /> ${sessionScope.msgErrorLogin}<br><br>
+    <input type="text" name="login" value="${sessionScope.userForEditing.getLogin()}" minlength="2" required> ${sessionScope.msgErrorLogin}<br><br>
     <label>Password</label><br>
-    <input name="password" value="${sessionScope.userForEditing.getPassword()}" /> ${sessionScope.msgErrorPassword}<br><br>
+    <input type="password" name="password" value="${sessionScope.userForEditing.getPassword()}" > ${sessionScope.msgErrorPassword}<br><br>
     <label>Role</label><br>
-    <input name="role" value="${sessionScope.userForEditing.getRole()}" /> ${sessionScope.msgErrorRole}<br><br>
+    <input  name="role" value="${sessionScope.userForEditing.getRole()}" > ${sessionScope.msgErrorRole}<br><br>
     <label>SessionID</label><br>
     <input name="sessionID" value="${sessionScope.userForEditing.getSessionID()}" /><br><br>
     <input type="submit" value="Save" />

@@ -14,15 +14,14 @@
 <a href="/">Home</a><br>
 <form action="/calculator" method="post">
     <input type="text" name="value1" placeholder="Value1" pattern="[\d+]" required> ${requestScope.msgErrorValueOne}<br>
-<%--    <input type="text" name="operation" placeholder="Operation"> ${requestScope.msgErrorOperation}<br>--%>
     <select name="operation">
         <option disabled selected>Choose operation</option>
         <option value="sum">+</option>
-        <option value="dif">=</option>
+        <option value="dif">-</option>
         <option value="mult">*</option>
         <option value="div">/</option>
     </select> ${requestScope.msgErrorOperation} <br>
-    <input type="text" name="value2" placeholder="Value2" [\d+] required> ${requestScope.msgErrorValueTwo}<br>
+    <input type="text" name="value2" placeholder="Value2" pattern="[\d+]" required> ${requestScope.msgErrorValueTwo}<br>
     <button>Calculate</button> ${requestScope.result}
 </form>
 </body>

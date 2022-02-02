@@ -13,17 +13,13 @@
 <body>
 <a href="/">Home</a><br>
 <form action="/createuser" method="post">
-    <input type="text" name="name" placeholder="Name">
-    ${requestScope.msgErrorName}
+    <input type="text" name="name" placeholder="Name" minlength="2" required> ${requestScope.msgErrorName}
     <br>
-    <input type="text" name="login" placeholder="Login">
-    ${requestScope.msgErrorLogin}
+    <input type="text" name="login" placeholder="Login" minlength="2" required> ${requestScope.msgErrorLogin}
     <br>
-    <input type="text" name="password" placeholder="Password">
-    ${requestScope.msgErrorPassword}
+    <input type="password" name="password" placeholder="Password" minlength="2" required> ${requestScope.msgErrorPassword}
     <br>
-    <button>Submit</button>
-    <p>${requestScope.msgErrorUser}</p>
+    <button>Submit</button> <p>${requestScope.msgErrorUser}</p>
 </form>
 </body>
 </html>

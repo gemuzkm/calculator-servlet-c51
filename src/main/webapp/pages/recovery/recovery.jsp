@@ -13,7 +13,7 @@
 <body>
 <a href="/">Home</a><br>
 <form action="/recovery" method="post">
-    <input type="text" name="login" placeholder="Login"> ${requestScope.msgErrorLogin}
+    <input type="text" name="login" placeholder="Login" minlength="2" required> ${requestScope.msgErrorLogin}
     <br><br>
     <button>Submit</button>
 </form>

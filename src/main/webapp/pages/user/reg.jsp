@@ -21,7 +21,7 @@
     <input type="text" name="login" placeholder="Login">
     ${requestScope.msgErrorLogin}
     <br>
-    <input type="text" name="password" placeholder="Password">
+    <input type="password" name="password" placeholder="Password">
     ${requestScope.msgErrorPassword}
     <br>
     <button>Submit</button>

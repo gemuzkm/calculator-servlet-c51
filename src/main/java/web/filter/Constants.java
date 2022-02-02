@@ -9,8 +9,10 @@ public class Constants {
     public static final String CREATE_USER_LINK_JSP = "/pages/admin/createuser.jsp";
     public static final String RECOVERY_USER_LINK_JSP = "/pages/recovery.jsp";
     public static final String NEW_PASSWORD_LINK_JSP = "/pages/newpassword.jsp";
+
     public static final String USER_LIST_LINK = "/userlist";
     public static final String USER_EDIT_LINK = "/useredit";
+
     public static final String MSG_ERROR_NO_ACCESS = "No access";
     public static final String MSG_ERROR_NO_AUTHORIZED = "Welcome, Anonymous. You are not authorized";
     public static final String MSG_ERROR_NAME_EMPTY = "Name is empty";

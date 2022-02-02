@@ -13,9 +13,9 @@
 <body>
 <a href="/">Home</a><br>
 <form action="/updatepassword" method="POST">
-    <input type="text " name="newpassword" placeholder="New Password"> ${requestScope.msgErrorPassword}
+    <input type="password" name="newpassword" placeholder="New Password" minlength="2" required> ${requestScope.msgErrorPassword}
     <br>
-    <input type="text " name="recword" placeholder="Recovery Word"> ${requestScope.msgErrorRecoveryWord}
+    <input type="text " name="recword" placeholder="Recovery Word" minlength="2" required> ${requestScope.msgErrorRecoveryWord}
     <br>
     RECOVERY WORD: ${sessionScope.recoveryword}
     <br>
