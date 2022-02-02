@@ -13,7 +13,7 @@
 <body>
 <a href="/">Home</a><br>
 <form action="/calculator" method="post">
-    <input type="text" name="value1" placeholder="Value1" pattern="[\d+]" required> ${requestScope.msgErrorValueOne}<br>
+    <input type="text" name="value1" placeholder="Value1" pattern="[+-]?([0-9]*[.])?[0-9]+" required> ${requestScope.msgErrorValueOne}<br>
     <select name="operation">
         <option disabled selected>Choose operation</option>
         <option value="sum">+</option>
@@ -21,7 +21,7 @@
         <option value="mult">*</option>
         <option value="div">/</option>
     </select> ${requestScope.msgErrorOperation} <br>
-    <input type="text" name="value2" placeholder="Value2" pattern="[\d+]" required> ${requestScope.msgErrorValueTwo}<br>
+    <input type="text" name="value2" placeholder="Value2" pattern="[+-]?([0-9]*[.])?[0-9]+" required> ${requestScope.msgErrorValueTwo}<br>
     <button>Calculate</button> ${requestScope.result}
 </form>
 </body>
