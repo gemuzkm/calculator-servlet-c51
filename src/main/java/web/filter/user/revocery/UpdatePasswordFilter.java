@@ -24,9 +24,9 @@ public class UpdatePasswordFilter extends HttpFilter {
 
             String newPassword = req.getParameter("newpassword").trim();
             String inputSecretWord = req.getParameter("recword").trim();
-            String secretWord = (String) session.getAttribute("recoveryword");
+            String secretWord = ((String) session.getAttribute("recoveryword")).trim();
 
-            if (valueValidator.isStringEmpty(newPassword) || valueValidator.isStringEmpty(inputSecretWord)) {
+            if (valueValidator.isStringEmpty(newPassword) || valueValidator.isStringEmpty(inputSecretWord) || !inputSecretWord.equals(String.valueOf(secretWord))) {
                 if (valueValidator.isStringEmpty(newPassword)) {
                     req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
