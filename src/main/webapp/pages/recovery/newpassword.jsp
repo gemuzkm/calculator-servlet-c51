@@ -16,6 +16,7 @@
     <input type="password" name="newpassword" placeholder="New Password" minlength="2" required> ${requestScope.msgErrorPassword}
     <br>
     <input type="text " name="recword" placeholder="Recovery Word" minlength="2" required> ${requestScope.msgErrorRecoveryWord}
+    <input type="hidden" name="recoveryword" value="${sessionScope.recoveryword}">
     <br>
     RECOVERY WORD: ${sessionScope.recoveryword}
     <br>
