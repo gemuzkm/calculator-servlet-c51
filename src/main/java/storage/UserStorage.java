@@ -1,4 +1,4 @@
-package storage.Imp;
+package storage;
 
 import entity.User;
 

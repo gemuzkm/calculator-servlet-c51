@@ -1,10 +1,8 @@
 package storage;
 
 import entity.User;
-import storage.Imp.UserStorage;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class UserStorageInMemory implements UserStorage {
 

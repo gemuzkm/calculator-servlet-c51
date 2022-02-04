@@ -1,6 +1,5 @@
 package storage;
 
-import storage.Imp.HistoryStorage;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -9,6 +8,7 @@ public class HistoryStorageInMemory implements HistoryStorage {
     private static HistoryStorageInMemory instance;
 
     private HistoryStorageInMemory() {
+        throw new RuntimeException();
     }
 
     public static HistoryStorageInMemory getInstance() {
@@ -17,6 +17,8 @@ public class HistoryStorageInMemory implements HistoryStorage {
         }
         return instance;
     }
+    /// Operation
+    // list Operation
 
     private HashMap<String, String> mapHistoryOperation = new HashMap<>();
 
