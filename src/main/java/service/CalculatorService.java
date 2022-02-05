@@ -7,6 +7,7 @@ import entity.ValueTwo;
 import storage.HistoryStorageInMemory;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CalculatorService {
 
@@ -46,7 +47,7 @@ public class CalculatorService {
 
     public String printHistory(String userLogin) {
 
-        HashMap<String, String> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
+        Map<String, String> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
 
         if (mapHistoryOperation.containsKey(userLogin)) {
             return mapHistoryOperation.get(userLogin);

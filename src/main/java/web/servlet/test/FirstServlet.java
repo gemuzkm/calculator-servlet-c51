@@ -6,10 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+// сервлет singelton
+
 
 @WebServlet(urlPatterns = "/test", loadOnStartup = 0, name = "FirstServlet") //инициализация во время запуска, размер инта, чем меньше, тем выше приоритет
 public class FirstServlet extends HttpServlet {
-
+    CopyOnWriteArrayList onWriteArrayList = new CopyOnWriteArrayList();
 ////    AtomicInteger count = 0;
 //
 //    @Override

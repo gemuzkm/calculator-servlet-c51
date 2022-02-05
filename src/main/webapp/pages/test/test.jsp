@@ -32,7 +32,13 @@
 </body>
 </html>
 
+<%--//скриплет--%>
 
+<%--<%--%>
+<%--    --%>
+<%--    --%>
+<%--    --%>
+<%--%>--%>
 <%--<c:if test ="${sessionScope.user == null}">--%>
 <%--    <a href="registration">Registration</a>--%>
 <%--    <a href="authorization">Authorization</a>--%>
