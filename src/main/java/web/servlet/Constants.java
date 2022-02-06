@@ -22,9 +22,9 @@ public final class Constants {
     public static final String HOME_LINK = "/home";
     public static final String LOGIN_LINK = "/login";
     public static final String LOGOUT_LINK = "/logout";
-    public static final String USER_DEL_LINK = "/userdel";
-    public static final String USER_LIST_LINK = "/userlist";
-    public static final String USER_EDIT_LINK = "/useredit";
+    public static final String USER_DEL_LINK = "/deluser";
+    public static final String USER_LIST_LINK = "/listuser";
+    public static final String USER_EDIT_LINK = "/edituser";
     public static final String USER_CREATE_LINK = "/createuser";
     public static final String PASSWORD_RECOVERY_LINK = "/recovery";
     public static final String CALCULATOR_LINK = "/calculator";

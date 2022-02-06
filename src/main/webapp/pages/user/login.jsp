@@ -33,7 +33,7 @@
                            placeholder="Password">
                     <label for="inputPassword">Password</label>
                 </div>
-                <a href="/recovery" class="link-dark mb-3">Forget</a>
+                <a href="/recovery" class="link-dark mb-3">Forgot</a>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
             </form>
         </main>

@@ -16,8 +16,8 @@ public final class Constants {
     public static final String NEW_PASSWORD_LINK_JSP = "/pages/recovery/newpassword.jsp";
 
     //servlet links
-    public static final String USER_LIST_LINK = "/userlist";
-    public static final String USER_EDIT_LINK = "/useredit";
+    public static final String USER_LIST_LINK = "/listuser";
+    public static final String USER_EDIT_LINK = "/edituser";
     public static final String HOME_LINK = "/home";
 
     //Messages

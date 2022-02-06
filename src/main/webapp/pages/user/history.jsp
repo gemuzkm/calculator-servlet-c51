@@ -29,16 +29,34 @@
 <div class="history">
     <div class="container">
         ${requestScope.msgErrorForAnonymous}
-
-        <c:forEach items="${requestScope.msgListHistoryUser}" var="item" varStatus="id">
-            ${id.count}) ${item.getValue()} ${sessionScope.user.getLogin()}
-            <form method="post" action='<c:url value="/historydel" />' style="display:inline;">
-                <input type="hidden" name="login" value="${sessionScope.user.getLogin()}">
-                <input type="hidden" name="idItemHistory" value="${id.count}">
-                <input type="submit" value="Delete">
-            </form>
-            <br/>
-        </c:forEach>
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Operation</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${requestScope.msgListHistoryUser}" var="item" varStatus="id">
+                        <tr>
+                            <th scope="row">${id.count})</th>
+                            <td>${item.getValue()}</td>
+                            <td>
+                                <form method="post" action='<c:url value="/historydel" />' style="display:inline;">
+                                    <input type="hidden" name="login" value="${sessionScope.user.getLogin()}">
+                                    <input type="hidden" name="idItemHistory" value="${id.count}">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
