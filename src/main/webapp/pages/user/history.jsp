@@ -5,7 +5,7 @@
   Time: 10:16
   To change this template use File | Settings | File Templates.
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -18,7 +18,13 @@
 </head>
 <body>
 
-<%@ include file="/pages/fragment/headerLogin.html"%>
+<c:if test="${sessionScope.user.getRole() == 1}">
+    <%@ include file="/pages/fragment/headerLogin.html"%>
+</c:if>
+
+<c:if test="${sessionScope.user.getRole() == 0}">
+    <%@ include file="/pages/fragment/headerManagerLogin.html"%>
+</c:if>
 
 <div class="history">
         <div class="container">
@@ -29,6 +35,5 @@
 
 <%@ include file="/pages/fragment/footer.html"%>
 
-<script src="<%=application.getContextPath() %>/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -23,6 +23,12 @@
     <%@ include file="/pages/fragment/headerLogin.html"%>
 </c:if>
 
+<c:if test="${sessionScope.user.getRole() == 0}">
+    <%@ include file="/pages/fragment/headerManagerLogin.html"%>
+</c:if>
+
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-4">

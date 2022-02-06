@@ -12,12 +12,15 @@
   Time: 20:58
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
     <title>Add User Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"
+          href="<%=application.getContextPath() %>/pages/assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/pages/assets/dist/css/history.css">
 </head>
 <body>
 <a href="/">Home</a><br>
@@ -34,6 +37,8 @@
     <button>Submit</button>
     <p>${requestScope.msgErrorUser}</p>
 </form>
+
+<%@ include file="/pages/fragment/footer.html" %>
 </body>
 </html>
 

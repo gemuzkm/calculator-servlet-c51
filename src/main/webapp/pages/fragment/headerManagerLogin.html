@@ -2,11 +2,14 @@
     <div class="container">
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/calculator" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="/history" class="nav-link">History</a></li>
                 <li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>
                 <li class="nav-item"><a href="/userlist" class="nav-link">User management</a></li>
                 <li class="nav-item"><a href="/createuser" class="nav-link">Add User</a></li>
+                <form action="/logout" method="POST">
+                    <button type="submit" class="btn btn-primary">Logout</button>
+                </form>
             </ul>
         </header>
     </div>
