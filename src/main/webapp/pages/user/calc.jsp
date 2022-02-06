@@ -27,8 +27,6 @@
     <%@ include file="/pages/fragment/headerManagerLogin.html"%>
 </c:if>
 
-
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-4">

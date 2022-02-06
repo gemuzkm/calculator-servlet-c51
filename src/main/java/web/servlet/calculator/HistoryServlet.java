@@ -1,5 +1,6 @@
 package web.servlet.calculator;
 
+import entity.Operation;
 import web.servlet.Constants;
 import entity.User;
 import service.CalculatorService;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/history", name = "HistoryServlet")
 public class HistoryServlet extends HttpServlet {
@@ -21,10 +23,9 @@ public class HistoryServlet extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
 
-        StringBuilder historyUser = new StringBuilder();
-        historyUser.append(calculatorService.printHistory(user.getLogin()));
+        List<Operation> operationList = calculatorService.getHistory(user.getLogin());
 
-        req.setAttribute("msgHistoryUser", historyUser.toString());
+        req.setAttribute("msgListHistoryUser", operationList);
         req.getServletContext().getRequestDispatcher(Constants.HISTORY_LINK_JSP).forward(req, resp);
     }
 }

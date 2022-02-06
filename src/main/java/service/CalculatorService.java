@@ -1,11 +1,10 @@
 package service;
 
-import entity.Operator;
-import entity.User;
-import entity.ValueOne;
-import entity.ValueTwo;
+import entity.*;
 import storage.HistoryStorageInMemory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class CalculatorService {
@@ -17,7 +16,7 @@ public class CalculatorService {
         String result = getResultOperation(valueFirst, valueSecond, operator);
         String resultOperation = valueFirst.getValue() + " " + operator.getValue() + " " + valueSecond.getValue() + " = " + result;
 
-        historyStorageInMemory.add(user.getLogin(), resultOperation);
+        historyStorageInMemory.add(user.getLogin(), new Operation(resultOperation));
         return result;
     }
 
@@ -44,14 +43,18 @@ public class CalculatorService {
         return resultOperation;
     }
 
-    public String printHistory(String userLogin) {
+    public List<Operation> getHistory(String userLogin) {
 
-        Map<String, String> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
+//        Map<String, String> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
 
-        if (mapHistoryOperation.containsKey(userLogin)) {
-            return mapHistoryOperation.get(userLogin);
+        Map<String, List<Operation>> mapHistoryOperation1 = historyStorageInMemory.getMapHistoryOperation();
+
+        if (mapHistoryOperation1.containsKey(userLogin)) {
+            return mapHistoryOperation1.get(userLogin);
         } else {
-            return "Empty";
+            List<Operation> operationList = new ArrayList<>();
+            operationList.add(new Operation("Empty"));
+            return operationList;
         }
     }
 

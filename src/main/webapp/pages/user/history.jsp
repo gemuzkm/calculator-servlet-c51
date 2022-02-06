@@ -19,21 +19,28 @@
 <body>
 
 <c:if test="${sessionScope.user.getRole() == 1}">
-    <%@ include file="/pages/fragment/headerLogin.html"%>
+    <%@ include file="/pages/fragment/headerLogin.html" %>
 </c:if>
 
 <c:if test="${sessionScope.user.getRole() == 0}">
-    <%@ include file="/pages/fragment/headerManagerLogin.html"%>
+    <%@ include file="/pages/fragment/headerManagerLogin.html" %>
 </c:if>
 
 <div class="history">
-        <div class="container">
-            ${requestScope.msgErrorForAnonymous}
-            ${requestScope.msgHistoryUser}
-        </div>
+    <div class="container">
+        ${requestScope.msgErrorForAnonymous}
+        <c:forEach items="${requestScope.msgListHistoryUser}" var="item" varStatus="id">
+            ${id.count}) ${item.getValue()} ${sessionScope.user.getLogin()}
+            <form method="post" action='<c:url value="/userdel" />' style="display:inline;">
+                <input type="hidden" name="login" value="${sessionScope.user.getLogin()}">
+                <input type="submit" value="Delete">
+            </form>
+            <br/>
+        </c:forEach>
+    </div>
 </div>
 
-<%@ include file="/pages/fragment/footer.html"%>
+<%@ include file="/pages/fragment/footer.html" %>
 
 </body>
 </html>

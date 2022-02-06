@@ -40,9 +40,9 @@ public class CalculatorFilter extends HttpFilter {
 
             String valueFirst = req.getParameter("value1");
             String valueSecond = req.getParameter("value2");
-            String operation = req.getParameter("operation");
+            String operator = req.getParameter("operator");
 
-            if (valueValidator.isNull(valueFirst) || valueValidator.isNull(valueSecond) || valueValidator.isNull(operation)) {
+            if (valueValidator.isNull(valueFirst) || valueValidator.isNull(valueSecond) || valueValidator.isNull(operator)) {
                 if (valueValidator.isNull(valueFirst)) {
                     req.setAttribute("msgErrorValueOne", Constants.MSG_ERROR_VALUE_ONE_EMPTY);
                 }
@@ -51,14 +51,14 @@ public class CalculatorFilter extends HttpFilter {
                     req.setAttribute("msgErrorValueTwo", Constants.MSG_ERROR_VALUE_TWO_EMPTY);
                 }
 
-                if (valueValidator.isNull(operation)) {
+                if (valueValidator.isNull(operator)) {
                     req.setAttribute("msgErrorOperation", Constants.MSG_ERROR_OPERATION_EMPTY);
                 }
 
                 req.getServletContext().getRequestDispatcher(Constants.CALCULATIOR_LINK_JSP).forward(req, res);
             }
 
-            if (!valueValidator.isNumber(valueFirst) || !valueValidator.isNumber(valueSecond) || !operationValidator.supportedOperation(operation)) {
+            if (!valueValidator.isNumber(valueFirst) || !valueValidator.isNumber(valueSecond) || !operationValidator.supportedOperation(operator)) {
                 if (!valueValidator.isNumber(valueFirst)) {
                     req.setAttribute("msgErrorValueOne", Constants.MSG_ERROR_VALUE_ONE_NOT_NUMBER);
                 }
@@ -67,7 +67,7 @@ public class CalculatorFilter extends HttpFilter {
                     req.setAttribute("msgErrorValueTwo", Constants.MSG_ERROR_VALUE_TWO_NOT_NUMBER);
                 }
 
-                if (!operationValidator.supportedOperation(operation)) {
+                if (!operationValidator.supportedOperation(operator)) {
                     req.setAttribute("msgErrorOperation", Constants.MSG_ERROR_OPERATION_UNSUPPORTED);
                 }
 
