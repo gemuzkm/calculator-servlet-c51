@@ -20,7 +20,6 @@
 <%@ include file="/pages/fragment/headerNoLogin.html"%>
 
 <div class="container">
-
         <main class="form-signin">
             <form action="/login" method="POST">
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
@@ -33,7 +32,7 @@
                            placeholder="Password">
                     <label for="inputPassword">Password</label>
                 </div>
-                <a href="/recovery" class="link-dark mb-3">Forgot</a>
+                <a href="/recovery" class="link-dark mb-3">Forgot password</a>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
             </form>
         </main>

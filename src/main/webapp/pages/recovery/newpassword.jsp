@@ -9,18 +9,38 @@
 <html>
 <head>
     <title>New Password Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"
+          href="<%=application.getContextPath() %>/pages/assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/pages/assets/dist/css/signin.css">
 </head>
 <body>
-<a href="/">Home</a><br>
-<form action="/updatepassword" method="POST">
-    <input type="password" name="newpassword" placeholder="New Password" minlength="2" required> ${requestScope.msgErrorPassword}
-    <br>
-    <input type="text " name="recword" placeholder="Recovery Word" minlength="2" required> ${requestScope.msgErrorRecoveryWord}
-    <input type="hidden" name="recoveryword" value="${sessionScope.recoveryword}">
-    <br>
-    RECOVERY WORD: ${sessionScope.recoveryword}
-    <br>
-    <button>Submit</button>
-</form>
+
+<%@ include file="/pages/fragment/headerNoLogin.html"%>
+
+<div class="container">
+    <main class="form-signin">
+        <form action="/updatepassword" method="POST">
+            <div class="form-floating mb-3">
+                <input type="text" name="newpassword" class="form-control" id="inputNewPassword" placeholder="New Password" minlength="2" required>
+                ${requestScope.msgErrorPassword}
+                <label for="inputNewPassword">New Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" name="recword" class="form-control" id="inputRecoveryWord" placeholder="Recovery Word" minlength="2" required>
+                ${requestScope.msgErrorRecoveryWord}
+                <label for="inputRecoveryWord">Recovery Word</label>
+                <input type="hidden" name="recoveryword" value="${sessionScope.recoveryword}">
+            </div>
+            RECOVERY WORD: ${sessionScope.recoveryword}
+            <br>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Recovery</button>
+        </form>
+    </main>
+</div>
+
+<%@ include file="/pages/fragment/footer.html"%>
+
 </body>
 </html>
