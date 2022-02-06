@@ -45,12 +45,10 @@ public class CalculatorService {
 
     public List<Operation> getHistory(String userLogin) {
 
-//        Map<String, String> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
+        Map<String, List<Operation>> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
 
-        Map<String, List<Operation>> mapHistoryOperation1 = historyStorageInMemory.getMapHistoryOperation();
-
-        if (mapHistoryOperation1.containsKey(userLogin)) {
-            return mapHistoryOperation1.get(userLogin);
+        if (mapHistoryOperation.containsKey(userLogin)) {
+            return mapHistoryOperation.get(userLogin);
         } else {
             List<Operation> operationList = new ArrayList<>();
             operationList.add(new Operation("Empty"));
@@ -60,5 +58,9 @@ public class CalculatorService {
 
     public void delHistory(String userLogin) {
         historyStorageInMemory.del(userLogin);
+    }
+
+    public void delHistory(String userLogin, int idItemHistory) {
+        historyStorageInMemory.del(userLogin, idItemHistory);
     }
 }

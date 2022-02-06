@@ -22,59 +22,35 @@ public class HistoryStorageInMemory {
         }
         return instance;
     }
-    /// Operator
-    // list Operator
 
-//    private Map<String, ArrayList <Operator>> mapHistoryOperation = new HashMap<>();
-
-//    private HashMap<String, String> mapHistoryOperation = new HashMap<>();
-
-    private Map<String, List<Operation>> mapHistoryOperation1 = new HashMap<>();
-
-
-//    public void add(String userLogin, String inputСalculations) {
-//        LocalDateTime localDateTime = LocalDateTime.now();
-//        inputСalculations = "Operator: " + inputСalculations + ", Date: " + localDateTime;
-//
-//        if (mapHistoryOperation1.containsKey(userLogin)) {
-//            StringBuilder addNewOperation = new StringBuilder(mapHistoryOperation1.get(userLogin));
-//            addNewOperation.append(String.format("%s %s", inputСalculations, "<br>"));
-//            mapHistoryOperation1.put(userLogin, addNewOperation.toString());
-//        } else {
-//            StringBuilder addNewOperation = new StringBuilder(String.format("%s %s", inputСalculations, "<br>"));
-//            mapHistoryOperation1.put(userLogin, addNewOperation.toString());
-//        }
-//    }
+    private Map<String, List<Operation>> mapHistoryOperation = new HashMap<>();
 
     public void add(String userLogin, Operation inputСalculations) {
 
         inputСalculations.setValue("Operator: " + inputСalculations.getValue() + ", Date: " + LocalDateTime.now());
 
-        if (mapHistoryOperation1.containsKey(userLogin)) {
-            List<Operation> operationList = mapHistoryOperation1.get(userLogin);
+        if (mapHistoryOperation.containsKey(userLogin)) {
+            List<Operation> operationList = mapHistoryOperation.get(userLogin);
             operationList.add(inputСalculations);
-            mapHistoryOperation1.put(userLogin, operationList);
+            mapHistoryOperation.put(userLogin, operationList);
         } else {
             List<Operation> operationList = new ArrayList<>();
             operationList.add(inputСalculations);
-            mapHistoryOperation1.put(userLogin, operationList);
+            mapHistoryOperation.put(userLogin, operationList);
         }
     }
 
-
-//    public void del(String userLogin) {
-//        mapHistoryOperation.remove(userLogin);
-//    }
-
     public void del(String userLogin) {
-        mapHistoryOperation1.remove(userLogin);
+        mapHistoryOperation.remove(userLogin);
     }
 
-//    public HashMap<String, String> getMapHistoryOperation() {
-//        return mapHistoryOperation;
-//    }
+    public void del(String userLogin, int idItemHistory) {
+        List<Operation> operationList = mapHistoryOperation.get(userLogin);
+        operationList.remove(idItemHistory);
+        mapHistoryOperation.put(userLogin, operationList);
+    }
 
     public Map<String, List<Operation>> getMapHistoryOperation() {
-        return mapHistoryOperation1;
+        return mapHistoryOperation;
     }
 }

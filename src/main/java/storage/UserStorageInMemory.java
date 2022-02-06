@@ -4,7 +4,7 @@ import entity.User;
 
 import java.util.ArrayList;
 
-public class UserStorageInMemory  {
+public class UserStorageInMemory {
 
     private static UserStorageInMemory instance;
 
@@ -31,7 +31,6 @@ public class UserStorageInMemory  {
         }
     }
 
-
     public void delUser(User user) {
         HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
@@ -56,7 +55,6 @@ public class UserStorageInMemory  {
         }
         return null;
     }
-
 
     public ArrayList<User> getListUser() {
         return listUser;

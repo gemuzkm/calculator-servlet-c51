@@ -29,10 +29,12 @@
 <div class="history">
     <div class="container">
         ${requestScope.msgErrorForAnonymous}
+
         <c:forEach items="${requestScope.msgListHistoryUser}" var="item" varStatus="id">
             ${id.count}) ${item.getValue()} ${sessionScope.user.getLogin()}
-            <form method="post" action='<c:url value="/userdel" />' style="display:inline;">
+            <form method="post" action='<c:url value="/historydel" />' style="display:inline;">
                 <input type="hidden" name="login" value="${sessionScope.user.getLogin()}">
+                <input type="hidden" name="idItemHistory" value="${id.count}">
                 <input type="submit" value="Delete">
             </form>
             <br/>
