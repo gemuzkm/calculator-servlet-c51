@@ -4,7 +4,7 @@ import entity.User;
 
 import java.util.ArrayList;
 
-public class UserStorageInMemory implements UserStorage {
+public class UserStorageInMemory  {
 
     private static UserStorageInMemory instance;
 
@@ -20,7 +20,7 @@ public class UserStorageInMemory implements UserStorage {
 
     private final static ArrayList<User> listUser = new ArrayList<>();
 
-    @Override
+
     public void addUser(User user) {
         if (getByUserLogin(user.getLogin()) == null) {
             listUser.add(user);
@@ -31,7 +31,7 @@ public class UserStorageInMemory implements UserStorage {
         }
     }
 
-    @Override
+
     public void delUser(User user) {
         HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
@@ -39,7 +39,7 @@ public class UserStorageInMemory implements UserStorage {
         historyStorageInMemory.del(user.getLogin());
     }
 
-    @Override
+
     public void delUser(String userLogin) {
         HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
@@ -47,7 +47,7 @@ public class UserStorageInMemory implements UserStorage {
         historyStorageInMemory.del(userLogin);
     }
 
-    @Override
+
     public User getByUserLogin(String userLogin) {
         for (User user : listUser) {
             if (user.getLogin().equals(userLogin)) {
@@ -57,7 +57,7 @@ public class UserStorageInMemory implements UserStorage {
         return null;
     }
 
-    @Override
+
     public ArrayList<User> getListUser() {
         return listUser;
     }

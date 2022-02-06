@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import java.util.HashMap;
 
-public class HistoryStorageInMemory implements HistoryStorage {
+public class HistoryStorageInMemory {
     private static HistoryStorageInMemory instance;
 
     private HistoryStorageInMemory() {
@@ -17,17 +17,17 @@ public class HistoryStorageInMemory implements HistoryStorage {
         }
         return instance;
     }
-    /// Operation
-    // list Operation
+    /// Operator
+    // list Operator
 
-//    private Map<String, ArrayList <Operation>> mapHistoryOperation = new HashMap<>();
+//    private Map<String, ArrayList <Operator>> mapHistoryOperation = new HashMap<>();
 
     private HashMap<String, String> mapHistoryOperation = new HashMap<>();
 
-    @Override
+
     public void add(String userLogin, String inputСalculations) {
         LocalDateTime localDateTime = LocalDateTime.now();
-        inputСalculations = "Operation: " + inputСalculations + ", Date: " + localDateTime;
+        inputСalculations = "Operator: " + inputСalculations + ", Date: " + localDateTime;
 
         if (mapHistoryOperation.containsKey(userLogin)) {
             StringBuilder addNewOperation = new StringBuilder(mapHistoryOperation.get(userLogin));
@@ -39,12 +39,12 @@ public class HistoryStorageInMemory implements HistoryStorage {
         }
     }
 
-    @Override
+
     public void del(String userLogin) {
         mapHistoryOperation.remove(userLogin);
     }
 
-    @Override
+
     public HashMap<String, String> getMapHistoryOperation() {
         return mapHistoryOperation;
     }

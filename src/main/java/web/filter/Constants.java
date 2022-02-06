@@ -29,10 +29,10 @@ public final class Constants {
     public static final String MSG_ERROR_ROLE_INVALID = "The role is wrong";
     public static final String MSG_ERROR_USER_NOT_FOUND = "User not found";
     public static final String MSG_ERROR_LOGIN_OR_PASSWORD_INVALID = "Login or password error";
-    public static final String MSG_ERROR_OPERATION_UNSUPPORTED = "Operation unsupported";
+    public static final String MSG_ERROR_OPERATION_UNSUPPORTED = "Operator unsupported";
     public static final String MSG_ERROR_VALUE_TWO_NOT_NUMBER = "Value2 not a number";
     public static final String MSG_ERROR_VALUE_ONE_NOT_NUMBER = "Value1 not a number";
-    public static final String MSG_ERROR_OPERATION_EMPTY = "Operation is empty";
+    public static final String MSG_ERROR_OPERATION_EMPTY = "Operator is empty";
     public static final String MSG_ERROR_VALUE_TWO_EMPTY = "Value2 is empty";
     public static final String MSG_ERROR_VALUE_ONE_EMPTY = "Value1 is empty";
     public static final String MSG_ERROR_NO_DEL_YOURSELF = "Error. You can't delete yourself";

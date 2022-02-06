@@ -1,7 +1,7 @@
 package web.servlet.calculator;
 
 import web.servlet.Constants;
-import entity.Operation;
+import entity.Operator;
 import entity.User;
 import entity.ValueOne;
 import entity.ValueTwo;
@@ -30,14 +30,14 @@ public class CalculatorServlet extends HttpServlet {
 
         String valueFirst = req.getParameter("value1");
         String valueSecond = req.getParameter("value2");
-        String operationValue = req.getParameter("operation");
+        String operationValue = req.getParameter("operator");
         User user = (User) session.getAttribute("user");
 
         ValueOne valueOne = new ValueOne(Double.parseDouble(valueFirst));
         ValueTwo valueTwo = new ValueTwo(Double.parseDouble(valueSecond));
-        Operation operation = new Operation(operationValue);
+        Operator operator = new Operator(operationValue);
 
-        String resultOperation = calculatorService.getResult(valueOne, valueTwo, operation, user);
+        String resultOperation = calculatorService.getResult(valueOne, valueTwo, operator, user);
 
         req.setAttribute("result", "Result = " + resultOperation);
         req.getServletContext().getRequestDispatcher(Constants.CALCULATOR_LINK_JSP).forward(req, resp);

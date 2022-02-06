@@ -39,8 +39,8 @@
                     ${requestScope.msgErrorValueOne}
                 </div>
 
-                <select class="form-select mb-3" name="operation">
-                    <option disabled selected>Choose operation</option>
+                <select class="form-select mb-3" name="operator">
+                    <option disabled selected>Choose operator</option>
                     <option value="sum">+</option>
                     <option value="dif">-</option>
                     <option value="div">/</option>

@@ -1,44 +1,43 @@
 package service;
 
-import entity.Operation;
+import entity.Operator;
 import entity.User;
 import entity.ValueOne;
 import entity.ValueTwo;
 import storage.HistoryStorageInMemory;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class CalculatorService {
 
     private HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
-    public String getResult(ValueOne valueFirst, ValueTwo valueSecond, Operation operation, User user) {
+    public String getResult(ValueOne valueFirst, ValueTwo valueSecond, Operator operator, User user) {
 
-        String result = getResultOperation(valueFirst, valueSecond, operation);
-        String resultOperation = valueFirst.getValue() + " " + operation.getValue() + " " + valueSecond.getValue() + " = " + result;
+        String result = getResultOperation(valueFirst, valueSecond, operator);
+        String resultOperation = valueFirst.getValue() + " " + operator.getValue() + " " + valueSecond.getValue() + " = " + result;
 
         historyStorageInMemory.add(user.getLogin(), resultOperation);
         return result;
     }
 
-    private String getResultOperation(ValueOne valueFirst, ValueTwo valueSecond, Operation operation) {
+    private String getResultOperation(ValueOne valueFirst, ValueTwo valueSecond, Operator operator) {
         String resultOperation = "";
 
-        if (operation.getValue().equals("sum")) {
+        if (operator.getValue().equals("sum")) {
             resultOperation = String.valueOf(valueFirst.getValue() + valueSecond.getValue());
             return resultOperation;
-        } else if (operation.getValue().equals("dif")) {
+        } else if (operator.getValue().equals("dif")) {
             resultOperation = String.valueOf(valueFirst.getValue() - valueSecond.getValue());
             return resultOperation;
-        } else if (operation.getValue().equals("div")) {
+        } else if (operator.getValue().equals("div")) {
             if (valueSecond.getValue() == 0) {
                 resultOperation = "NaN";
             } else {
                 resultOperation = String.valueOf(valueFirst.getValue() / valueSecond.getValue());
             }
             return resultOperation;
-        } else if (operation.getValue().equals("mult")) {
+        } else if (operator.getValue().equals("mult")) {
             resultOperation = String.valueOf(valueFirst.getValue() * valueSecond.getValue());
             return resultOperation;
         }
