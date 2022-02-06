@@ -18,6 +18,7 @@ public final class Constants {
     //servlet links
     public static final String USER_LIST_LINK = "/userlist";
     public static final String USER_EDIT_LINK = "/useredit";
+    public static final String HOME_LINK = "/home";
 
     //Messages
     public static final String MSG_ERROR_NO_ACCESS = "No access";

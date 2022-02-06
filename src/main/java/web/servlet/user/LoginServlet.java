@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet {
         String login = req.getParameter("login");
         User user = userService.getByUserLogin(login);
 
- //       session.setAttribute("login", login);
         session.setAttribute("user", user);
 
         if (userService.changedUserSessionID(user.getLogin(), session.getId())) {
@@ -37,6 +36,6 @@ public class LoginServlet extends HttpServlet {
             user.setSessionID(session.getId());
         }
 
-        resp.sendRedirect(Constants.HOME_LINK);
+        resp.sendRedirect(Constants.CALCULATOR_LINK);
     }
 }

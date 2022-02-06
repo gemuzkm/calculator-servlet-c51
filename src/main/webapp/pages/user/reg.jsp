@@ -11,21 +11,38 @@
 <html>
 <head>
     <title>Registration Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css"
+          href="<%=application.getContextPath() %>/pages/assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/pages/assets/dist/css/signin.css">
 </head>
 <body>
-<a href="/">Home</a><br>
-<form action="/registration" method="post">
-    <input type="text" name="name" placeholder="Name">
-    ${requestScope.msgErrorName}
-    <br>
-    <input type="text" name="login" placeholder="Login">
-    ${requestScope.msgErrorLogin}
-    <br>
-    <input type="password" name="password" placeholder="Password">
-    ${requestScope.msgErrorPassword}
-    <br>
-    <button>Submit</button>
-    <p>${requestScope.msgErrorUser}</p>
-</form>
+
+<%@ include file="/pages/fragment/headerNoLogin.html"%>
+
+<main class="form-signin">
+    <form action="/registration" method="POST">
+        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+        <div class="form-floating mb-3">
+            <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+            <label for="inputName">Name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" name="login" class="form-control" id="inputLogin" placeholder="Login">
+            <label for="inputLogin">Login</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+            <label for="inputPassword">Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+    </form>
+</main>
+
+<%@ include file="/pages/fragment/footer.html"%>
+
+<script src="<%=application.getContextPath() %>/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

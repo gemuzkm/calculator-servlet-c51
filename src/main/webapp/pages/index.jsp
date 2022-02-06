@@ -27,49 +27,24 @@
 <c:if test="${sessionScope.user.getRole() == null}">
     <p>${requestScope.mgsError}</p>
 
-    <div class="fixed-top">
-        <div class="container">
-            <header class="d-flex justify-content-center py-3">
-                <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-                    <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
-                    <li class="nav-item"><a href="/registration" class="nav-link">Sing Up</a></li>
-                </ul>
-            </header>
-        </div>
-        <div class="b-example-divider"></div>
-    </div>
+    <%@ include file="/pages/fragment/headerNoLogin.html"%>
 
 </c:if>
 
 <c:if test="${sessionScope.user.getRole() == 1}">
-    <a href="/calculator">Calculator</a><br>
-    <a href="/history">History</a><br>
-    <form action="/logout" method="POST">
-        <input type="submit" value="Logout">
-    </form>
-    <p>${requestScope.mgsError}</p>
+
+    <%@ include file="/pages/fragment/headerLogin.html"%>
+
 </c:if>
 
 <c:if test="${sessionScope.user.getRole() == 0}">
-    <a href="/userlist">User management</a><br>
-    <a href="/createuser">Add User</a><br>
-    <form action="/logout" method="POST">
-        <input type="submit" value="Logout">
-    </form>
+
+    <%@ include file="/pages/fragment/headerManagerLogin.html"%>
 
     <p>${requestScope.mgsError}</p>
 </c:if>
 
-<div class="fixed-bottom">
-    <footer class="bg-light text-center text-lg-start">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2022 Copyright:
-            <a class="text-dark" href="/">servlet-c51</a>
-        </div>
-    </footer>
-</div>
+<%@ include file="/pages/fragment/footer.html" %>
 
-<script src="<%=application.getContextPath() %>/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

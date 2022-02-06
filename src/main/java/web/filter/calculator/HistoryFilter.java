@@ -2,6 +2,7 @@ package web.filter.calculator;
 
 import entity.User;
 import service.UserService;
+import web.filter.Constants;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,9 +23,9 @@ public class HistoryFilter extends HttpFilter {
         UserService userService = new UserService();
 
         if (session.getAttribute("user") == null) {
-            res.sendRedirect("/");
+            res.sendRedirect(Constants.HOME_LINK);
         } else if (userService.changedUserSessionID(((User) session.getAttribute("user")).getLogin(), sessionID)) {
-            res.sendRedirect("/");
+            res.sendRedirect(Constants.HOME_LINK);
         } else {
             chain.doFilter(req, res);
         }

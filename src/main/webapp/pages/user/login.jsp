@@ -11,50 +11,35 @@
     <title>Login Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" type="text/css"
           href="<%=application.getContextPath() %>/pages/assets/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/pages/assets/dist/css/signin.css">
-
 </head>
 <body>
-<div class="fixed-top">
-    <div class="container">
-        <header class="d-flex justify-content-center py-3">
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/login" class="nav-link active">Login</a></li>
-                <li class="nav-item"><a href="/registration" class="nav-link">Sing Up</a></li>
-            </ul>
-        </header>
-    </div>
-    <div class="b-example-divider"></div>
+
+<%@ include file="/pages/fragment/headerNoLogin.html"%>
+
+<div class="container">
+
+        <main class="form-signin">
+            <form action="/login" method="POST">
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                <div class="form-floating mb-3">
+                    <input type="text" name="login" class="form-control" id="inputLogin" placeholder="Login">
+                    <label for="inputLogin">Login</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control" id="inputPassword"
+                           placeholder="Password">
+                    <label for="inputPassword">Password</label>
+                </div>
+                <a href="/recovery" class="link-dark mb-3">Forget</a>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+            </form>
+        </main>
 </div>
 
-<main class="form-signin">
-    <form action="/login" method="POST">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-        <div class="form-floating">
-            <input type="text" name="login" class="form-control" id="floatingInput" placeholder="Login">
-            <label for="floatingInput">Login</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    </form>
-</main>
+<%@ include file="/pages/fragment/footer.html"%>
 
-<div class="fixed-bottom">
-    <footer class="bg-light text-center text-lg-start">
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2022 Copyright:
-            <a class="text-dark" href="/">servlet-c51</a>
-        </div>
-    </footer>
-</div>
-
-<script src="<%=application.getContextPath() %>/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
