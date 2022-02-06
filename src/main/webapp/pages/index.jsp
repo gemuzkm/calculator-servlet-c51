@@ -10,19 +10,36 @@
 
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"
+          href="<%=application.getContextPath() %>/pages/assets/dist/css/bootstrap.min.css">
+
     <c:if test="${sessionScope.user.getRole() != 0}">
         <title>Main Page</title>
     </c:if>
     <c:if test="${sessionScope.user.getRole() == 0}">
         <title>Admin Page</title>
     </c:if>
+
 </head>
 <body>
 <c:if test="${sessionScope.user.getRole() == null}">
-    <a href="/registration">Registration</a><br>
-    <a href="/login">Authorization</a><br>
-    <a href="/recovery">Recovery Password</a><br>
     <p>${requestScope.mgsError}</p>
+
+    <div class="fixed-top">
+        <div class="container">
+            <header class="d-flex justify-content-center py-3">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="/registration" class="nav-link">Sing Up</a></li>
+                </ul>
+            </header>
+        </div>
+        <div class="b-example-divider"></div>
+    </div>
+
 </c:if>
 
 <c:if test="${sessionScope.user.getRole() == 1}">
@@ -44,5 +61,15 @@
     <p>${requestScope.mgsError}</p>
 </c:if>
 
+<div class="fixed-bottom">
+    <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-dark" href="/">servlet-c51</a>
+        </div>
+    </footer>
+</div>
+
+<script src="<%=application.getContextPath() %>/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
