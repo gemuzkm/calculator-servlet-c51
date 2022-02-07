@@ -7,6 +7,10 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%@ page import="java.util.*, java.text.*"  %>
+
+<%@ page import="java.util.List, java.text.*" %>
+
 <html>
 <head>
     <title>History Page</title>
@@ -42,38 +46,40 @@
                     <tbody>
                     <c:forEach items="${requestScope.msgListHistoryUser}" var="item" varStatus="id">
                         <tr>
-                            <th scope="row">${id.count})</th>
+                            <th>${id.count}</th>
                             <td>${item.getValue()}</td>
+
                             <td>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Delete
-                                </button>
+                                <form id="myForm" action="/delhistory" method="post">
+                                    <input type="hidden" name="login" value="${sessionScope.user.getLogin()}">
+                                    <input type="hidden" name="idItemHistory" value="${id.count}">
+                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                </form>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Deleting an entry</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Do you want to delete the history of the operation?
-                                                Delete operations with ID - ${id}?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                <form action="/historydel" method="post">
-                                                    <input type="hidden" name="login" value="${sessionScope.user.getLogin()}">
-                                                    <input type="hidden" name="idItemHistory" value="${id.count}">
-                                                    <button type="submit" class="btn btn-primary">Yes</button>
-                                                </form>
+<%--                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">--%>
+<%--                                    Delete--%>
+<%--                                </button>--%>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+<%--                                <!-- Modal -->--%>
+<%--                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
+<%--                                    <div class="modal-dialog">--%>
+<%--                                        <div class="modal-content">--%>
+<%--                                            <div class="modal-header">--%>
+<%--                                                <h5 class="modal-title" id="exampleModalLabel">Deleting an entry</h5>--%>
+<%--                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="modal-body">--%>
+<%--                                                Do you want to delete the history of the operation?--%>
+<%--                                                <div class="modal-footer">--%>
+<%--                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>--%>
+<%--                                                    <form action="/delhistory" method="post">--%>
+<%--                                                        <button type="submit" class="btn btn-primary" >Yes</button>--%>
+<%--                                                        <input type='button' value='submit2' onclick='document.forms["myForm"].submit();'/>--%>
+<%--                                                    </form>--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
                             </td>
                         </tr>
                     </c:forEach>

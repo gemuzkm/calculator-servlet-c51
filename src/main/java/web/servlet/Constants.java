@@ -29,6 +29,7 @@ public final class Constants {
     public static final String PASSWORD_RECOVERY_LINK = "/recovery";
     public static final String CALCULATOR_LINK = "/calculator";
     public static final String HISTORY_LINK = "/history";
+    public static final String HISTORY_DEL_LINK = "/delhistory";
 
     //Messages
     public static final String MSC_ERROR_USER_NOT_CREATED = "Error. User not created";
