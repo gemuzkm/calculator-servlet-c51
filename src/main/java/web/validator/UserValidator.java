@@ -42,7 +42,7 @@ public class UserValidator {
     }
 
     public boolean validUserRole(String userRole) {
-        if (userRole.equals("0") || userRole.equals("1")) {
+        if (userRole.equals("1") || userRole.equals("2")) {
             return true;
         } else {
             return false;

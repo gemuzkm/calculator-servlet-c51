@@ -9,8 +9,6 @@
 
 <%@ page import="java.util.*, java.text.*"  %>
 
-<%@ page import="java.util.List, java.text.*" %>
-
 <html>
 <head>
     <title>History Page</title>
