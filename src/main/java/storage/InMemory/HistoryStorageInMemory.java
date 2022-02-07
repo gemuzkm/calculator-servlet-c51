@@ -1,6 +1,7 @@
-package storage;
+package storage.InMemory;
 
 import entity.Operation;
+import storage.HistoryStorage;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HistoryStorageInMemory {
+public class HistoryStorageInMemory implements HistoryStorage {
     private static HistoryStorageInMemory instance;
 
     private HistoryStorageInMemory() {
@@ -25,6 +26,7 @@ public class HistoryStorageInMemory {
 
     private Map<String, List<Operation>> mapHistoryOperation = new HashMap<>();
 
+    @Override
     public void add(String userLogin, Operation inputСalculations) {
 
         inputСalculations.setValue("Operator: " + inputСalculations.getValue() + ", Date: " + LocalDateTime.now());
@@ -40,16 +42,19 @@ public class HistoryStorageInMemory {
         }
     }
 
+    @Override
     public void del(String userLogin) {
         mapHistoryOperation.remove(userLogin);
     }
 
+    @Override
     public void del(String userLogin, int idItemHistory) {
         List<Operation> operationList = mapHistoryOperation.get(userLogin);
         operationList.remove(idItemHistory);
         mapHistoryOperation.put(userLogin, operationList);
     }
 
+    @Override
     public Map<String, List<Operation>> getMapHistoryOperation() {
         return mapHistoryOperation;
     }

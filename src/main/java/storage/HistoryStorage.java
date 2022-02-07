@@ -1,10 +1,14 @@
 package storage;
 
-import java.util.HashMap;
+import entity.Operation;
+
+import java.util.List;
+import java.util.Map;
 
 public interface HistoryStorage {
 
-    void add(String userLogin, String inputСalculations);
+    void add(String userLogin, Operation inputСalculations);
     void del(String userLogin);
-    HashMap<String, String> getMapHistoryOperation();
+    void del(String userLogin, int idItemHistory);
+    Map<String, List<Operation>> getMapHistoryOperation();
 }

@@ -1,7 +1,7 @@
 package service;
 
 import entity.*;
-import storage.HistoryStorageInMemory;
+import storage.InMemory.HistoryStorageInMemory;
 
 import java.util.ArrayList;
 import java.util.List;
