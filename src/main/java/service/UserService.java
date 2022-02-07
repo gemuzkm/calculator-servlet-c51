@@ -15,7 +15,7 @@ public class UserService {
     private CalculatorService calculatorService = new CalculatorService();
 
     public User getByUserLogin(String userLogin) {
-        return userStorageInMemory.getByUserLogin(userLogin);
+        return userStorageJDBC.getByUserLogin(userLogin);
     }
 
     public void deleteHistoryAfterIdChange(String userLogin, String sessionID) {
@@ -27,10 +27,6 @@ public class UserService {
     public boolean changedUserSessionID(String userLogin, String sessionID) {
         return userValidator.changedUserSessionID(userLogin, sessionID);
     }
-
-//    public void addUser(User user) {
-//        userStorageInMemory.addUser(user);
-//    }
 
     public void addUser(User user) {
         userStorageJDBC.addUser(user);

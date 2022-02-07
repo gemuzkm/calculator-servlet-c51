@@ -17,28 +17,28 @@
 </head>
 <body>
 
-<%@ include file="/pages/fragment/headerNoLogin.html"%>
+<%@ include file="/pages/fragment/headerNoLogin.html" %>
 
 <div class="container">
-        <main class="form-signin">
-            <form action="/login" method="POST">
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-                <div class="form-floating mb-3">
-                    <input type="text" name="login" class="form-control" id="inputLogin" placeholder="Login">
-                    <label for="inputLogin">Login</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control" id="inputPassword"
-                           placeholder="Password">
-                    <label for="inputPassword">Password</label>
-                </div>
-                <a href="/recovery" class="link-dark mb-3">Forgot password</a>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-            </form>
-        </main>
+    <main class="form-signin">
+        <form action="/login" method="POST">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div class="form-floating mb-3">
+                <input type="text" name="login" class="form-control" id="inputLogin" placeholder="Login">
+                <label for="inputLogin">Login</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" name="password" class="form-control" id="inputPassword"
+                       placeholder="Password">
+                <label for="inputPassword">Password</label>
+            </div>
+            <a href="/recovery" class="link-dark mb-3">Forgot password</a>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        </form>
+    </main>
 </div>
 
-<%@ include file="/pages/fragment/footer.html"%>
+<%@ include file="/pages/fragment/footer.html" %>
 
 </body>
 </html>

@@ -50,7 +50,7 @@ public class UserStorageJDBC implements UserStorage {
             Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT * from users where user_login = ?");
+                        "SELECT user_name, user_login, user_password, user_session_id, user_role from users where user_login = ?");
                 preparedStatement.setString(1, userLogin);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
