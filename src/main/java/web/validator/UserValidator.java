@@ -2,12 +2,14 @@ package web.validator;
 
 import entity.User;
 import storage.InMemory.UserStorageInMemory;
+import storage.JDBC.UserStorageJDBC;
 
 public class UserValidator {
-    UserStorageInMemory userStorageInMemory = UserStorageInMemory.getInstance();
+    private UserStorageInMemory userStorageInMemory = UserStorageInMemory.getInstance();
+    private UserStorageJDBC userStorageJDBC = UserStorageJDBC.getInstance();
 
     public boolean existsUser(User user) {
-        if (userStorageInMemory.getByUserLogin(user.getLogin()) != null) {
+        if (userStorageJDBC.getByUserLogin(user.getLogin()) != null) {
             return true;
         } else {
             return false;
@@ -15,7 +17,7 @@ public class UserValidator {
     }
 
     public boolean existsUser(String userLogin) {
-        if (userStorageInMemory.getByUserLogin(userLogin) != null) {
+        if (userStorageJDBC.getByUserLogin(userLogin) != null) {
             return true;
         } else {
             return false;
@@ -23,7 +25,7 @@ public class UserValidator {
     }
 
     public User validUserPassword(String userLogin, String userPassword) {
-        User user = userStorageInMemory.getByUserLogin(userLogin);
+        User user = userStorageJDBC.getByUserLogin(userLogin);
         if (user.getPassword().equals(userPassword)) {
             return user;
         }
@@ -31,7 +33,7 @@ public class UserValidator {
     }
 
     public boolean changedUserSessionID(String userLogin, String sessionID) {
-        User user = userStorageInMemory.getByUserLogin(userLogin);
+        User user = userStorageJDBC.getByUserLogin(userLogin);
         if (user.getSessionID().equals(sessionID)) {
             return false;
         } else {

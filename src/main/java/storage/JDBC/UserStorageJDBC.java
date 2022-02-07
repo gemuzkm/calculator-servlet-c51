@@ -1,14 +1,13 @@
 package storage.JDBC;
 
-import com.mysql.jdbc.Driver;
 import entity.User;
 import storage.Constants;
-import storage.InMemory.UserStorageInMemory;
 import storage.UserStorage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserStorageJDBC implements UserStorage {
 
@@ -45,42 +44,85 @@ public class UserStorageJDBC implements UserStorage {
         }
     }
 
-        @Override
+    @Override
     public User getByUserLogin(String userLogin) {
-            try {
-                Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
-                try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
-                    PreparedStatement preparedStatement = connection.prepareStatement(
-                            "SELECT * from users where user_login = ?");
-                    preparedStatement.setString(1, userLogin);
-                    ResultSet resultSet = preparedStatement.executeQuery();
-                    if (resultSet.next()) {
-                        String name = resultSet.getString(1);
-                        String login = resultSet.getString(2);
-                        String password =  resultSet.getString(3);
-                        String sessionId = resultSet.getString(4);
-                        int role = resultSet.getInt(5);
-                        return new User(name, login, password, sessionId, role);
-                    }
+        try {
+            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT * from users where user_login = ?");
+                preparedStatement.setString(1, userLogin);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    String name = resultSet.getString(1);
+                    String login = resultSet.getString(2);
+                    String password = resultSet.getString(3);
+                    String sessionId = resultSet.getString(4);
+                    int role = resultSet.getInt(5);
+                    return new User(name, login, password, sessionId, role);
                 }
-            } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
-                e.printStackTrace();
             }
+        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void delUser(User user) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "DELETE FROM users where user_login = ?");
+                preparedStatement.setString(1, user.getLogin());
+                preparedStatement.execute();
 
+            }
+        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delUser(String userLogin) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "DELETE FROM users where user_login = ?");
+                preparedStatement.setString(1, userLogin);
+                preparedStatement.execute();
 
+            }
+        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public ArrayList<User> getListUser() {
+    public List<User> getListUser() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT * FROM users;");
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                List<User> userList = new ArrayList<>();
+                while (resultSet.next()) {
+                    String name = resultSet.getString(1);
+                    String login = resultSet.getString(2);
+                    String password = resultSet.getString(3);
+                    String sessionId = resultSet.getString(4);
+                    int role = resultSet.getInt(5);
+                    userList.add(new User(name, login, password, sessionId, role));
+                }
+                return userList;
+            }
+        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

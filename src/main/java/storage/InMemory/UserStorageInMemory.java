@@ -3,6 +3,7 @@ package storage.InMemory;
 import entity.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserStorageInMemory {
 
@@ -56,7 +57,7 @@ public class UserStorageInMemory {
         return null;
     }
 
-    public ArrayList<User> getListUser() {
+    public List<User> getListUser() {
         return listUser;
     }
 }

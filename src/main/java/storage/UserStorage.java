@@ -2,7 +2,7 @@ package storage;
 
 import entity.User;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface UserStorage {
 
@@ -10,6 +10,6 @@ public interface UserStorage {
     User getByUserLogin(String userLogin);
     void delUser(User user);
     void delUser(String userLogin);
-    ArrayList<User> getListUser();
+    List<User> getListUser();
 
 }

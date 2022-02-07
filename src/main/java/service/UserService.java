@@ -6,6 +6,7 @@ import storage.JDBC.UserStorageJDBC;
 import web.validator.UserValidator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
     private UserStorageInMemory userStorageInMemory =  UserStorageInMemory.getInstance();
@@ -36,10 +37,10 @@ public class UserService {
     }
 
     public void delUser(User user) {
-        userStorageInMemory.delUser(user);
+        userStorageJDBC.delUser(user);
     }
 
-    public ArrayList<User> getListUser() {
-        return userStorageInMemory.getListUser();
+    public List<User> getListUser() {
+        return userStorageJDBC.getListUser();
     }
 }
