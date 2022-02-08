@@ -1,11 +1,12 @@
 package storage.InMemory;
 
 import entity.User;
+import storage.UserStorage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserStorageInMemory {
+public class UserStorageInMemory implements UserStorage {
 
     private static UserStorageInMemory instance;
 
@@ -21,7 +22,7 @@ public class UserStorageInMemory {
 
     private final static ArrayList<User> listUser = new ArrayList<>();
 
-
+    @Override
     public void addUser(User user) {
         if (getByUserLogin(user.getLogin()) == null) {
             listUser.add(user);
@@ -32,6 +33,7 @@ public class UserStorageInMemory {
         }
     }
 
+    @Override
     public void delUser(User user) {
         HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
@@ -39,7 +41,7 @@ public class UserStorageInMemory {
         historyStorageInMemory.del(user.getLogin());
     }
 
-
+    @Override
     public void delUser(String userLogin) {
         HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
@@ -47,7 +49,7 @@ public class UserStorageInMemory {
         historyStorageInMemory.del(userLogin);
     }
 
-
+    @Override
     public User getByUserLogin(String userLogin) {
         for (User user : listUser) {
             if (user.getLogin().equals(userLogin)) {
@@ -57,6 +59,7 @@ public class UserStorageInMemory {
         return null;
     }
 
+    @Override
     public List<User> getListUser() {
         return listUser;
     }
