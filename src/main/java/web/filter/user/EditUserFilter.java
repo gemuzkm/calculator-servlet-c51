@@ -46,7 +46,8 @@ public class EditUserFilter extends HttpFilter {
             String name = req.getParameter("name").trim();
             String login = req.getParameter("login").trim();
             String password = req.getParameter("password").trim();
-            String role = req.getParameter("role").trim();
+            String roleString = req.getParameter("role").trim();
+            int role = Integer.parseInt(roleString);
 
             if (valueValidator.isNull(name) || valueValidator.isNull(login) || valueValidator.isNull(password)) {
                 if (valueValidator.isNull(name)) {

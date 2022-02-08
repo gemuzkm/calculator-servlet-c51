@@ -7,8 +7,6 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page import="java.util.*, java.text.*"  %>
-
 <html>
 <head>
     <title>History Page</title>
@@ -20,11 +18,11 @@
 </head>
 <body>
 
-<c:if test="${sessionScope.user.getRole() == 1}">
+<c:if test="${sessionScope.user.getRole() == 2}">
     <%@ include file="/pages/fragment/headerLogin.html" %>
 </c:if>
 
-<c:if test="${sessionScope.user.getRole() == 0}">
+<c:if test="${sessionScope.user.getRole() == 1}">
     <%@ include file="/pages/fragment/headerManagerLogin.html" %>
 </c:if>
 
@@ -46,38 +44,12 @@
                         <tr>
                             <th>${id.count}</th>
                             <td>${item.getValue()}</td>
-
                             <td>
-                                <form id="myForm" action="/delhistory" method="post">
+                                <form action="/delhistory" method="post">
                                     <input type="hidden" name="login" value="${sessionScope.user.getLogin()}">
                                     <input type="hidden" name="idItemHistory" value="${id.count}">
                                     <button type="submit" class="btn btn-primary">Delete</button>
                                 </form>
-
-<%--                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">--%>
-<%--                                    Delete--%>
-<%--                                </button>--%>
-
-<%--                                <!-- Modal -->--%>
-<%--                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
-<%--                                    <div class="modal-dialog">--%>
-<%--                                        <div class="modal-content">--%>
-<%--                                            <div class="modal-header">--%>
-<%--                                                <h5 class="modal-title" id="exampleModalLabel">Deleting an entry</h5>--%>
-<%--                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="modal-body">--%>
-<%--                                                Do you want to delete the history of the operation?--%>
-<%--                                                <div class="modal-footer">--%>
-<%--                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>--%>
-<%--                                                    <form action="/delhistory" method="post">--%>
-<%--                                                        <button type="submit" class="btn btn-primary" >Yes</button>--%>
-<%--                                                        <input type='button' value='submit2' onclick='document.forms["myForm"].submit();'/>--%>
-<%--                                                    </form>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
                             </td>
                         </tr>
                     </c:forEach>

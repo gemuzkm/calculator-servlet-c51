@@ -15,10 +15,10 @@
     <link rel="stylesheet" type="text/css"
           href="<%=application.getContextPath() %>/pages/assets/dist/css/bootstrap.min.css">
 
-    <c:if test="${sessionScope.user.getRole() != 0}">
+    <c:if test="${sessionScope.user.getRole() != 1}">
         <title>Main Page</title>
     </c:if>
-    <c:if test="${sessionScope.user.getRole() == 0}">
+    <c:if test="${sessionScope.user.getRole() == 1}">
         <title>Admin Page</title>
     </c:if>
 
@@ -31,13 +31,13 @@
 
 </c:if>
 
-<c:if test="${sessionScope.user.getRole() == 1}">
+<c:if test="${sessionScope.user.getRole() == 2}">
 
     <%@ include file="/pages/fragment/headerLogin.html"%>
 
 </c:if>
 
-<c:if test="${sessionScope.user.getRole() == 0}">
+<c:if test="${sessionScope.user.getRole() == 1}">
 
     <%@ include file="/pages/fragment/headerManagerLogin.html"%>
 

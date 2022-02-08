@@ -25,10 +25,11 @@ public class CalculatorFilter extends HttpFilter {
         String sessionID = session.getId();
 
         if (req.getMethod().equals("GET")) {
+            System.out.println(session.getAttribute("user"));
              if (session.getAttribute("user") == null) {
                 req.setAttribute("informational", Constants.MSG_ERROR_NO_AUTHORIZED);
                 req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
-            } else if (userService.changedUserSessionID(((User) session.getAttribute("user")).getLogin(), sessionID)) {
+            }  else if (userService.changedUserSessionID(((User) session.getAttribute("user")).getLogin(), sessionID)) {
                 req.setAttribute("informational", Constants.MSG_ERROR_NO_AUTHORIZED);
                 req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
             }

@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
         if (userService.changedUserSessionID(user.getLogin(), session.getId())) {
             userService.deleteHistoryAfterIdChange(user.getLogin(), session.getId());
             user.setSessionID(session.getId());
+            userService.addUser(user);
         } else {
             user.setSessionID(session.getId());
         }

@@ -1,22 +1,23 @@
 package service;
 
 import entity.*;
-import storage.InMemory.HistoryStorageInMemory;
+import storage.JDBC.HistoryStorageJDBC;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class CalculatorService {
 
-    private HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
+    private HistoryStorageJDBC historyStorageJDBC = HistoryStorageJDBC.getInstance();
 
     public String getResult(ValueOne valueFirst, ValueTwo valueSecond, Operator operator, User user) {
 
         String result = getResultOperation(valueFirst, valueSecond, operator);
-        String resultOperation = valueFirst.getValue() + " " + operator.getValue() + " " + valueSecond.getValue() + " = " + result;
+        String resultOperation = valueFirst.getValue() + " " + operator.getValue() + " " + valueSecond.getValue() + " = " + result + LocalDateTime.now();
 
-        historyStorageInMemory.add(user.getLogin(), new Operation(resultOperation));
+        historyStorageJDBC.add(user.getLogin(), new Operation(resultOperation));
         return result;
     }
 
@@ -45,7 +46,7 @@ public class CalculatorService {
 
     public List<Operation> getHistory(String userLogin) {
 
-        Map<String, List<Operation>> mapHistoryOperation = historyStorageInMemory.getMapHistoryOperation();
+        Map<String, List<Operation>> mapHistoryOperation = historyStorageJDBC.getMapHistoryOperation();
 
         if (mapHistoryOperation.containsKey(userLogin)) {
             return mapHistoryOperation.get(userLogin);
@@ -57,10 +58,10 @@ public class CalculatorService {
     }
 
     public void delHistory(String userLogin) {
-        historyStorageInMemory.del(userLogin);
+        historyStorageJDBC.del(userLogin);
     }
 
     public void delHistory(String userLogin, int idItemHistory) {
-        historyStorageInMemory.del(userLogin, idItemHistory);
+        historyStorageJDBC.del(userLogin, idItemHistory);
     }
 }

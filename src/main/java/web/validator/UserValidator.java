@@ -34,6 +34,7 @@ public class UserValidator {
 
     public boolean changedUserSessionID(String userLogin, String sessionID) {
         User user = userStorageJDBC.getByUserLogin(userLogin);
+
         if (user.getSessionID().equals(sessionID)) {
             return false;
         } else {
@@ -41,8 +42,8 @@ public class UserValidator {
         }
     }
 
-    public boolean validUserRole(String userRole) {
-        if (userRole.equals("1") || userRole.equals("2")) {
+    public boolean validUserRole(int userRole) {
+        if (userRole == 1 || userRole == 2) {
             return true;
         } else {
             return false;

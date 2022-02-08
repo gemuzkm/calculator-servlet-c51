@@ -19,11 +19,11 @@
 </head>
 <body>
 
-<c:if test="${sessionScope.user.getRole() == 1}">
+<c:if test="${sessionScope.user.getRole() == 2}">
     <%@ include file="/pages/fragment/headerLogin.html"%>
 </c:if>
 
-<c:if test="${sessionScope.user.getRole() == 0}">
+<c:if test="${sessionScope.user.getRole() == 1}">
     <%@ include file="/pages/fragment/headerManagerLogin.html"%>
 </c:if>
 
