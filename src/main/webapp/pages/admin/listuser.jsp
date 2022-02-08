@@ -47,7 +47,7 @@
                             <td>
                                 <form method="post" action='<c:url value="/deluser" />' style="display:inline;">
                                     <input type="hidden" name="login" value="${item.getLogin()}">
-                                    <input type="submit" value="Delete">
+                                    <input type="submit" class="btn btn-primary" value="Delete">
                                 </form>
                             </td>
                         </tr>

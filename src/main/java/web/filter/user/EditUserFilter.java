@@ -29,7 +29,7 @@ public class EditUserFilter extends HttpFilter {
             req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
         }
 
-        if (user.getRole() != 0) {
+        if (user.getRole() != 1) {
             req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
             req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
         }
