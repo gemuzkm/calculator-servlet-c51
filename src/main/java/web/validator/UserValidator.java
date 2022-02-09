@@ -9,7 +9,7 @@ public class UserValidator {
     private UserStorageJDBC userStorageJDBC = UserStorageJDBC.getInstance();
 
     public boolean existsUser(User user) {
-        if (userStorageJDBC.getByUserLogin(user.getLogin()) != null) {
+        if (userStorageJDBC.getUserByLogin(user.getLogin()) != null) {
             return true;
         } else {
             return false;
@@ -17,7 +17,7 @@ public class UserValidator {
     }
 
     public boolean existsUser(String userLogin) {
-        if (userStorageJDBC.getByUserLogin(userLogin) != null) {
+        if (userStorageJDBC.getUserByLogin(userLogin) != null) {
             return true;
         } else {
             return false;
@@ -25,7 +25,7 @@ public class UserValidator {
     }
 
     public User validUserPassword(String userLogin, String userPassword) {
-        User user = userStorageJDBC.getByUserLogin(userLogin);
+        User user = userStorageJDBC.getUserByLogin(userLogin);
         if (user.getPassword().equals(userPassword)) {
             return user;
         }
@@ -33,7 +33,7 @@ public class UserValidator {
     }
 
     public boolean changedUserSessionID(String userLogin, String sessionID) {
-        User user = userStorageJDBC.getByUserLogin(userLogin);
+        User user = userStorageJDBC.getUserByLogin(userLogin);
 
         if (user.getSessionID().equals(sessionID)) {
             return false;

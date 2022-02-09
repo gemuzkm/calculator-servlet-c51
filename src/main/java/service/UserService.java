@@ -5,7 +5,6 @@ import storage.InMemory.UserStorageInMemory;
 import storage.JDBC.UserStorageJDBC;
 import web.validator.UserValidator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -15,7 +14,7 @@ public class UserService {
     private CalculatorService calculatorService = new CalculatorService();
 
     public User getByUserLogin(String userLogin) {
-        return userStorageJDBC.getByUserLogin(userLogin);
+        return userStorageJDBC.getUserByLogin(userLogin);
     }
 
     public void deleteHistoryAfterIdChange(String userLogin, String sessionID) {

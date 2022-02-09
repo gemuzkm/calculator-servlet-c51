@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserStorage {
 
     void addUser(User user);
-    User getByUserLogin(String userLogin);
+    User getUserByLogin(String userLogin);
     void delUser(User user);
     void delUser(String userLogin);
     List<User> getListUser();

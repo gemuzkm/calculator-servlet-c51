@@ -24,10 +24,10 @@ public class UserStorageInMemory implements UserStorage {
 
     @Override
     public void addUser(User user) {
-        if (getByUserLogin(user.getLogin()) == null) {
+        if (getUserByLogin(user.getLogin()) == null) {
             listUser.add(user);
         } else {
-            User oldUser = getByUserLogin(user.getLogin());
+            User oldUser = getUserByLogin(user.getLogin());
             delUser(oldUser);
             addUser(user);
         }
@@ -45,12 +45,12 @@ public class UserStorageInMemory implements UserStorage {
     public void delUser(String userLogin) {
         HistoryStorageInMemory historyStorageInMemory = HistoryStorageInMemory.getInstance();
 
-        listUser.remove(getByUserLogin(userLogin));
+        listUser.remove(getUserByLogin(userLogin));
         historyStorageInMemory.del(userLogin);
     }
 
     @Override
-    public User getByUserLogin(String userLogin) {
+    public User getUserByLogin(String userLogin) {
         for (User user : listUser) {
             if (user.getLogin().equals(userLogin)) {
                 return user;

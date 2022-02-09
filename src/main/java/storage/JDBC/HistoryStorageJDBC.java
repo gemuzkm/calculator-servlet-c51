@@ -1,7 +1,6 @@
 package storage.JDBC;
 
 import entity.Operation;
-import storage.Constants;
 import storage.HistoryStorage;
 
 import java.sql.*;
