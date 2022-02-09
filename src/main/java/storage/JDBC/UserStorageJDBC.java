@@ -31,7 +31,7 @@ public class UserStorageJDBC implements UserStorage {
     public void addUser(User user) {
         if (getByUserLogin(user.getLogin()) == null) {
             try {
-                Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+                Class.forName("com.mysql.jdbc.Driver");
                 try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(
                             "INSERT INTO users (user_name, user_login, user_password, user_session_id) VALUES (?,?,?,?)");
@@ -41,12 +41,12 @@ public class UserStorageJDBC implements UserStorage {
                     preparedStatement.setString(4, user.getSessionID());
                     preparedStatement.execute();
                 }
-            } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         } else {
             try {
-                Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+                Class.forName("com.mysql.jdbc.Driver");
                 try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(
                             "UPDATE users SET user_name = ?, user_login = ?, user_password = ?, user_session_id = ? WHERE user_login = ?");
@@ -57,7 +57,7 @@ public class UserStorageJDBC implements UserStorage {
                     preparedStatement.setString(5, user.getLogin());
                     preparedStatement.execute();
                 }
-            } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -67,7 +67,7 @@ public class UserStorageJDBC implements UserStorage {
     @Override
     public User getByUserLogin(String userLogin) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "SELECT user_name, user_login, user_password, user_session_id, role_id from users where user_login = ?");
@@ -82,7 +82,7 @@ public class UserStorageJDBC implements UserStorage {
                     return new User(name, login, password, sessionId, role);
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -91,7 +91,7 @@ public class UserStorageJDBC implements UserStorage {
     @Override
     public void delUser(User user) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "DELETE FROM users where user_login = ?");
@@ -99,7 +99,7 @@ public class UserStorageJDBC implements UserStorage {
                 preparedStatement.execute();
 
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -107,7 +107,7 @@ public class UserStorageJDBC implements UserStorage {
     @Override
     public void delUser(String userLogin) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "DELETE FROM users where user_login = ?");
@@ -115,7 +115,7 @@ public class UserStorageJDBC implements UserStorage {
                 preparedStatement.execute();
 
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -123,7 +123,7 @@ public class UserStorageJDBC implements UserStorage {
     @Override
     public List<User> getListUser() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "SELECT user_name, user_login, user_password, user_session_id, role_id FROM users");
@@ -140,7 +140,7 @@ public class UserStorageJDBC implements UserStorage {
                 }
                 return userList;
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return null;

@@ -4,7 +4,6 @@ import entity.Operation;
 import storage.Constants;
 import storage.HistoryStorage;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +27,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
     @Override
     public void add(String userLogin, Operation inputСalculations) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "INSERT INTO history (operation_value, user_id) VALUES (?, ?)");
@@ -37,7 +36,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
 
                 preparedStatement.execute();
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -45,7 +44,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
     @Override
     public void del(String userLogin) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "DELETE FROM history where user_id = ?");
@@ -53,7 +52,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
                 preparedStatement.execute();
 
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -61,7 +60,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
     @Override
     public void del(String userLogin, int idItemHistory) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "DELETE FROM history where user_id = ? AND operation_id = ?");
@@ -70,14 +69,14 @@ public class HistoryStorageJDBC implements HistoryStorage {
                 preparedStatement.execute();
 
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
     private int getOperationIdByUser(String userLogin, int idItemHistory) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "SELECT * FROM history where user_id = ? LIMIT ? OFFSET ?");
@@ -90,7 +89,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
                     return resultSet.getInt(1);
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return -1;
@@ -99,7 +98,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
     @Override
     public Map<String, List<Operation>> getMapHistoryOperation() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "SELECT user_login, operation_value FROM history INNER JOIN users ON history.user_id = users.user_id");
@@ -123,7 +122,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
                 }
                 return mapOperation;
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -131,7 +130,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
 
     private int getUserIdByLogin(String userLogin) {
         try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
+            Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "SELECT user_id FROM users WHERE user_login = ?");
@@ -141,7 +140,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
                     return resultSet.getInt(1);
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return -1;
