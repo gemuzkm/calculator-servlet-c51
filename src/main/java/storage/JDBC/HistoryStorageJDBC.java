@@ -28,11 +28,9 @@ public class HistoryStorageJDBC implements HistoryStorage {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "INSERT INTO history (operation_value, user_id) VALUES (?, ?)");
+                PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_ADD_HISTORY_OPERATION);
                 preparedStatement.setString(1, inputСalculations.getValue());
                 preparedStatement.setInt(2, getUserIdByLogin(userLogin));
-
                 preparedStatement.execute();
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -45,11 +43,9 @@ public class HistoryStorageJDBC implements HistoryStorage {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "DELETE FROM history where user_id = ?");
+                PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_DEL_HISTORY_BY_LOGIN);
                 preparedStatement.setInt(1, getUserIdByLogin(userLogin));
                 preparedStatement.execute();
-
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -61,12 +57,10 @@ public class HistoryStorageJDBC implements HistoryStorage {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "DELETE FROM history where user_id = ? AND operation_id = ?");
+                PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_DEL_HISTORY_BU_LOGIN_AND_ID_ITEM);
                 preparedStatement.setInt(1, getUserIdByLogin(userLogin));
                 preparedStatement.setInt(2, getOperationIdByUser(userLogin, idItemHistory));
                 preparedStatement.execute();
-
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -77,12 +71,10 @@ public class HistoryStorageJDBC implements HistoryStorage {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT * FROM history where user_id = ? LIMIT ? OFFSET ?");
+                PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_OPERATION_ID_BY_USER);
                 preparedStatement.setInt(1, getUserIdByLogin(userLogin));
                 preparedStatement.setInt(2, 1);
                 preparedStatement.setInt(3, idItemHistory);
-
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
                     return resultSet.getInt(1);
@@ -99,8 +91,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT user_login, operation_value FROM history INNER JOIN users ON history.user_id = users.user_id");
+                PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_MAT_HISTORY_OPERATION);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 Map<String, List<Operation>> mapOperation = new HashMap<>();
 
@@ -131,8 +122,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT user_id FROM users WHERE user_login = ?");
+                PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_USER_ID_BY_LOGIN);
                 preparedStatement.setString(1, userLogin);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
