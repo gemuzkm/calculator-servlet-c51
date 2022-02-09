@@ -23,7 +23,7 @@ public class CreateUserFilter extends HttpFilter {
 
             if (session.getAttribute("user") != null) {
                 User user = (User) session.getAttribute("user");
-                if (user.getRole() != 0) {
+                if (user.getRole() != 1) {
                     req.setAttribute("informational", Constants.MSG_ERROR_NO_ACCESS);
                     req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
                 }

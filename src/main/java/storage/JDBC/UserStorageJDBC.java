@@ -50,14 +50,14 @@ public class UserStorageJDBC implements UserStorage {
                     preparedStatement.setString(2, user.getLogin());
                     preparedStatement.setString(3, user.getPassword());
                     preparedStatement.setString(4, user.getSessionID());
-                    preparedStatement.setString(5, user.getLogin());
+                    preparedStatement.setInt(5, user.getRole());
+                    preparedStatement.setString(6, user.getLogin());
                     preparedStatement.execute();
                 }
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override

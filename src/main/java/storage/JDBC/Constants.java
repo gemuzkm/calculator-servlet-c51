@@ -11,7 +11,7 @@ public final class Constants {
 
     //UserStorageJDBC - queries
     public static final String JDBC_ADD_USER = "INSERT INTO users (user_name, user_login, user_password, user_session_id) VALUES (?,?,?,?)";
-    public static final String JDBC_UPDATE_USER = "UPDATE users SET user_name = ?, user_login = ?, user_password = ?, user_session_id = ? WHERE user_login = ?";
+    public static final String JDBC_UPDATE_USER = "UPDATE users SET user_name = ?, user_login = ?, user_password = ?, user_session_id = ?, role_id = ? WHERE user_login = ?";
     public static final String JDBC_GET_USER_BY_LOGIN = "SELECT user_name, user_login, user_password, user_session_id, role_id from users where user_login = ?";
     public static final String JDBC_DEL_USER_BY_USER = "DELETE FROM users where user_login = ?";
     public static final String JDBC_DEL_USER_BY_LOGIN = "DELETE FROM users where user_login = ?";
