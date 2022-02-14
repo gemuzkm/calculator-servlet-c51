@@ -19,7 +19,7 @@ public final class Constants {
     public static final String PROFILE_USER_LINK_JSP = "/pages/user/profile/index.jsp";
 
     //servlet links
-    public static final String HOME_LINK = "/home";
+    public static final String HOME_LINK = "/";
     public static final String LOGIN_LINK = "/login";
     public static final String LOGOUT_LINK = "/logout";
     public static final String USER_DEL_LINK = "/deluser";
