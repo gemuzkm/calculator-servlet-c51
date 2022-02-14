@@ -6,7 +6,7 @@ import dao.UserStorage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserStorageInMemory implements UserStorage {
+public class UserStorageInMemory implements UserStorage<User, String> {
 
     private static UserStorageInMemory instance;
 

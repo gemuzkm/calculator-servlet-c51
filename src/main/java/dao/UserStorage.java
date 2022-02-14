@@ -4,12 +4,11 @@ import entity.User;
 
 import java.util.List;
 
-public interface UserStorage {
+public interface UserStorage<T extends User, K> {
 
-    void addUser(User user);
-    User getUserByLogin(String userLogin);
-    void delUser(User user);
-    void delUser(String userLogin);
-    List<User> getListUser();
-
+    void addUser(T user);
+    User getUserByLogin(K userLogin);
+    void delUser(T user);
+    void delUser(K userLogin);
+    List<T> getListUser();
 }

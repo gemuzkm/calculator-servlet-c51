@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserStorageJDBC implements UserStorage {
+public class UserStorageJDBC implements UserStorage<User, String> {
 
     private static UserStorageJDBC instance;
 
