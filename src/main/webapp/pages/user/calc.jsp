@@ -59,6 +59,6 @@
 
 <%@ include file="/pages/fragment/footer.html"%>
 
-<script src="<%=application.getContextPath() %>/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

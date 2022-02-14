@@ -12,8 +12,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css"
-          href="<%=application.getContextPath() %>/pages/assets/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/pages/assets/dist/css/profile.css">
+          href="/pages/assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pages/assets/dist/css/profile.css">
 </head>
 <body>
 <div class="fixed-top">
@@ -37,7 +37,7 @@
 
 <%@ include file="/pages/fragment/footer.html"%>
 
-<script src="<%=application.getContextPath() %>/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/pages/assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

@@ -19,8 +19,8 @@
     <title>Add User Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css"
-          href="<%=application.getContextPath() %>/pages/assets/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<%=application.getContextPath() %>/pages/assets/dist/css/history.css">
+          href="/pages/assets/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pages/assets/dist/css/history.css">
 </head>
 <body>
 <a href="/">Home</a><br>
