@@ -1,7 +1,7 @@
 package dao.InMemory;
 
-import entity.Operation;
 import dao.HistoryStorage;
+import entity.Operation;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HistoryStorageInMemory implements HistoryStorage {
+public class HistoryStorageInMemory implements HistoryStorage<String, Operation, Integer> {
     private static HistoryStorageInMemory instance;
 
     private HistoryStorageInMemory() {
@@ -48,7 +48,7 @@ public class HistoryStorageInMemory implements HistoryStorage {
     }
 
     @Override
-    public void del(String userLogin, int idItemHistory) {
+    public void del(String userLogin, Integer idItemHistory) {
         List<Operation> operationList = mapHistoryOperation.get(userLogin);
         operationList.remove(idItemHistory);
         mapHistoryOperation.put(userLogin, operationList);

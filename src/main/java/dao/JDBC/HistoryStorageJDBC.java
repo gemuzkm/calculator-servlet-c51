@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HistoryStorageJDBC implements HistoryStorage {
+public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Integer> {
     private static HistoryStorageJDBC instance;
 
     private HistoryStorageJDBC() {
@@ -53,7 +53,7 @@ public class HistoryStorageJDBC implements HistoryStorage {
     }
 
     @Override
-    public void del(String userLogin, int idItemHistory) {
+    public void del(String userLogin, Integer idItemHistory) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
