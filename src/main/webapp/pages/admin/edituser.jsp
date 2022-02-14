@@ -31,7 +31,7 @@
         </div>
         <div class="form-floating mb-3">
             <input type="text" name="login" value="${sessionScope.userForEditing.getLogin()}" class="form-control"
-                   id="inputLogin" placeholder="Login" minlength="2" required>
+                   id="inputLogin" placeholder="Login" minlength="2" readonly >
             <label for="inputLogin">Login</label>
         </div>
         <div class="form-floating mb-3">
@@ -49,7 +49,7 @@
                    class="form-control" id="sessionID" placeholder="SessionID" required>
             <label for="inputRole">SessionID</label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
     </form>
 </main>
 
