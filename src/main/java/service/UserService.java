@@ -1,8 +1,8 @@
 package service;
 
 import entity.User;
-import storage.InMemory.UserStorageInMemory;
-import storage.JDBC.UserStorageJDBC;
+import dao.InMemory.UserStorageInMemory;
+import dao.JDBC.UserStorageJDBC;
 import web.validator.UserValidator;
 
 import java.util.List;

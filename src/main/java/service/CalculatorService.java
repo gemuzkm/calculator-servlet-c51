@@ -1,7 +1,7 @@
 package service;
 
 import entity.*;
-import storage.JDBC.HistoryStorageJDBC;
+import dao.JDBC.HistoryStorageJDBC;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

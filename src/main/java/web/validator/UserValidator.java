@@ -1,8 +1,8 @@
 package web.validator;
 
 import entity.User;
-import storage.InMemory.UserStorageInMemory;
-import storage.JDBC.UserStorageJDBC;
+import dao.InMemory.UserStorageInMemory;
+import dao.JDBC.UserStorageJDBC;
 
 public class UserValidator {
     private UserStorageInMemory userStorageInMemory = UserStorageInMemory.getInstance();

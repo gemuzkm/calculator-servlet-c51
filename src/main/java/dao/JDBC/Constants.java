@@ -1,4 +1,4 @@
-package storage.JDBC;
+package dao.JDBC;
 
 public final class Constants {
     private Constants() {

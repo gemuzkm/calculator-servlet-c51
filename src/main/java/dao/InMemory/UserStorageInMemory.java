@@ -1,7 +1,7 @@
-package storage.InMemory;
+package dao.InMemory;
 
 import entity.User;
-import storage.UserStorage;
+import dao.UserStorage;
 
 import java.util.ArrayList;
 import java.util.List;

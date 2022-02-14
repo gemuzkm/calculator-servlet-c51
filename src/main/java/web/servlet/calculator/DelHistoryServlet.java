@@ -1,7 +1,6 @@
 package web.servlet.calculator;
 
 import service.CalculatorService;
-import storage.HistoryStorage;
 import web.servlet.Constants;
 
 import javax.servlet.ServletException;

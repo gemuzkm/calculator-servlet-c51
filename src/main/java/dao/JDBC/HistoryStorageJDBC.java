@@ -1,7 +1,7 @@
-package storage.JDBC;
+package dao.JDBC;
 
 import entity.Operation;
-import storage.HistoryStorage;
+import dao.HistoryStorage;
 
 import java.sql.*;
 import java.util.ArrayList;

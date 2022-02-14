@@ -1,7 +1,7 @@
-package storage.InMemory;
+package dao.InMemory;
 
 import entity.Operation;
-import storage.HistoryStorage;
+import dao.HistoryStorage;
 
 import java.time.LocalDateTime;
 
