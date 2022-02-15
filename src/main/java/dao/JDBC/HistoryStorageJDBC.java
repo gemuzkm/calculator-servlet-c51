@@ -23,17 +23,20 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
         return instance;
     }
 
+    private final String JDBC_URL = "jdbc:mysql://193.122.63.237:3306/servlet-c51?useUnicode=true&serverTimezone=UTC";
+    private final String JDBC_USER_NAME = "servlet-c51_usr";
+    private final String JDBC_PASSWORD = "KEvUShZilD74CaBG";
+
     @Override
     public void add(String userLogin, Operation inputСalculations) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_ADD_HISTORY_OPERATION);
                 preparedStatement.setString(1, inputСalculations.getValue());
                 preparedStatement.setInt(2, getUserIdByLogin(userLogin));
                 preparedStatement.execute();
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -41,13 +44,12 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
     @Override
     public void del(String userLogin) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_DEL_HISTORY_BY_LOGIN);
                 preparedStatement.setInt(1, getUserIdByLogin(userLogin));
                 preparedStatement.execute();
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -55,22 +57,20 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
     @Override
     public void del(String userLogin, Integer idItemHistory) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_DEL_HISTORY_BU_LOGIN_AND_ID_ITEM);
                 preparedStatement.setInt(1, getUserIdByLogin(userLogin));
                 preparedStatement.setInt(2, getOperationIdByUser(userLogin, idItemHistory));
                 preparedStatement.execute();
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     private int getOperationIdByUser(String userLogin, int idItemHistory) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_OPERATION_ID_BY_USER);
                 preparedStatement.setInt(1, getUserIdByLogin(userLogin));
                 preparedStatement.setInt(2, 1);
@@ -80,7 +80,7 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
                     return resultSet.getInt(1);
                 }
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return -1;
@@ -89,8 +89,7 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
     @Override
     public Map<String, List<Operation>> getMapHistoryOperation() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_MAT_HISTORY_OPERATION);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 Map<String, List<Operation>> mapOperation = new HashMap<>();
@@ -112,7 +111,7 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
                 }
                 return mapOperation;
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -120,8 +119,7 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
 
     private int getUserIdByLogin(String userLogin) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_USER_ID_BY_LOGIN);
                 preparedStatement.setString(1, userLogin);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -129,7 +127,7 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
                     return resultSet.getInt(1);
                 }
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return -1;

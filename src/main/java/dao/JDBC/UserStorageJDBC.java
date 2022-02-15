@@ -21,16 +21,15 @@ public class UserStorageJDBC implements UserStorage<User, String> {
         return instance;
     }
 
-//    private String url = "jdbc:mysql://193.122.63.237:3306/servlet-c51?useUnicode=true&serverTimezone=UTC";
-//    private String userName = "servlet-c51_usr";
-//    private String password = "KEvUShZilD74CaBG";
+    private final String JDBC_URL = "jdbc:mysql://193.122.63.237:3306/servlet-c51?useUnicode=true&serverTimezone=UTC";
+    private final String JDBC_USER_NAME = "servlet-c51_usr";
+    private final String JDBC_PASSWORD = "KEvUShZilD74CaBG";
 
     @Override
     public void addUser(User user) {
         if (getUserByLogin(user.getLogin()) == null) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+                try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_ADD_USER);
                     preparedStatement.setString(1, user.getName());
                     preparedStatement.setString(2, user.getLogin());
@@ -38,13 +37,12 @@ public class UserStorageJDBC implements UserStorage<User, String> {
                     preparedStatement.setString(4, user.getSessionID());
                     preparedStatement.execute();
                 }
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+                try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                     PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_UPDATE_USER);
                     preparedStatement.setString(1, user.getName());
                     preparedStatement.setString(2, user.getLogin());
@@ -54,7 +52,7 @@ public class UserStorageJDBC implements UserStorage<User, String> {
                     preparedStatement.setString(6, user.getLogin());
                     preparedStatement.execute();
                 }
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -63,8 +61,7 @@ public class UserStorageJDBC implements UserStorage<User, String> {
     @Override
     public User getUserByLogin(String userLogin) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_USER_BY_LOGIN);
                 preparedStatement.setString(1, userLogin);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -77,7 +74,7 @@ public class UserStorageJDBC implements UserStorage<User, String> {
                     return new User(name, login, password, sessionId, role);
                 }
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -86,13 +83,12 @@ public class UserStorageJDBC implements UserStorage<User, String> {
     @Override
     public void delUser(User user) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_DEL_USER_BY_USER);
                 preparedStatement.setString(1, user.getLogin());
                 preparedStatement.execute();
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -100,13 +96,12 @@ public class UserStorageJDBC implements UserStorage<User, String> {
     @Override
     public void delUser(String userLogin) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_DEL_USER_BY_LOGIN);
                 preparedStatement.setString(1, userLogin);
                 preparedStatement.execute();
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -115,7 +110,7 @@ public class UserStorageJDBC implements UserStorage<User, String> {
     public List<User> getListUser() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            try (Connection connection = DriverManager.getConnection(Constants.JDBC_URL, Constants.JDBC_USER_NAME, Constants.JDBC_PASSWORD)) {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_LIST_USER);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
