@@ -8,5 +8,4 @@ public interface ValueListIterator<T> {
     T getCurrentElement();
     List<T> getPreviousElements(int count);
     List<T> getNextElements(int count);
-    void resetIndex();
 }
