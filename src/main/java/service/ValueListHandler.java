@@ -1,18 +1,26 @@
 package service;
 
 import entity.Operation;
+import entity.User;
 
 import java.util.List;
 import java.util.ListIterator;
 
 public class ValueListHandler implements ValueListIterator<Operation> {
+    private Operation operation;
+    private List<Operation>  operationList;
+    private User user;
+    private int index;
 
-    private List<Operation>  list;
-    private ListIterator<Operation> listIterator;
+    public ValueListHandler(User user) {
+        this.user = user;
+    }
 
     @Override
     public int getSize() {
-       return list != null ? list.size() : 0;
+       return 0;
+
+       ///return size element;
     }
 
     @Override
@@ -28,12 +36,6 @@ public class ValueListHandler implements ValueListIterator<Operation> {
     @Override
     public List<Operation> getNextElements(int count) {
         return null;
-    }
-
-    @Override
-    public void resetIndex() {
-        if (listIterator != null) {
-            listIterator = list.listIterator();
-        }
+        //отдал элементы и получил еще на страницу новые опперации
     }
 }

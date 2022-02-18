@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 // сервлет singelton
 
 
@@ -32,12 +34,16 @@ public class FirstServlet extends HttpServlet {
 //        super.destroy();
 //    }
 
+    private Logger log = Logger.getLogger(this.getClass().getName());
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        log.log(Level.INFO, "Hello");
+
         String name = req.getParameter("name");
         String age = req.getParameter("age");
 
 //        resp.getWriter().println("Hello" + name + " " + age);
-        req.getServletContext().getRequestDispatcher("/pages/test.jsp").forward(req,resp);
+        req.getServletContext().getRequestDispatcher("/pages/test/test.jsp").forward(req,resp);
     }
 }
