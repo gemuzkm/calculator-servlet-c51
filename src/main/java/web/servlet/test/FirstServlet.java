@@ -37,7 +37,7 @@ public class FirstServlet extends HttpServlet {
 //    }
 
 //    private Logger log = Logger.getLogger(this.getClass().getName());
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

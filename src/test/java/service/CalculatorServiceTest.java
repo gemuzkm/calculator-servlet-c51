@@ -26,12 +26,22 @@ class CalculatorServiceTest {
 //    @Order(1) //порядок
 
     @Test
-    void getResult() {
+    void getResultSum() {
         CalculatorService calculatorService = new CalculatorService();
         User user = new User("admin","admin","admin", "1", 2);
 
         String result = calculatorService.getResult(new ValueOne(2),new ValueTwo(2),new Operator("sum"), user);
         String sample = String.valueOf(4.0);
+        assertEquals(sample, result);
+    }
+
+    @Test
+    void getResultDDif() {
+        CalculatorService calculatorService = new CalculatorService();
+        User user = new User("admin","admin","admin", "1", 2);
+
+        String result = calculatorService.getResult(new ValueOne(2),new ValueTwo(2),new Operator("dif"), user);
+        String sample = String.valueOf(0.0);
         assertEquals(sample, result);
     }
 }
