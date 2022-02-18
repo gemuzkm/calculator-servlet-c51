@@ -1,5 +1,8 @@
 package web.servlet.test;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +12,6 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 // сервлет singelton
 
 
@@ -34,11 +36,13 @@ public class FirstServlet extends HttpServlet {
 //        super.destroy();
 //    }
 
-    private Logger log = Logger.getLogger(this.getClass().getName());
+//    private Logger log = Logger.getLogger(this.getClass().getName());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.log(Level.INFO, "Hello");
+ //       log.log(Level.INFO, "Hello");
+    logger.info("Hello slf");
 
         String name = req.getParameter("name");
         String age = req.getParameter("age");
