@@ -42,7 +42,12 @@ public class FirstServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
  //       log.log(Level.INFO, "Hello");
-    logger.info("Hello slf");
+    logger.info("Hello slf info"); //информационные
+    logger.warn("Hello warn"); //обращение к несуществующим путям
+    logger.error("Hello err"); //фаталити, Exception
+
+        logger.debug("Hello debug"); //информационные сообщение при старте и тд
+        logger.trace("Hello trace"); //очень подробные лог
 
         String name = req.getParameter("name");
         String age = req.getParameter("age");
