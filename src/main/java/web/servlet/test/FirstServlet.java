@@ -1,5 +1,6 @@
 package web.servlet.test;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
@@ -37,10 +41,14 @@ public class FirstServlet extends HttpServlet {
 //    }
 
 //    private Logger log = Logger.getLogger(this.getClass().getName());
+
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    PropertyConfigurator.configure("D:\\study\\project\\servlet-c51\\src\\main\\resources\\log4j.properties");
+
  //       log.log(Level.INFO, "Hello");
     logger.info("Hello slf info"); //информационные
     logger.warn("Hello warn"); //обращение к несуществующим путям
