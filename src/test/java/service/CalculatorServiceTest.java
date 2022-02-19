@@ -36,7 +36,7 @@ class CalculatorServiceTest {
     }
 
     @Test
-    void getResultDDif() {
+    void getResultDif() {
         CalculatorService calculatorService = new CalculatorService();
         User user = new User("admin","admin","admin", "1", 2);
 
