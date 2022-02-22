@@ -74,6 +74,4 @@ class CalculatorServiceTest {
         String testData = String.valueOf("20.0");
         assertEquals(testData, result);
     }
-
-
 }
