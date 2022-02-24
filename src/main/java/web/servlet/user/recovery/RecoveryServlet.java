@@ -1,7 +1,6 @@
 package web.servlet.user.recovery;
 
 import web.servlet.Constants;
-import service.UserService;
 import web.validator.UserValidator;
 
 import javax.servlet.ServletException;
@@ -18,7 +17,7 @@ public class RecoveryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher(Constants.RECOVERY_USER_LINK_JSP).forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.PATH_RECOVERY_USER_LINK_JSP).forward(req, resp);
     }
 
     @Override
@@ -35,10 +34,10 @@ public class RecoveryServlet extends HttpServlet {
             session.setAttribute("recoveryword", recoveryWord);
             session.setAttribute("login", req.getParameter("login"));
 
-            req.getServletContext().getRequestDispatcher(Constants.NEW_PASSWORD_LINK_JSP).forward(req, resp);
+            req.getServletContext().getRequestDispatcher(Constants.PATH_NEW_PASSWORD_LINK_JSP).forward(req, resp);
         } else {
             req.setAttribute("msgErrorLogin", Constants.MSG_ERROR_USER_NOT_FOUND);
-            req.getServletContext().getRequestDispatcher(Constants.RECOVERY_USER_LINK_JSP).forward(req, resp);
+            req.getServletContext().getRequestDispatcher(Constants.PATH_RECOVERY_USER_LINK_JSP).forward(req, resp);
         }
     }
 }

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "CalculatorServlet")
+@WebFilter(servletNames = Constants.NAME_CALCULATOR_SERVLET)
 public class CalculatorFilter extends HttpFilter {
 
     @Override
@@ -28,10 +28,10 @@ public class CalculatorFilter extends HttpFilter {
             System.out.println(session.getAttribute("user"));
              if (session.getAttribute("user") == null) {
                 req.setAttribute("informational", Constants.MSG_ERROR_NO_AUTHORIZED);
-                req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_INFORMATION_LINK_JSP).forward(req, res);
             }  else if (userService.changedUserSessionID(((User) session.getAttribute("user")).getLogin(), sessionID)) {
                 req.setAttribute("informational", Constants.MSG_ERROR_NO_AUTHORIZED);
-                req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_INFORMATION_LINK_JSP).forward(req, res);
             }
         }
 
@@ -56,7 +56,7 @@ public class CalculatorFilter extends HttpFilter {
                     req.setAttribute("msgErrorOperation", Constants.MSG_ERROR_OPERATION_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.CALCULATIOR_LINK_JSP).forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_CALCULATOR_LINK_JSP).forward(req, res);
             }
 
             if (!valueValidator.isNumber(valueFirst) || !valueValidator.isNumber(valueSecond) || !operationValidator.supportedOperation(operator)) {
@@ -72,7 +72,7 @@ public class CalculatorFilter extends HttpFilter {
                     req.setAttribute("msgErrorOperation", Constants.MSG_ERROR_OPERATION_UNSUPPORTED);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.CALCULATIOR_LINK_JSP).forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_CALCULATOR_LINK_JSP).forward(req, res);
             }
         }
 

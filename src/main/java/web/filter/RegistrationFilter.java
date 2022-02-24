@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "RegistrationServlet")
+@WebFilter(servletNames = Constants.NAME_REGISTRATION_SERVLET)
 public class RegistrationFilter extends HttpFilter {
 
     @Override
@@ -21,7 +21,7 @@ public class RegistrationFilter extends HttpFilter {
             HttpSession session = req.getSession();
             if (session.getAttribute("login") != null) {
                 req.setAttribute("informational", Constants.MSG_ERROR_NO_ACCESS);
-                req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_INFORMATION_LINK_JSP).forward(req, res);
             }
         }
 
@@ -45,7 +45,7 @@ public class RegistrationFilter extends HttpFilter {
                     req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req,res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_REGISTRATION_LINK_JSP).forward(req,res);
             }
 
             if (valueValidator.isStringEmpty(name) || valueValidator.isStringEmpty(login) || valueValidator.isStringEmpty(password)) {
@@ -61,7 +61,7 @@ public class RegistrationFilter extends HttpFilter {
                     req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.REGISTRATION_LINK_JSP).forward(req,res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_REGISTRATION_LINK_JSP).forward(req,res);
             }
         }
 

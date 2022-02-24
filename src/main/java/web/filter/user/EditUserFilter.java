@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "EditUserServlet")
+@WebFilter(servletNames = Constants.NAME_EDIT_USER_SERVLET)
 public class EditUserFilter extends HttpFilter {
 
     @Override
@@ -26,12 +26,12 @@ public class EditUserFilter extends HttpFilter {
             user = (User) session.getAttribute("user");
         } else {
             req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
-            req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
+            req.getServletContext().getRequestDispatcher(Constants.PATH_HOME_LINK_JSP).forward(req, res);
         }
 
         if (user.getRole() != 1) {
             req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
-            req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
+            req.getServletContext().getRequestDispatcher(Constants.PATH_HOME_LINK_JSP).forward(req, res);
         }
 
         if (req.getMethod().equals("GET")) {
@@ -62,7 +62,7 @@ public class EditUserFilter extends HttpFilter {
                     session.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                res.sendRedirect(Constants.USER_EDIT_LINK +"?" + (String) session.getAttribute("urlUserEdit"));
+                res.sendRedirect(Constants.URL_USER_EDIT +"?" + (String) session.getAttribute("urlUserEdit"));
                 return;
             }
 
@@ -83,7 +83,7 @@ public class EditUserFilter extends HttpFilter {
                     session.setAttribute("msgErrorRole", Constants.MSG_ERROR_ROLE_INVALID);
                 }
 
-                res.sendRedirect(Constants.USER_EDIT_LINK +"?" + (String) session.getAttribute("urlUserEdit"));
+                res.sendRedirect(Constants.URL_USER_EDIT +"?" + (String) session.getAttribute("urlUserEdit"));
                 return;
             }
         }

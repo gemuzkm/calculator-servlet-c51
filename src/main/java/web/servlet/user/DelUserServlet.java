@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = Constants.USER_DEL_LINK, name = "DelUserServlet")
+@WebServlet(urlPatterns = Constants.URL_USER_DEL_SERVLET, name = "DelUserServlet")
 public class DelUserServlet extends HttpServlet {
 
     @Override
@@ -24,6 +24,6 @@ public class DelUserServlet extends HttpServlet {
             userService.delUser(userDel);
         }
 
-        resp.sendRedirect(Constants.USER_LIST_LINK);
+        resp.sendRedirect(Constants.URL_USER_LIST_SERVLET);
     }
 }

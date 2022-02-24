@@ -26,6 +26,6 @@ public class HistoryServlet extends HttpServlet {
         List<Operation> operationList = calculatorService.getHistory(user.getLogin());
 
         req.setAttribute("msgListHistoryUser", operationList);
-        req.getServletContext().getRequestDispatcher(Constants.HISTORY_LINK_JSP).forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.PATH_HISTORY_LINK_JSP).forward(req, resp);
     }
 }

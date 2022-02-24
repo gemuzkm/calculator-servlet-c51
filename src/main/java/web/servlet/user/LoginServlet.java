@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = Constants.LOGIN_LINK, name = "LoginServlet")
+@WebServlet(urlPatterns = Constants.URL_LOGIN_SERVLET, name = Constants.NAME_LOGIN_SERVET)
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher(Constants.LOGIN_LINK_JSP).forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.PATH_LOGIN_LINK_JSP).forward(req, resp);
     }
 
     @Override
@@ -37,6 +37,6 @@ public class LoginServlet extends HttpServlet {
             user.setSessionID(session.getId());
         }
 
-        resp.sendRedirect(Constants.CALCULATOR_LINK);
+        resp.sendRedirect(Constants.URL_CALCULATOR_SERVLET);
     }
 }

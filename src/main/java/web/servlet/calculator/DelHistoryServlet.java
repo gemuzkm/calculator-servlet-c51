@@ -27,6 +27,6 @@ public class DelHistoryServlet extends HttpServlet {
 
         calculatorService.delHistory(login, idItemHistory - 1);
 
-        resp.sendRedirect(Constants.HISTORY_LINK);
+        resp.sendRedirect(Constants.URL_HISTORY_SERVLET);
     }
 }

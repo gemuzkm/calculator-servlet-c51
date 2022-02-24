@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "LoginServlet")
+@WebFilter(servletNames = Constants.NAME_LOGIN_SERVLET)
 public class LoginFilter extends HttpFilter {
 
     @Override
@@ -22,7 +22,7 @@ public class LoginFilter extends HttpFilter {
             HttpSession session = req.getSession();
             if (session.getAttribute("user") != null) {
                 req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
-                req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_HOME_LINK_JSP).forward(req, res);
             }
         }
 
@@ -43,7 +43,7 @@ public class LoginFilter extends HttpFilter {
                         req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                     }
 
-                    req.getServletContext().getRequestDispatcher(Constants.LOGIN_LINK_JSP).forward(req, res);
+                    req.getServletContext().getRequestDispatcher(Constants.PATH_LOGIN_LINK_JSP).forward(req, res);
                 }
 
                 if (valueValidator.isStringEmpty(login) || valueValidator.isStringEmpty(password)) {
@@ -55,22 +55,23 @@ public class LoginFilter extends HttpFilter {
                         req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                     }
 
-                    req.getServletContext().getRequestDispatcher(Constants.LOGIN_LINK_JSP).forward(req, res);
+                    req.getServletContext().getRequestDispatcher(Constants.PATH_LOGIN_LINK_JSP).forward(req, res);
                 }
 
                 if (!userValidator.existsUser(login)) {
                     req.setAttribute("msgErrorUser", Constants.MSG_ERROR_USER_NOT_FOUND);
 
-                    req.getServletContext().getRequestDispatcher(Constants.LOGIN_LINK_JSP).forward(req, res);
+                    req.getServletContext().getRequestDispatcher(Constants.PATH_LOGIN_LINK_JSP).forward(req, res);
                 }
 
                 if (userValidator.validUserPassword(login, password) == null) {
                     req.setAttribute("msgErrorLoginPassword", Constants.MSG_ERROR_LOGIN_OR_PASSWORD_INVALID);
 
-                    req.getServletContext().getRequestDispatcher(Constants.LOGIN_LINK_JSP).forward(req, res);
+                    req.getServletContext().getRequestDispatcher(Constants.PATH_LOGIN_LINK_JSP).forward(req, res);
                 }
             }
         }
+
         chain.doFilter(req, res);
     }
 }

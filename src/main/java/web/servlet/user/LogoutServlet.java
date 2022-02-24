@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = Constants.LOGOUT_LINK)
+@WebServlet(urlPatterns = Constants.URL_LOGOUT_SERVLET)
 public class LogoutServlet extends HttpServlet {
 
     @Override
@@ -30,9 +30,9 @@ public class LogoutServlet extends HttpServlet {
             calculatorService.delHistory(user.getLogin());
 
             session.invalidate();
-            resp.sendRedirect(Constants.HOME_LINK);
+            resp.sendRedirect(Constants.URL_HOME_SERVLET);
         } else {
-            resp.sendRedirect(Constants.HOME_LINK);
+            resp.sendRedirect(Constants.URL_HOME_SERVLET);
         }
     }
 }

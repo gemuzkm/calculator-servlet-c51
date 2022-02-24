@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "UpdatePasswordServlet")
+@WebFilter(servletNames = Constants.NAME_UPDATE_PASSWORD_SERVLET)
 public class UpdatePasswordFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-
         if (req.getMethod().equals("POST")) {
             ValueValidator valueValidator = new ValueValidator();
             HttpSession session = req.getSession();
@@ -33,17 +32,16 @@ public class UpdatePasswordFilter extends HttpFilter {
                 }
 
                 if (valueValidator.isNull(inputSecretWord) || valueValidator.isStringEmpty(inputSecretWord)) {
-                    req.setAttribute("msgErrorRecoveryWord", Constants.MSG_ERROR_SERCRET_WOWRD_EMPTY);
+                    req.setAttribute("msgErrorRecoveryWord", Constants.MSG_ERROR_SECRET_WORLD_EMPTY);
                 }
 
                 if (!secretWord.equals(inputSecretWord)) {
                     req.setAttribute("msgErrorRecoveryWord", Constants.MSG_ERROR_SECRET_WORD_WRONG);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.NEW_PASSWORD_LINK_JSP).forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_NEW_PASSWORD_LINK_JSP).forward(req, res);
                 return;
             }
-
         }
 
         chain.doFilter(req, res);

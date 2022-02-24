@@ -11,12 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(servletNames = "RecoveryServlet")
+@WebFilter(servletNames = Constants.NAME_RECOVERY_SERVLET)
 public class RecoveryFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-
         if (req.getMethod().equals("POST")) {
             ValueValidator valueValidator = new ValueValidator();
 
@@ -24,9 +23,10 @@ public class RecoveryFilter extends HttpFilter {
 
             if (valueValidator.isNull(login) || valueValidator.isStringEmpty(login)) {
                 req.setAttribute("msgErrorLogin", Constants.MSG_ERROR_LOGIN_EMPTY);
-                req.getServletContext().getRequestDispatcher(Constants.RECOVERY_USER_LINK_JSP).forward(req, res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_RECOVERY_USER_LINK_JSP).forward(req, res);
             }
         }
+
         chain.doFilter(req, res);
     }
 }

@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "CreateUserServlet")
+@WebFilter(servletNames = Constants.NAME_CREATE_USER_SERVLET)
 public class CreateUserFilter extends HttpFilter {
+
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
@@ -25,7 +26,7 @@ public class CreateUserFilter extends HttpFilter {
                 User user = (User) session.getAttribute("user");
                 if (user.getRole() != 1) {
                     req.setAttribute("informational", Constants.MSG_ERROR_NO_ACCESS);
-                    req.getServletContext().getRequestDispatcher(Constants.INFORMATION_LINK_JSP).forward(req, res);
+                    req.getServletContext().getRequestDispatcher(Constants.PATH_INFORMATION_LINK_JSP).forward(req, res);
                 }
             }
         }
@@ -50,7 +51,7 @@ public class CreateUserFilter extends HttpFilter {
                     req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req,res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_CREATE_USER_LINK_JSP).forward(req,res);
             }
 
             if (valueValidator.isStringEmpty(name) || valueValidator.isStringEmpty(login) || valueValidator.isStringEmpty(password)) {
@@ -66,7 +67,7 @@ public class CreateUserFilter extends HttpFilter {
                     req.setAttribute("msgErrorPassword", Constants.MSG_ERROR_PASSWORD_EMPTY);
                 }
 
-                req.getServletContext().getRequestDispatcher(Constants.CREATE_USER_LINK_JSP).forward(req,res);
+                req.getServletContext().getRequestDispatcher(Constants.PATH_CREATE_USER_LINK_JSP).forward(req,res);
             }
         }
 

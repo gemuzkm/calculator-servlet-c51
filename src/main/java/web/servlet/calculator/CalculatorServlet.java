@@ -20,7 +20,7 @@ public class CalculatorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher(Constants.CALCULATOR_LINK_JSP).forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.PATH_CALCULATOR_LINK_JSP).forward(req, resp);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CalculatorServlet extends HttpServlet {
         String resultOperation = calculatorService.getResult(valueOne, valueTwo, operator, user);
 
         req.setAttribute("result", "Result = " + resultOperation);
-        req.getServletContext().getRequestDispatcher(Constants.CALCULATOR_LINK_JSP).forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.PATH_CALCULATOR_LINK_JSP).forward(req, resp);
     }
 }
 

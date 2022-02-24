@@ -34,6 +34,6 @@ public class UpdatePasswordServlet extends HttpServlet {
         userService.addUser(updateUser);
         session.invalidate();
 
-        resp.sendRedirect(Constants.HOME_LINK);
+        resp.sendRedirect(Constants.URL_HOME_SERVLET);
     }
 }

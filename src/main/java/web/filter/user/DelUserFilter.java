@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter (servletNames = "DelUserServlet")
+@WebFilter (servletNames = Constants.NAME_DEL_USER_SERVLET)
 public class DelUserFilter extends HttpFilter {
 
     @Override
@@ -24,17 +24,17 @@ public class DelUserFilter extends HttpFilter {
             user = (User) session.getAttribute("user");
         } else {
             req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
-            req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
+            req.getServletContext().getRequestDispatcher(Constants.PATH_HOME_LINK_JSP).forward(req, res);
         }
 
         if (user.getRole() != 1) {
             req.setAttribute("mgsError", Constants.MSG_ERROR_NO_ACCESS);
-            req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, res);
+            req.getServletContext().getRequestDispatcher(Constants.PATH_HOME_LINK_JSP).forward(req, res);
         }
 
         if (user.getLogin().equals(req.getParameter("login")))  {
            session.setAttribute("msgError", Constants.MSG_ERROR_NO_DEL_YOURSELF);
-           res.sendRedirect(Constants.USER_LIST_LINK);
+           res.sendRedirect(Constants.URL_USER_LIST);
            return;
         }
 

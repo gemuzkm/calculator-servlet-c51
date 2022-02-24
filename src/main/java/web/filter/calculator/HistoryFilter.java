@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(servletNames = "HistoryServlet")
+@WebFilter(servletNames = Constants.NAME_HISTORY_SERVLET)
 public class HistoryFilter extends HttpFilter {
 
     @Override
@@ -23,9 +23,9 @@ public class HistoryFilter extends HttpFilter {
         UserService userService = new UserService();
 
         if (session.getAttribute("user") == null) {
-            res.sendRedirect(Constants.HOME_LINK);
+            res.sendRedirect(Constants.URL_HOME);
         } else if (userService.changedUserSessionID(((User) session.getAttribute("user")).getLogin(), sessionID)) {
-            res.sendRedirect(Constants.HOME_LINK);
+            res.sendRedirect(Constants.URL_HOME);
         } else {
             chain.doFilter(req, res);
         }

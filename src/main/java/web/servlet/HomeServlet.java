@@ -1,8 +1,5 @@
 package web.servlet;
 
-import entity.User;
-import service.UserService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = Constants.HOME_LINK)
+@WebServlet(urlPatterns = Constants.URL_HOME_SERVLET)
 public class HomeServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
@@ -29,6 +26,6 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getServletContext().getRequestDispatcher(Constants.HOME_LINK_JSP).forward(req, resp);
+        req.getServletContext().getRequestDispatcher(Constants.PATH_HOME_LINK_JSP).forward(req, resp);
     }
 }
