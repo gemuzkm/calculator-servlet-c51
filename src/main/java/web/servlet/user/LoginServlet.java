@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = Constants.URL_LOGIN_SERVLET, name = Constants.NAME_LOGIN_SERVET)
 public class LoginServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher(Constants.PATH_LOGIN_LINK_JSP).forward(req, resp);

@@ -60,13 +60,11 @@ public class LoginFilter extends HttpFilter {
 
                 if (!userValidator.existsUser(login)) {
                     req.setAttribute("msgErrorUser", Constants.MSG_ERROR_USER_NOT_FOUND);
-
                     req.getServletContext().getRequestDispatcher(Constants.PATH_LOGIN_LINK_JSP).forward(req, res);
                 }
 
                 if (userValidator.validUserPassword(login, password) == null) {
                     req.setAttribute("msgErrorLoginPassword", Constants.MSG_ERROR_LOGIN_OR_PASSWORD_INVALID);
-
                     req.getServletContext().getRequestDispatcher(Constants.PATH_LOGIN_LINK_JSP).forward(req, res);
                 }
             }
