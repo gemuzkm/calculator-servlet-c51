@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/history", name = "HistoryServlet")
+@WebServlet(urlPatterns = "/history", name = Constants.NAME_HISTORY_SERVLET)
 public class HistoryServlet extends HttpServlet {
 
     @Override

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/calculator", name = "CalculatorServlet")
+@WebServlet(urlPatterns = "/calculator", name = Constants.NAME_CALCULATOR_SERVLET)
 public class CalculatorServlet extends HttpServlet {
 
     @Override

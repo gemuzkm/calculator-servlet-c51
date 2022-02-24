@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = Constants.URL_USER_CREATE_SERVLET, name = "CreateUserServlet")
+@WebServlet(urlPatterns = Constants.URL_USER_CREATE_SERVLET, name = Constants.NAME_CREATE_USER_SERVLET)
 public class CreateUserServlet extends HttpServlet {
 
     @Override

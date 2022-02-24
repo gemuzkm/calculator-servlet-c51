@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = Constants.URL_USER_EDIT_SERVLET, name = "EditUserServlet")
+@WebServlet(urlPatterns = Constants.URL_USER_EDIT_SERVLET, name = Constants.NAME_USER_EDIT_SERVLET)
 public class EditUserServlet extends HttpServlet {
 
     @Override

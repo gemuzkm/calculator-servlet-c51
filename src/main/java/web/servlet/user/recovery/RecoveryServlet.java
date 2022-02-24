@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Random;
 
-@WebServlet(urlPatterns = "/recovery", name = "RecoveryServlet")
+@WebServlet(urlPatterns = "/recovery", name = Constants.NAME_RECOVERY_SERVLET)
 public class RecoveryServlet extends HttpServlet {
 
     @Override

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/delhistory", name = "DelHistoryServlet")
+@WebServlet(urlPatterns = "/delhistory", name = Constants.NAME_DEL_HISTORY_SERVLET)
 public class DelHistoryServlet extends HttpServlet {
 
     @Override

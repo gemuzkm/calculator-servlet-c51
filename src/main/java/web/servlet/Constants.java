@@ -22,6 +22,15 @@ public final class Constants {
     public static final String NAME_PROFILE_SERVLET = "ProfileServlet";
     public static final String NAME_REGISTRATION_SERVLET = "RegistrationServlet";
     public static final String NAME_LOGIN_SERVET = "LoginServlet";
+    public static final String NAME_USER_LIST_SERVLET = "ListUserServlet";
+    public static final String NAME_USER_EDIT_SERVLET = "EditUserServlet";
+    public static final String NAME_USER_DEL_SERVLET = "DelUserServlet";
+    public static final String NAME_CREATE_USER_SERVLET = "CreateUserServlet";
+    public static final String NAME_UPDATE_PASSWORD_SERVLET = "UpdatePasswordServlet";
+    public static final String NAME_RECOVERY_SERVLET = "RecoveryServlet";
+    public static final String NAME_HISTORY_SERVLET = "HistoryServlet";
+    public static final String NAME_DEL_HISTORY_SERVLET = "DelHistoryServlet";
+    public static final String NAME_CALCULATOR_SERVLET = "CalculatorServlet";
 
     //servlet links
     public static final String URL_HOME_SERVLET = "/";

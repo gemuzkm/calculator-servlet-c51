@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/updatepassword", name = "UpdatePasswordServlet")
+@WebServlet(urlPatterns = "/updatepassword", name = Constants.NAME_UPDATE_PASSWORD_SERVLET)
 public class UpdatePasswordServlet extends HttpServlet {
 
     @Override
