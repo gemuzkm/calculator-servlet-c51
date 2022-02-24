@@ -25,6 +25,7 @@ public class ProfileFilter extends HttpFilter {
         if (session.getAttribute("user") == null) {
             session.setAttribute("msgErrorNoAccess", Constants.MSG_ERROR_NO_ACCESS);
             req.getServletContext().getRequestDispatcher(Constants.PATH_PROFILE_USER_LINK_JSP).forward(req, res);
+            return;
         }
 
         chain.doFilter(req, res);

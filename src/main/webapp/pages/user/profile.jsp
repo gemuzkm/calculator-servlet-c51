@@ -19,10 +19,10 @@
 
 </head>
 <body>
-<center>${requestScope.msgErrorNoAccess}</center>
 
 <c:if test="${sessionScope.user.getRole() == null}">
-    ${requestScope.msgErrorNoAccess}
+    <%@ include file="/pages/fragment/headerNoLogin.html"%>
+    ${sessionScope.msgErrorNoAccess}
 </c:if>
 
 <c:if test="${sessionScope.user.getRole() == 2}">

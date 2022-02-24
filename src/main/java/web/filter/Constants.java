@@ -14,7 +14,7 @@ public final class Constants {
     public static final String PATH_CREATE_USER_LINK_JSP = "/pages/admin/createuser.jsp";
     public static final String PATH_RECOVERY_USER_LINK_JSP = "/pages/recovery/recovery.jsp";
     public static final String PATH_NEW_PASSWORD_LINK_JSP = "/pages/recovery/newpassword.jsp";
-    public static final String PATH_PROFILE_USER_LINK_JSP = "/pages/user/profile/profile.jsp";
+    public static final String PATH_PROFILE_USER_LINK_JSP = "/pages/user/profile.jsp";
 
     //servlet name
     public static final String NAME_PROFILE_SERVLET = "ProfileServlet";

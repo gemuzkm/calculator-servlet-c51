@@ -16,6 +16,7 @@ Functionality:
 - each role has its own functionality
 - new user registration
 - authorization
+- recovery password (recovery word mode)
 - history of operations
 - history deletion (you can delete a specific operation)
 - user menu (for admin / for user)
@@ -24,4 +25,4 @@ Functionality:
 - slf4j + log4j
 - .css, .js locally (edit web.xml)
 - Value List Handler - pagination of history - in progress
-- user profile - in progress
+- user profile
