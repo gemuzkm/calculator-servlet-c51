@@ -35,7 +35,7 @@
 
 <c:if test="${sessionScope.user.getRole() != null}">
     <main class="form-signin">
-        <form action="/edituser" method="POST">
+        <form action="/profile" method="POST">
             <h1 class="h3 mb-3 fw-normal">User profile</h1>
             <div class="form-floating mb-3">
                 <input type="text" name="name" value="${sessionScope.user.getName()}" class="form-control"
