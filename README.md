@@ -18,7 +18,7 @@ Functionality:
 - authorization
 - history of operations
 - history deletion (you can delete a specific operation)
-- user menu (for admin)
+- user menu (for admin / for user)
 - user menu (adding a new user, editing an existing one, deleting a user)
 - junit
 - slf4j + log4j
