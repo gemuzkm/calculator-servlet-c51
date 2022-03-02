@@ -22,7 +22,7 @@ public class ValueListHandler {
 
     // общее количество элементов истории
     public int getSize(User user) {
-       return calculatorService.getSizeHistoryItem(user);
+        return calculatorService.getSizeHistoryItem(user);
     }
 
     public Operation getCurrentElement() {
@@ -34,8 +34,10 @@ public class ValueListHandler {
 
         if (listOperation != null && listIterator != null && listIterator.hasPrevious()) {
             listPreviousElements = new ArrayList<>();
-            for (int i = 0; i <count; i++) {
-                listPreviousElements.add(listIterator.previous());
+            for (int i = 0; i < count; i++) {
+                if (listIterator.hasPrevious()) {
+                    listPreviousElements.add(listIterator.previous());
+                }
             }
         }
 
@@ -45,7 +47,15 @@ public class ValueListHandler {
     public List<Operation> getNextElements(int count) {
         List<Operation> listNextElements = null;
 
-        return null;
+        if (listOperation != null && listIterator != null && listIterator.hasNext()) {
+            listNextElements = new ArrayList<>();
+            for (int i = 0; i < count; i++) {
+                if (listIterator.hasNext()) {
+                    listNextElements.add(listIterator.next());
+                }
+            }
+        }
+        return listNextElements;
         //отдал элементы и получил еще на страницу новые операции
     }
 
