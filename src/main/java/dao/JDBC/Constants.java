@@ -18,5 +18,6 @@ public final class Constants {
     public static final String JDBC_DEL_HISTORY_BU_LOGIN_AND_ID_ITEM = "DELETE FROM history where user_id = ? AND operation_id = ?";
     public static final String JDBC_GET_OPERATION_ID_BY_USER = "SELECT * FROM history where user_id = ? LIMIT ? OFFSET ?";
     public static final String JDBC_GET_MAT_HISTORY_OPERATION = "SELECT user_login, operation_value FROM history INNER JOIN users ON history.user_id = users.user_id";
+    public static final String JDBC_GET_SIZE_HISTORY_OPERATION = "SELECT user_login, operation_value FROM history INNER JOIN users ON history.user_id = users.user_id WHERE user_login = ?";
     public static final String JDBC_GET_USER_ID_BY_LOGIN = "SELECT user_id FROM users WHERE user_login = ?";
 }

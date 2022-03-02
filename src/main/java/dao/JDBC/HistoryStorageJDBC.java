@@ -2,6 +2,7 @@ package dao.JDBC;
 
 import entity.Operation;
 import dao.HistoryStorage;
+import entity.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -115,6 +116,20 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int getSizeHistoryOperation(User user) {
+        try {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_SIZE_HISTORY_OPERATION);
+                preparedStatement.setString(1, user.getLogin());
+                int size = preparedStatement.executeUpdate();
+                return size;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     private int getUserIdByLogin(String userLogin) {

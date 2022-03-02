@@ -1,5 +1,6 @@
 package service;
 
+import dao.JDBC.HistoryStorageJDBC;
 import entity.Operation;
 import entity.User;
 
@@ -7,6 +8,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class ValueListHandler implements ValueListIterator<Operation> {
+    private CalculatorService calculatorService = new CalculatorService();
+
     private Operation operation;
     private List<Operation>  operationList;
     private User user;
@@ -18,7 +21,7 @@ public class ValueListHandler implements ValueListIterator<Operation> {
 
     @Override
     public int getSize() {
-       return 0;
+       return calculatorService.getSizeHistoryItem(user.getLogin());
 
        ///return size element;
     }
@@ -36,6 +39,6 @@ public class ValueListHandler implements ValueListIterator<Operation> {
     @Override
     public List<Operation> getNextElements(int count) {
         return null;
-        //отдал элементы и получил еще на страницу новые опперации
+        //отдал элементы и получил еще на страницу новые операции
     }
 }

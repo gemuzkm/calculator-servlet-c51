@@ -23,6 +23,7 @@ public class HistoryServlet extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
 
+        int sizeItemHistory = calculatorService.getHistory(user.getLogin()).size();
         List<Operation> operationList = calculatorService.getHistory(user.getLogin());
 
         req.setAttribute("msgListHistoryUser", operationList);
