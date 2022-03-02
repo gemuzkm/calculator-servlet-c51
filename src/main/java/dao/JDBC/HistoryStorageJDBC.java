@@ -123,7 +123,13 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
             try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
                 PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_SIZE_HISTORY_OPERATION);
                 preparedStatement.setString(1, user.getLogin());
-                int size = preparedStatement.executeUpdate();
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                int size = 0;
+                while (resultSet.next()) {
+                    size++;
+                }
+
                 return size;
             }
         } catch (SQLException e) {

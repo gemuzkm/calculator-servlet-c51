@@ -26,6 +26,8 @@
     <%@ include file="/pages/fragment/headerManagerLogin.html" %>
 </c:if>
 
+${requestScope.sizeItemHistory}
+
 <div class="history">
     <div class="container">
         ${requestScope.msgErrorForAnonymous}

@@ -7,7 +7,7 @@ import entity.User;
 import java.util.List;
 import java.util.ListIterator;
 
-public class ValueListHandler implements ValueListIterator<Operation> {
+public class ValueListHandler {
     private CalculatorService calculatorService = new CalculatorService();
 
     private Operation operation;
@@ -19,24 +19,18 @@ public class ValueListHandler implements ValueListIterator<Operation> {
         this.user = user;
     }
 
-    @Override
-    public int getSize() {
-       return calculatorService.getSizeHistoryItem(user.getLogin());
-
-       ///return size element;
+    public int getSize(User user) {
+       return calculatorService.getSizeHistoryItem(user);
     }
 
-    @Override
     public Operation getCurrentElement() {
         return null;
     }
 
-    @Override
     public List<Operation> getPreviousElements(int count) {
         return null;
     }
 
-    @Override
     public List<Operation> getNextElements(int count) {
         return null;
         //отдал элементы и получил еще на страницу новые операции

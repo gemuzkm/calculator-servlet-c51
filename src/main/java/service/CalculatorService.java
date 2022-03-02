@@ -65,7 +65,7 @@ public class CalculatorService {
         historyStorageJDBC.del(userLogin, idItemHistory);
     }
 
-    public int getSizeHistoryItem(String userLogin) {
-        return 0;
+    public int getSizeHistoryItem(User user) {
+        return historyStorageJDBC.getSizeHistoryOperation(user);
     }
 }
