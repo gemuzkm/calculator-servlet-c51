@@ -29,12 +29,14 @@ public class HistoryServlet extends HttpServlet {
             page = req.getParameter("page");
         }
 
+//        System.out.println(page);
+
         User user = (User) session.getAttribute("user");
 
-        int sizeItemHistory = calculatorService.getSizeHistoryItem(user);
-        int pages = sizeItemHistory / recordsPerPage;
+//        int sizeItemHistory = calculatorService.getSizeHistoryItem(user);
+//        int pages = sizeItemHistory / recordsPerPage;
 
-        req.setAttribute("pages", pages);
+//        req.setAttribute("pages", pages);
         req.setAttribute("page", page);
         req.setAttribute("recordsPerPage", recordsPerPage);
 
@@ -43,9 +45,9 @@ public class HistoryServlet extends HttpServlet {
         List<Operation> operationList = null;
 
         if (page.equals("next")) {
-            operationList = calculatorService.getNextElementsHistory(user.getLogin(), recordsPerPage);
+            operationList = calculatorService.getNextElementsHistory(session, recordsPerPage);
         } else if (page.equals("back")) {
-            operationList = calculatorService.getPreviousElementsHistory(user.getLogin(), recordsPerPage);
+            operationList = calculatorService.getPreviousElementsHistory(session, recordsPerPage);
         }
 
         req.setAttribute("msgListHistoryUser", operationList);

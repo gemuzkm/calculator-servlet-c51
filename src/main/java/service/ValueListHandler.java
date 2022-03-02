@@ -9,34 +9,28 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class ValueListHandler {
-    private static ValueListHandler instance;
-
-    private ValueListHandler() {
-
-    }
-
-    public static ValueListHandler getInstance() {
-        if (instance == null) {
-            instance = new ValueListHandler();
-        }
-        return instance;
-    }
 
     HistoryStorageJDBC historyStorageJDBC = HistoryStorageJDBC.getInstance();
 
     private Operation operation;
-    private List<Operation> listOperation = historyStorageJDBC.getListHistoryOperation("user");
-    private ListIterator<Operation> listIterator =  listOperation.listIterator();;
-    private User user;
+    private List<Operation> listOperation = null;
+    private ListIterator<Operation> listIterator = null;
     private int index;
 
-
-    public void SetListHendler() {
-//        listOperation = historyStorageJDBC.getListHistoryOperation(userLogin);
-//        listIterator = listOperation.listIterator();
+    public ValueListHandler() {
     }
 
-    // общее количество элементов истории
+    public void setListHandler(User user) {
+        if (listIterator == null) {
+            listOperation = historyStorageJDBC.getListHistoryOperation(user.getLogin());
+        }
+
+        if (listIterator == null) {
+            listIterator = listOperation.listIterator();
+        }
+
+    }
+
     public int getSize(User user) {
         return historyStorageJDBC.getSizeHistoryOperation(user);
     }
@@ -45,7 +39,7 @@ public class ValueListHandler {
         return listOperation.get(index);
     }
 
-    public List<Operation> getPreviousElements(int count) {
+    public List<Operation> getPreviousElements(User user, int count) {
         List<Operation> listPreviousElements = null;
 
         if (listOperation != null && listIterator != null && listIterator.hasPrevious()) {
@@ -53,6 +47,8 @@ public class ValueListHandler {
             for (int i = 0; i < count; i++) {
                 if (listIterator.hasPrevious()) {
                     listPreviousElements.add(listIterator.previous());
+                    index--;
+//                    System.out.println(index);
                 }
             }
         }
@@ -60,7 +56,7 @@ public class ValueListHandler {
         return listPreviousElements;
     }
 
-    public List<Operation> getNextElements(int count) {
+    public List<Operation> getNextElements(User user, int count) {
         List<Operation> listNextElements = null;
 
         if (listOperation != null && listIterator != null && listIterator.hasNext()) {
@@ -68,11 +64,13 @@ public class ValueListHandler {
             for (int i = 0; i < count; i++) {
                 if (listIterator.hasNext()) {
                     listNextElements.add(listIterator.next());
+                    index++;
+//                    System.out.println(index);
                 }
             }
         }
+
         return listNextElements;
-        //отдал элементы и получил еще на страницу новые операции
     }
 
     public void resetIndex() {

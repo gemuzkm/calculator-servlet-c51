@@ -3,6 +3,7 @@ package service;
 import entity.*;
 import dao.JDBC.HistoryStorageJDBC;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,6 @@ public class CalculatorService {
     }
 
     private HistoryStorageJDBC historyStorageJDBC = HistoryStorageJDBC.getInstance();
-    private ValueListHandler valueListHandler = ValueListHandler.getInstance();
 
     public String getResult(ValueOne valueFirst, ValueTwo valueSecond, Operator operator, User user) {
 
@@ -70,15 +70,38 @@ public class CalculatorService {
         }
     }
 
-    public List<Operation> getNextElementsHistory(String userLogin, int count) {
+    public List<Operation> getNextElementsHistory(HttpSession session, int count) {
+        ValueListHandler valueListHandler = null;
+        User user = null;
 
-        return valueListHandler.getNextElements(count);
+        if (session.getAttribute("valueListHandler") == null) {
+            valueListHandler = new ValueListHandler();
+            session.setAttribute("valueListHandler", valueListHandler);
+            user = (User) session.getAttribute("user");
+
+            valueListHandler.setListHandler(user);
+        } else {
+            valueListHandler = (ValueListHandler) session.getAttribute("valueListHandler");
+        }
+        return valueListHandler.getNextElements(user, count);
     }
 
-    public List<Operation> getPreviousElementsHistory(String userLogin, int count) {
+    public List<Operation> getPreviousElementsHistory(HttpSession session, int count) {
+        ValueListHandler valueListHandler = null;
+        User user = null;
+
+        if (session.getAttribute("valueListHandler") == null) {
+            valueListHandler = new ValueListHandler();
+            session.setAttribute("valueListHandler", valueListHandler);
+            user = (User) session.getAttribute("user");
+
+            valueListHandler.setListHandler(user);
+        } else {
+            valueListHandler = (ValueListHandler) session.getAttribute("valueListHandler");
+        }
+        return valueListHandler.getPreviousElements(user, count);
 
 
-        return valueListHandler.getPreviousElements(count);
     }
 
     public void delHistory(String userLogin) {
