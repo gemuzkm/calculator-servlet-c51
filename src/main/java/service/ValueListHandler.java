@@ -18,6 +18,7 @@ public class ValueListHandler {
 
     public ValueListHandler(User user, int recordPerPage) {
         listOperation = calculatorService.getHistory(user.getLogin());
+        listIterator = listOperation.listIterator();
     }
 
     // общее количество элементов истории
