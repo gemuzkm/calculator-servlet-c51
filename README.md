@@ -2,7 +2,7 @@
 
 template:
 
-- JSP + JSTL - done
+- JSP + JSTL
 - bootstrap
 
 storage:
@@ -24,5 +24,5 @@ Functionality:
 - junit
 - slf4j + log4j
 - .css, .js locally (edit web.xml)
-- Value List Handler - pagination of history - in progress
 - user profile
+- pattern Value List Handler (History output operation)
