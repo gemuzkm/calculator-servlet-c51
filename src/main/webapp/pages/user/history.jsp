@@ -26,7 +26,6 @@
     <%@ include file="/pages/fragment/headerManagerLogin.html" %>
 </c:if>
 
-${requestScope.sizeItemHistory}
 
 <div class="history">
     <div class="container">
@@ -61,6 +60,18 @@ ${requestScope.sizeItemHistory}
         </div>
     </div>
 </div>
+
+<c:if test="${requestScope.pages != 0}">
+    <nav aria-label="History pagination">
+        <ul class="pagination justify-content-center">
+            <c:forEach begin="1" end="${requestScope.pages}" var="i">
+                <li class="page-item"><a class="page-link" href="/history?page=${i}">${i}</a></li>
+            </c:forEach>
+        </ul>
+    </nav>
+
+
+</c:if>
 
 <%@ include file="/pages/fragment/footer.html" %>
 

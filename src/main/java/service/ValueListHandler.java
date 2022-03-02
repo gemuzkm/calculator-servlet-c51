@@ -15,7 +15,7 @@ public class ValueListHandler {
     private User user;
     private int index;
 
-    public ValueListHandler(User user) {
+    public ValueListHandler() {
         this.user = user;
     }
 
