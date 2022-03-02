@@ -16,8 +16,11 @@ public class ValueListHandler {
     private User user;
     private int index;
 
-    public ValueListHandler(User user, int recordPerPage) {
-        listOperation = calculatorService.getHistory(user.getLogin());
+    public ValueListHandler() {
+    }
+
+    public void SetListHendler(String userLogin, int recordPerPage) {
+        listOperation = calculatorService.getHistory(userLogin);
         listIterator = listOperation.listIterator();
     }
 
@@ -62,7 +65,7 @@ public class ValueListHandler {
 
     public void resetIndex() {
         if (listIterator != null && listOperation != null) {
-            listOperation.listIterator(0);
+           listIterator = listOperation.listIterator();
         }
     }
 }

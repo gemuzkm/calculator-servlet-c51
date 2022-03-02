@@ -57,6 +57,18 @@ public class CalculatorService {
         }
     }
 
+    public List<Operation> getNextElementsHistory(String userLogin, int count) {
+        ValueListHandler valueListHandler = new ValueListHandler();
+        valueListHandler.SetListHendler(userLogin, count);
+        return valueListHandler.getNextElements(count);
+    }
+
+    public List<Operation> getPreviousElementsHistory(String userLogin, int count) {
+        ValueListHandler valueListHandler = new ValueListHandler();
+        valueListHandler.SetListHendler(userLogin, count);
+        return valueListHandler.getPreviousElements(count);
+    }
+
     public void delHistory(String userLogin) {
         historyStorageJDBC.del(userLogin);
     }

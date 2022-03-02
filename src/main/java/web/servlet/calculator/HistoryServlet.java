@@ -24,7 +24,7 @@ public class HistoryServlet extends HttpServlet {
 
         int page = 1;
         int recordsPerPage = 1;
-        if(req.getParameter("page") != null)
+        if (req.getParameter("page") != null)
             page = Integer.parseInt(req.getParameter("page"));
 
         HttpSession session = req.getSession();
@@ -33,7 +33,7 @@ public class HistoryServlet extends HttpServlet {
         int sizeItemHistory = calculatorService.getSizeHistoryItem(user);
         int pages = sizeItemHistory / recordsPerPage;
 
-        req.setAttribute("pages", sizeItemHistory);
+        req.setAttribute("pages", pages);
         req.setAttribute("page", page);
         req.setAttribute("recordsPerPage", recordsPerPage);
 
