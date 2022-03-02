@@ -34,6 +34,8 @@ public class HistoryServlet extends HttpServlet {
         int pages = sizeItemHistory / recordsPerPage;
 
         req.setAttribute("pages", sizeItemHistory);
+        req.setAttribute("page", page);
+        req.setAttribute("recordsPerPage", recordsPerPage);
 
         List<Operation> operationList = calculatorService.getHistory(user.getLogin());
 

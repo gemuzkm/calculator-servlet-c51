@@ -41,6 +41,7 @@
                     </tr>
                     </thead>
                     <tbody>
+<%--                    <c:forEach begin="1 * ${requestScope.page}" end="1 * ${requestScope.page} + ${requestScope.recordsPerPage}" var="i">--%>
                     <c:forEach items="${requestScope.msgListHistoryUser}" var="item" varStatus="id">
                         <tr>
                             <th>${id.count}</th>
@@ -69,8 +70,6 @@
             </c:forEach>
         </ul>
     </nav>
-
-
 </c:if>
 
 <%@ include file="/pages/fragment/footer.html" %>
