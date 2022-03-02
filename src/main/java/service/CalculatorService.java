@@ -13,7 +13,6 @@ public class CalculatorService {
     private static CalculatorService instance;
 
     private CalculatorService() {
-//        throw new RuntimeException();
     }
 
     public static CalculatorService getInstance() {
@@ -83,6 +82,7 @@ public class CalculatorService {
         } else {
             valueListHandler = (ValueListHandler) session.getAttribute("valueListHandler");
         }
+
         return valueListHandler.getNextElements(user, count);
     }
 
@@ -99,9 +99,8 @@ public class CalculatorService {
         } else {
             valueListHandler = (ValueListHandler) session.getAttribute("valueListHandler");
         }
+
         return valueListHandler.getPreviousElements(user, count);
-
-
     }
 
     public void delHistory(String userLogin) {

@@ -10,9 +10,8 @@ import java.util.ListIterator;
 
 public class ValueListHandler {
 
-    HistoryStorageJDBC historyStorageJDBC = HistoryStorageJDBC.getInstance();
+    private HistoryStorageJDBC historyStorageJDBC = HistoryStorageJDBC.getInstance();
 
-    private Operation operation;
     private List<Operation> listOperation = null;
     private ListIterator<Operation> listIterator = null;
     private int index;
@@ -75,7 +74,8 @@ public class ValueListHandler {
 
     public void resetIndex() {
         if (listIterator != null && listOperation != null) {
-           listIterator = listOperation.listIterator();
+            listIterator = listOperation.listIterator();
+            index = 0;
         }
     }
 }
