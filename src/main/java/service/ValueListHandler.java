@@ -1,5 +1,6 @@
 package service;
 
+import dao.JDBC.HistoryStorageJDBC;
 import entity.Operation;
 import entity.User;
 
@@ -8,25 +9,36 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class ValueListHandler {
-    private CalculatorService calculatorService = new CalculatorService();
+    private static ValueListHandler instance;
+
+    private ValueListHandler() {
+
+    }
+
+    public static ValueListHandler getInstance() {
+        if (instance == null) {
+            instance = new ValueListHandler();
+        }
+        return instance;
+    }
+
+    HistoryStorageJDBC historyStorageJDBC = HistoryStorageJDBC.getInstance();
 
     private Operation operation;
-    private List<Operation> listOperation;
-    private ListIterator<Operation> listIterator;
+    private List<Operation> listOperation = historyStorageJDBC.getListHistoryOperation("user");
+    private ListIterator<Operation> listIterator =  listOperation.listIterator();;
     private User user;
     private int index;
 
-    public ValueListHandler() {
-    }
 
-    public void SetListHendler(String userLogin, int recordPerPage) {
-        listOperation = calculatorService.getHistory(userLogin);
-        listIterator = listOperation.listIterator();
+    public void SetListHendler() {
+//        listOperation = historyStorageJDBC.getListHistoryOperation(userLogin);
+//        listIterator = listOperation.listIterator();
     }
 
     // общее количество элементов истории
     public int getSize(User user) {
-        return calculatorService.getSizeHistoryItem(user);
+        return historyStorageJDBC.getSizeHistoryOperation(user);
     }
 
     public Operation getCurrentElement() {

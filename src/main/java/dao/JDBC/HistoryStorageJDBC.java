@@ -14,7 +14,6 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
     private static HistoryStorageJDBC instance;
 
     private HistoryStorageJDBC() {
-//        throw new RuntimeException();
     }
 
     public static HistoryStorageJDBC getInstance() {
@@ -136,6 +135,29 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public List<Operation> getListHistoryOperation(String userLogin) {
+        try {
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "SELECT operation_value FROM history INNER JOIN users ON history.user_id = users.user_id WHERE user_login = ?"
+                );
+                preparedStatement.setString(1, userLogin);
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                List<Operation> listOperation = new ArrayList<>();
+
+                while (resultSet.next()) {
+                    listOperation.add(new Operation(resultSet.getString(1)));
+                }
+
+                return listOperation;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private int getUserIdByLogin(String userLogin) {

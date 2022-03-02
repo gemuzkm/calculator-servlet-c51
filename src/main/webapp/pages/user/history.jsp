@@ -41,7 +41,6 @@
                     </tr>
                     </thead>
                     <tbody>
-<%--                    <c:forEach begin="1 * ${requestScope.page}" end="1 * ${requestScope.page} + ${requestScope.recordsPerPage}" var="i">--%>
                     <c:forEach items="${requestScope.msgListHistoryUser}" var="item" varStatus="id">
                         <tr>
                             <th>${id.count}</th>
@@ -62,15 +61,24 @@
     </div>
 </div>
 
-<c:if test="${requestScope.pages != 0}">
-    <nav aria-label="History pagination">
-        <ul class="pagination justify-content-center">
-            <c:forEach begin="1" end="${requestScope.pages}" var="i">
-                <li class="page-item"><a class="page-link" href="/history?page=${i}">${i}</a></li>
-            </c:forEach>
-        </ul>
-    </nav>
-</c:if>
+<%--<c:if test="${requestScope.pages != 0}">--%>
+<%--    <nav aria-label="History pagination">--%>
+<%--        <ul class="pagination justify-content-center">--%>
+<%--            <c:forEach begin="1" end="${requestScope.pages}" var="i">--%>
+<%--                <li class="page-item"><a class="page-link" href="/history?page=${i}">${i}</a></li>--%>
+<%--            </c:forEach>--%>
+<%--        </ul>--%>
+<%--    </nav>--%>
+<%--</c:if>--%>
+
+<nav aria-label="History pagination">
+    <ul class="pagination justify-content-center">
+
+        <li class="page-item"><a class="page-link" href="/history?page=back">back</a></li>
+        <li class="page-item"><a class="page-link" href="/history?page=next">next</a></li>
+
+    </ul>
+</nav>
 
 <%@ include file="/pages/fragment/footer.html" %>
 

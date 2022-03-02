@@ -22,7 +22,7 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CalculatorService calculatorService = new CalculatorService();
+        CalculatorService calculatorService = CalculatorService.getInstance();
         HttpSession session = req.getSession();
 
         if (session.getAttribute("user") != null) {

@@ -27,7 +27,7 @@ class CalculatorServiceTest {
 
     @Test
     void getResultSum() {
-        CalculatorService calculatorService = new CalculatorService();
+        CalculatorService calculatorService = CalculatorService.getInstance();
         User user = new User("admin","admin","admin", "1", 2);
 
         String result = calculatorService.getResult(new ValueOne(2),new ValueTwo(2),new Operator("sum"), user);
@@ -37,7 +37,7 @@ class CalculatorServiceTest {
 
     @Test
     void getResultDif() {
-        CalculatorService calculatorService = new CalculatorService();
+        CalculatorService calculatorService = CalculatorService.getInstance();
         User user = new User("admin","admin","admin", "1", 2);
 
         String result = calculatorService.getResult(new ValueOne(2),new ValueTwo(2),new Operator("dif"), user);
@@ -47,7 +47,7 @@ class CalculatorServiceTest {
 
     @Test
     void getResultDiv() {
-        CalculatorService calculatorService = new CalculatorService();
+        CalculatorService calculatorService = CalculatorService.getInstance();
         User user = new User("admin","admin","admin", "1", 2);
 
         String result = calculatorService.getResult(new ValueOne(2),new ValueTwo(2),new Operator("div"), user);
@@ -57,7 +57,7 @@ class CalculatorServiceTest {
 
     @Test
     void getResultDivNaN() {
-        CalculatorService calculatorService = new CalculatorService();
+        CalculatorService calculatorService = CalculatorService.getInstance();
         User user = new User("admin","admin","admin", "1", 2);
 
         String result = calculatorService.getResult(new ValueOne(2),new ValueTwo(0),new Operator("div"), user);
@@ -67,7 +67,7 @@ class CalculatorServiceTest {
 
     @Test
     void getResultMult() {
-        CalculatorService calculatorService = new CalculatorService();
+        CalculatorService calculatorService = CalculatorService.getInstance();
         User user = new User("admin","admin","admin", "1", 2);
 
         String result = calculatorService.getResult(new ValueOne(2),new ValueTwo(10),new Operator("mult"), user);

@@ -9,13 +9,26 @@ import java.util.List;
 import java.util.Map;
 
 public class CalculatorService {
+    private static CalculatorService instance;
+
+    private CalculatorService() {
+//        throw new RuntimeException();
+    }
+
+    public static CalculatorService getInstance() {
+        if (instance == null) {
+            instance = new CalculatorService();
+        }
+        return instance;
+    }
 
     private HistoryStorageJDBC historyStorageJDBC = HistoryStorageJDBC.getInstance();
+    private ValueListHandler valueListHandler = ValueListHandler.getInstance();
 
     public String getResult(ValueOne valueFirst, ValueTwo valueSecond, Operator operator, User user) {
 
         String result = getResultOperation(valueFirst, valueSecond, operator);
-        String resultOperation = valueFirst.getValue() + " " + operator.getValue() + " " + valueSecond.getValue() + " = " + result + LocalDateTime.now();
+        String resultOperation = valueFirst.getValue() + " " + operator.getValue() + " " + valueSecond.getValue() + " = " + result + " " + LocalDateTime.now();
 
         historyStorageJDBC.add(user.getLogin(), new Operation(resultOperation));
         return result;
@@ -58,14 +71,13 @@ public class CalculatorService {
     }
 
     public List<Operation> getNextElementsHistory(String userLogin, int count) {
-        ValueListHandler valueListHandler = new ValueListHandler();
-        valueListHandler.SetListHendler(userLogin, count);
+
         return valueListHandler.getNextElements(count);
     }
 
     public List<Operation> getPreviousElementsHistory(String userLogin, int count) {
-        ValueListHandler valueListHandler = new ValueListHandler();
-        valueListHandler.SetListHendler(userLogin, count);
+
+
         return valueListHandler.getPreviousElements(count);
     }
 

@@ -1,7 +1,6 @@
 package web.servlet.calculator;
 
 import entity.Operation;
-import service.ValueListHandler;
 import web.servlet.Constants;
 import entity.User;
 import service.CalculatorService;
@@ -20,14 +19,16 @@ public class HistoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CalculatorService calculatorService = new CalculatorService();
-
-        int page = 1;
-        int recordsPerPage = 1;
-        if (req.getParameter("page") != null)
-            page = Integer.parseInt(req.getParameter("page"));
-
+        CalculatorService calculatorService = CalculatorService.getInstance();
         HttpSession session = req.getSession();
+
+        String page = "next";
+        int recordsPerPage = 1;
+
+        if (req.getParameter("page") != null) {
+            page = req.getParameter("page");
+        }
+
         User user = (User) session.getAttribute("user");
 
         int sizeItemHistory = calculatorService.getSizeHistoryItem(user);
@@ -37,7 +38,15 @@ public class HistoryServlet extends HttpServlet {
         req.setAttribute("page", page);
         req.setAttribute("recordsPerPage", recordsPerPage);
 
-        List<Operation> operationList = calculatorService.getHistory(user.getLogin());
+//        List<Operation> operationList = calculatorService.getHistory(user.getLogin());
+
+        List<Operation> operationList = null;
+
+        if (page.equals("next")) {
+            operationList = calculatorService.getNextElementsHistory(user.getLogin(), recordsPerPage);
+        } else if (page.equals("back")) {
+            operationList = calculatorService.getPreviousElementsHistory(user.getLogin(), recordsPerPage);
+        }
 
         req.setAttribute("msgListHistoryUser", operationList);
         req.getServletContext().getRequestDispatcher(Constants.PATH_HISTORY_LINK_JSP).forward(req, resp);

@@ -26,7 +26,7 @@ public class CalculatorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        CalculatorService calculatorService = new CalculatorService();
+        CalculatorService calculatorService = CalculatorService.getInstance();
 
         String valueFirst = req.getParameter("value1");
         String valueSecond = req.getParameter("value2");

@@ -8,10 +8,10 @@ import web.validator.UserValidator;
 import java.util.List;
 
 public class UserService {
-    private UserStorageInMemory userStorageInMemory =  UserStorageInMemory.getInstance();
     private UserStorageJDBC userStorageJDBC = UserStorageJDBC.getInstance();
+    private CalculatorService calculatorService = CalculatorService.getInstance();
     private UserValidator userValidator = new UserValidator();
-    private CalculatorService calculatorService = new CalculatorService();
+
 
     public User getByUserLogin(String userLogin) {
         return userStorageJDBC.getUserByLogin(userLogin);

@@ -20,7 +20,7 @@ public class DelHistoryServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CalculatorService calculatorService = new CalculatorService();
+        CalculatorService calculatorService = CalculatorService.getInstance();
 
         String login = req.getParameter("login");
         int idItemHistory = Integer.parseInt(req.getParameter("idItemHistory"));
