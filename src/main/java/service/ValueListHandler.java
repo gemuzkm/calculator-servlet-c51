@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class ValueListHandler {
+public class ValueListHandler implements ValueListIterator<User, Operation> {
 
     private HistoryStorageJDBC historyStorageJDBC = HistoryStorageJDBC.getInstance();
 
@@ -19,6 +19,7 @@ public class ValueListHandler {
     public ValueListHandler() {
     }
 
+    @Override
     public void setListHandler(User user) {
         if (listIterator == null) {
             listOperation = historyStorageJDBC.getListHistoryOperation(user.getLogin());
@@ -30,15 +31,18 @@ public class ValueListHandler {
 
     }
 
+    @Override
     public int getSize(User user) {
         return historyStorageJDBC.getSizeHistoryOperation(user);
     }
 
+    @Override
     public Operation getCurrentElement() {
         return listOperation.get(index);
     }
 
-    public List<Operation> getPreviousElements(User user, int count) {
+    @Override
+    public List<Operation> getPreviousElements(int count) {
         List<Operation> listPreviousElements = null;
 
         if (listOperation != null && listIterator != null && listIterator.hasPrevious()) {
@@ -55,7 +59,8 @@ public class ValueListHandler {
         return listPreviousElements;
     }
 
-    public List<Operation> getNextElements(User user, int count) {
+    @Override
+    public List<Operation> getNextElements(int count) {
         List<Operation> listNextElements = null;
 
         if (listOperation != null && listIterator != null && listIterator.hasNext()) {
@@ -72,6 +77,7 @@ public class ValueListHandler {
         return listNextElements;
     }
 
+    @Override
     public void resetIndex() {
         if (listIterator != null && listOperation != null) {
             listIterator = listOperation.listIterator();

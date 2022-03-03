@@ -70,37 +70,31 @@ public class CalculatorService {
     }
 
     public List<Operation> getNextElementsHistory(HttpSession session, int count) {
-        ValueListHandler valueListHandler = null;
-        User user = null;
 
-        if (session.getAttribute("valueListHandler") == null) {
-            valueListHandler = new ValueListHandler();
-            session.setAttribute("valueListHandler", valueListHandler);
-            user = (User) session.getAttribute("user");
-
-            valueListHandler.setListHandler(user);
-        } else {
-            valueListHandler = (ValueListHandler) session.getAttribute("valueListHandler");
-        }
-
-        return valueListHandler.getNextElements(user, count);
+        User user = (User) session.getAttribute("user");
+        ValueListHandler valueListHandler = getValueListHandler(session, user);
+        return valueListHandler.getNextElements(count);
     }
 
     public List<Operation> getPreviousElementsHistory(HttpSession session, int count) {
+
+        User user = (User) session.getAttribute("user");
+        ValueListHandler valueListHandler = getValueListHandler(session, user);
+        return valueListHandler.getPreviousElements(count);
+    }
+
+    private ValueListHandler getValueListHandler(HttpSession session, User user) {
         ValueListHandler valueListHandler = null;
-        User user = null;
 
         if (session.getAttribute("valueListHandler") == null) {
             valueListHandler = new ValueListHandler();
             session.setAttribute("valueListHandler", valueListHandler);
-            user = (User) session.getAttribute("user");
-
             valueListHandler.setListHandler(user);
         } else {
             valueListHandler = (ValueListHandler) session.getAttribute("valueListHandler");
         }
 
-        return valueListHandler.getPreviousElements(user, count);
+        return valueListHandler;
     }
 
     public void delHistory(String userLogin) {

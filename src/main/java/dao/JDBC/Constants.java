@@ -20,4 +20,5 @@ public final class Constants {
     public static final String JDBC_GET_MAT_HISTORY_OPERATION = "SELECT user_login, operation_value FROM history INNER JOIN users ON history.user_id = users.user_id";
     public static final String JDBC_GET_SIZE_HISTORY_OPERATION = "SELECT user_login, operation_value FROM history INNER JOIN users ON history.user_id = users.user_id WHERE user_login = ?";
     public static final String JDBC_GET_USER_ID_BY_LOGIN = "SELECT user_id FROM users WHERE user_login = ?";
+    public static final String JDBC_GET_LIST_USER_OPERATION = "SELECT operation_value FROM history INNER JOIN users ON history.user_id = users.user_id WHERE user_login = ?";
 }

@@ -140,9 +140,7 @@ public class HistoryStorageJDBC implements HistoryStorage<String, Operation, Int
     public List<Operation> getListHistoryOperation(String userLogin) {
         try {
             try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER_NAME, JDBC_PASSWORD)) {
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT operation_value FROM history INNER JOIN users ON history.user_id = users.user_id WHERE user_login = ?"
-                );
+                PreparedStatement preparedStatement = connection.prepareStatement(Constants.JDBC_GET_LIST_USER_OPERATION);
                 preparedStatement.setString(1, userLogin);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
